@@ -12,18 +12,18 @@ class User(AbstractUser):
         MANAGER = 'manager'
         EMPLOYEE = 'employee'
 
-    first_name = models.CharField(max_lenght=MAX_LENGHT)
-    middle_name = models.CharField(max_lenght=MAX_LENGHT)
-    last_name = models.CharField(max_lenght=MAX_LENGHT)
+    first_name = models.CharField(max_length=MAX_LENGHT)
+    middle_name = models.CharField(max_length=MAX_LENGHT)
+    last_name = models.CharField(max_length=MAX_LENGHT)
     role = models.CharField(
-        max_lenght=MAX_LENGHT,
+        max_length=MAX_LENGHT,
         choices=Role.choices,
         default=Role.EMPLOYEE
     )
 
     class Meta:
         verbose_name = 'Пользователь'
-        verbose_plural_name = 'Пользователи'
+        verbose_name_plural = 'Пользователи'
 
 
 class Manager(models.Model):
@@ -32,19 +32,19 @@ class Manager(models.Model):
 
     class Meta:
         verbose_name = 'Руководитель'
-        verbose_plural_name = 'Руководители'
+        verbose_name_plural = 'Руководители'
 
 
 class Employee(models.Model):
     """Модель сотрудника"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    position = models.CharField(max_lenght=MAX_LENGHT)
-    grade = models.CharField(max_lenght=MAX_LENGHT)
+    position = models.CharField(max_length=MAX_LENGHT)
+    grade = models.CharField(max_length=MAX_LENGHT)
     head = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Сотрудник'
-        verbose_plural_name = 'Сотрудники'
+        verbose_name_plural = 'Сотрудники'
 
 
 class MentorEmployee(models.Model):
@@ -62,7 +62,7 @@ class MentorEmployee(models.Model):
 
     class Meta:
         verbose_name = 'Связь ментор-сотрудник'
-        verbose_plural_name = 'Связи ментор-сотрудник'
+        verbose_name_plural = 'Связи ментор-сотрудник'
         constraints = [
             models.UniqueConstraint(
                 fields=('mentor', 'mentee'),
