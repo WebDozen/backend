@@ -28,7 +28,11 @@ class User(AbstractUser):
 
 class Manager(models.Model):
     """Модель руководителя"""
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name='manager_profile'
+    )
 
     class Meta:
         verbose_name = 'Руководитель'
@@ -37,7 +41,11 @@ class Manager(models.Model):
 
 class Employee(models.Model):
     """Модель сотрудника"""
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name='employee_profile'
+    )
     position = models.CharField(max_length=MAX_LENGHT)
     grade = models.CharField(max_length=MAX_LENGHT)
     head = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -49,8 +57,16 @@ class Employee(models.Model):
 
 class MentorEmployee(models.Model):
     """Модель для связи ментора из числа сотрудников с сотрудником."""
-    mentor = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    mentee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    mentor = models.ForeignKey(
+        Employee,
+        on_delete=models.CASCADE,
+        related_name='mentor'
+    )
+    mentee = models.ForeignKey(
+        Employee,
+        on_delete=models.CASCADE,
+        related_name='mentee'
+    )
 
     def clean(self):
         if self.mentor == self.mentee.supervisor:
