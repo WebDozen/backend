@@ -48,7 +48,7 @@ class Employee(models.Model):
     )
     position = models.CharField(max_length=MAX_LENGHT)
     grade = models.CharField(max_length=MAX_LENGHT)
-    head = models.ForeignKey(User, on_delete=models.CASCADE)
+    head = models.ForeignKey(Manager, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Сотрудник'
