@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import Employee, Manager
+from users.models import Employee, Manager, User
 
 
 class Execution_status(models.Model):
@@ -20,12 +20,12 @@ class Execution_status(models.Model):
         return f'{self.name}'
 
 
-class IPR(models.Model):
+class IDP(models.Model):
     author = models.ForeignKey(
         Manager,
         on_delete=models.SET_NULL,
         null=True,
-        related_name='IPR',
+        related_name='IDP',
         verbose_name='Руководитель',
     )
     name = models.CharField(
@@ -40,70 +40,113 @@ class IPR(models.Model):
     )
     execution_status = models.ManyToManyField(
         Execution_status,
+        related_name='IDP',
         verbose_name='Статус исполнения',
-        related_name='IPR',
+    )
+    message = models.TextField(
+        verbose_name='Мотивационное сообщение'
+    )
+    pub_date = models.DateTimeField(
+        verbose_name='Дата создания',
+        auto_now_add=True,
     )
 
     class Meta:
-        verbose_name = 'IPR'
+        verbose_name = 'IDP'
 
     def __str__(self):
         return f'{self.name}'
 
 
-class manager_comment(models.Model):
-    ipr = models.ForeignKey(
-        IPR,
+class Type_task(models.Model):
+    name = models.CharField(
+        verbose_name='Название',
+        max_length=200,
+    )
+    slug = models.SlugField(
+        verbose_name='Слаг типа',
+        unique=True
+    )
+
+    class Meta:
+        verbose_name = 'Тип задачи'
+        verbose_name_plural = 'Типы задачи'
+
+    def __str__(self):
+        return f'{self.name}'
+
+
+class Task(models.Model):
+    idp = models.ForeignKey(
+        IDP,
         on_delete=models.CASCADE,
-        related_name='manager comments',
+        related_name='Task',
         verbose_name='ИПР',
+    )
+    name = models.CharField(
+        verbose_name='Название',
+        max_length=200,
+    )
+    description = models.TextField(
+        verbose_name='Подробное описание',
+    )
+    execution_status = models.ManyToManyField(
+        Execution_status,
+        related_name='Task',
+        verbose_name='Статус исполнения',
+    )
+    pub_date = models.DateTimeField(
+        verbose_name='Дата создания',
+        auto_now_add=True,
+    )
+
+
+class Comments(models.Model):
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='Comments',
+        verbose_name='Пользователь',
     )
     text = models.TextField(
         verbose_name='Текст комментария',
     )
-    author = models.ForeignKey(
-        Manager,
-        on_delete=models.CASCADE,
-        related_name='manager comments',
-        verbose_name='Руководитель',
-    )
     pub_date = models.DateTimeField(
-        'Дата комментария',
+        verbose_name='Дата комментария',
         auto_now_add=True,
     )
 
     class Meta:
-        verbose_name = 'Комментарий Руководителя'
-        verbose_name_plural = 'Комментарии Руководителя'
+        abstract = True
+
+
+class idp_comment(Comments):
+    idp = models.ForeignKey(
+        IDP,
+        on_delete=models.CASCADE,
+        related_name='IDP comments',
+        verbose_name='ИПР',
+    )
+
+    class Meta:
+        verbose_name = 'Комментарий к ИПР'
+        verbose_name_plural = 'Комментарии к ИПР'
 
     def __str__(self):
         return f'{self.text}'
 
 
-class employee_comment(models.Model):
-    ipr = models.ForeignKey(
-        IPR,
+class task_comment(Comments):
+    task = models.ForeignKey(
+        Task,
         on_delete=models.CASCADE,
-        related_name='employee comments',
-        verbose_name='ИПР',
-    )
-    text = models.TextField(
-        verbose_name='Текст комментария',
-    )
-    author = models.ForeignKey(
-        Employee,
-        on_delete=models.CASCADE,
-        related_name='employee comments',
-        verbose_name='Сотрудник',
-    )
-    pub_date = models.DateTimeField(
-        'Дата комментария',
-        auto_now_add=True,
+        related_name='Task comments',
+        verbose_name='Task',
     )
 
     class Meta:
-        verbose_name = 'Комментарий Сотрудника'
-        verbose_name_plural = 'Комментарии Сотрудника'
+        verbose_name = 'Комментарий к задаче'
+        verbose_name_plural = 'Комментарии к задаче'
 
     def __str__(self):
         return f'{self.text}'
