@@ -90,6 +90,12 @@ class Task(models.Model):
         related_name='Task',
         verbose_name='ИПР',
     )
+    type = models.ManyToManyField(
+        Type_task,
+        related_name='Task',
+        verbose_name='Тип задачи',
+
+    )
     name = models.CharField(
         verbose_name='Название',
         max_length=200,
@@ -106,6 +112,13 @@ class Task(models.Model):
         verbose_name='Дата создания',
         auto_now_add=True,
     )
+
+    class Meta:
+        verbose_name = 'Задача'
+        verbose_name_plural = 'Задачи'
+    
+    def __str__(self):
+        return f'{self.name}'
 
 
 class Comments(models.Model):
