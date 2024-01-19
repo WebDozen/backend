@@ -28,6 +28,13 @@ class IDP(models.Model):
         related_name='IDP',
         verbose_name='Руководитель',
     )
+    employee = models.ForeignKey(
+        Employee,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='IDP',
+        verbose_name='Сотрудник',
+    )
     name = models.CharField(
         verbose_name='Название',
         max_length=200,
