@@ -69,7 +69,7 @@ class MentorEmployee(models.Model):
     )
 
     def clean(self):
-        if self.mentor == self.mentee.supervisor:
+        if self.mentor == self.mentee:
             raise ValidationError("Сотрудник не может быть своим ментором.")
 
     def save(self, *args, **kwargs):
