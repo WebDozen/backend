@@ -45,7 +45,7 @@ class IDP(models.Model):
     deadline = models.DateTimeField(
         verbose_name='Дедлайн'
     )
-    execution_status = models.ManyToManyField(
+    execution_status = models.ForeignKey(
         Execution_status,
         related_name='IDP',
         verbose_name='Статус исполнения',
@@ -90,7 +90,7 @@ class Task(models.Model):
         related_name='Task',
         verbose_name='ИПР',
     )
-    type = models.ManyToManyField(
+    type = models.ForeignKey(
         Type_task,
         related_name='Task',
         verbose_name='Тип задачи',
@@ -103,7 +103,7 @@ class Task(models.Model):
     description = models.TextField(
         verbose_name='Подробное описание',
     )
-    execution_status = models.ManyToManyField(
+    execution_status = models.ForeignKey(
         Execution_status,
         related_name='Task',
         verbose_name='Статус исполнения',
@@ -116,7 +116,7 @@ class Task(models.Model):
     class Meta:
         verbose_name = 'Задача'
         verbose_name_plural = 'Задачи'
-    
+
     def __str__(self):
         return f'{self.name}'
 
