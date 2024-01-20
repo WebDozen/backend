@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 
 
-MAX_LENGHT = 64
+MAX_LENGTH = 64
 
 
 class User(AbstractUser):
@@ -12,14 +12,18 @@ class User(AbstractUser):
         MANAGER = 'manager'
         EMPLOYEE = 'employee'
 
-    first_name = models.CharField(max_length=MAX_LENGHT)
-    middle_name = models.CharField(max_length=MAX_LENGHT)
-    last_name = models.CharField(max_length=MAX_LENGHT)
+    first_name = models.CharField(max_length=MAX_LENGTH)
+    middle_name = models.CharField(max_length=MAX_LENGTH)
+    last_name = models.CharField(max_length=MAX_LENGTH)
     role = models.CharField(
-        max_length=MAX_LENGHT,
+        max_length=MAX_LENGTH,
         choices=Role.choices,
         default=Role.EMPLOYEE
     )
+    username = None
+    email = models.EmailField(unique=True)
+    REQUIRED_FIELDS = ['first_name', 'middle_name', 'last_name']
+    USERNAME_FIELD = 'email'
 
     class Meta:
         verbose_name = 'Пользователь'
@@ -46,9 +50,9 @@ class Employee(models.Model):
         on_delete=models.CASCADE,
         related_name='employee_profile'
     )
-    position = models.CharField(max_length=MAX_LENGHT)
-    grade = models.CharField(max_length=MAX_LENGHT)
-    head = models.ForeignKey(Manager, on_delete=models.CASCADE)
+    position = models.CharField(max_length=MAX_LENGTH)
+    grade = models.CharField(max_length=MAX_LENGTH)
+    head = models.ForeignKey(Manager, on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = 'Сотрудник'
@@ -69,7 +73,7 @@ class MentorEmployee(models.Model):
     )
 
     def clean(self):
-        if self.mentor == self.mentee.supervisor:
+        if self.mentor == self.mentee:
             raise ValidationError("Сотрудник не может быть своим ментором.")
 
     def save(self, *args, **kwargs):
