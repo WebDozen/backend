@@ -47,6 +47,7 @@ class IDP(models.Model):
     )
     execution_status = models.ForeignKey(
         Execution_status,
+        on_delete=models.CASCADE,
         related_name='IDP',
         verbose_name='Статус исполнения',
     )
@@ -87,14 +88,14 @@ class Task(models.Model):
     idp = models.ForeignKey(
         IDP,
         on_delete=models.CASCADE,
-        related_name='Task',
+        related_name='task',
         verbose_name='ИПР',
     )
     type = models.ForeignKey(
         Type_task,
-        related_name='Task',
+        on_delete=models.CASCADE,
+        related_name='task',
         verbose_name='Тип задачи',
-
     )
     name = models.CharField(
         verbose_name='Название',
@@ -105,7 +106,8 @@ class Task(models.Model):
     )
     execution_status = models.ForeignKey(
         Execution_status,
-        related_name='Task',
+        on_delete=models.CASCADE,
+        related_name='task',
         verbose_name='Статус исполнения',
     )
     pub_date = models.DateTimeField(
@@ -125,7 +127,7 @@ class Comments(models.Model):
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='Comments',
+        related_name='%(class)s_author',
         verbose_name='Пользователь',
     )
     text = models.TextField(
@@ -144,7 +146,7 @@ class idp_comment(Comments):
     idp = models.ForeignKey(
         IDP,
         on_delete=models.CASCADE,
-        related_name='IDP comments',
+        related_name='idp_comments',
         verbose_name='ИПР',
     )
 
@@ -160,8 +162,8 @@ class task_comment(Comments):
     task = models.ForeignKey(
         Task,
         on_delete=models.CASCADE,
-        related_name='Task comments',
-        verbose_name='Task',
+        related_name='task_comments',
+        verbose_name='Задача',
     )
 
     class Meta:
