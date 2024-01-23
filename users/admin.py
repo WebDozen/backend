@@ -8,21 +8,6 @@ class MentorEmployeeAdmin(admin.ModelAdmin):
     pass
 
 
-# class EmloyeeInline(admin.TabularInline):
-#     model = Employee
-#     extra = 1
-
-
-# @admin.register(Manager)
-# class ManagerAdmin(admin.ModelAdmin):
-#     inlines = (EmloyeeInline,)
-
-
-# @admin.register(User)
-# class UserAdmin(admin.ModelAdmin):
-#     pass
-
-
 class ManagerInline(admin.StackedInline):
     model = Manager
     can_delete = False
@@ -49,8 +34,8 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 @admin.register(User)
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('email', 'first_name', 'last_name', 'get_role')
-    ordering = ('email',)
+    list_display = ('first_name', 'last_name', 'get_role')
+    ordering = ('last_name',)
 
     def get_inline_instances(self, request, obj=None):
         inline_instances = super().get_inline_instances(request, obj)
@@ -71,18 +56,11 @@ class CustomUserAdmin(admin.ModelAdmin):
         return "Пользователь"
 
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
+        (None, {'fields': ('username', 'password')}),
         ('Personal info', {'fields': (
             'first_name',
             'middle_name',
             'last_name'
         )}),
         ('Role', {'fields': ('role',)})
-    )
-
-    add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('email', 'password1', 'role'),
-        }),
     )

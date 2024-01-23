@@ -20,10 +20,10 @@ class User(AbstractUser):
         choices=Role.choices,
         default=Role.EMPLOYEE
     )
-    username = None
-    email = models.EmailField(unique=True)
-    REQUIRED_FIELDS = ['first_name', 'middle_name', 'last_name']
-    USERNAME_FIELD = 'email'
+    # username = None
+    # email = models.EmailField(unique=True)
+    # REQUIRED_FIELDS = ['first_name', 'middle_name', 'last_name']
+    # USERNAME_FIELD = 'email'
 
     class Meta:
         verbose_name = 'Пользователь'
