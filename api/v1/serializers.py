@@ -15,7 +15,19 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Employee
-        fields = '__all__'
+        fields = ['id',
+                  'head',
+                  'mentor_id',
+                  'idp_id',
+                  'last_name',
+                  'first_name',
+                  'middle_name',
+                  'grade',
+                  'position',
+                  'task_count',
+                  'idp_status',
+                  'message',
+                  ]
 
     def get_idp_status(self, obj):
         idps = obj.IDP.all()
@@ -45,8 +57,8 @@ class EmployeeSerializer(serializers.ModelSerializer):
         tasks = Task.objects.filter(idp__employee=obj)
         return tasks.count()
 
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        representation['head_id'] = representation.pop('head')
-        representation['employee_id'] = representation.pop('user')
-        return representation
+    # def to_representation(self, instance):
+    #     representation = super().to_representation(instance)
+    #     representation['head_id'] = representation.pop('head')
+    #     representation['employee_id'] = representation.pop('id')
+    #     return representation
