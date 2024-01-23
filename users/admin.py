@@ -37,6 +37,24 @@ class CustomUserAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'get_role')
     ordering = ('last_name',)
 
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+        ('Personal info', {'fields': (
+            'first_name',
+            'middle_name',
+            'last_name'
+        )}),
+        ('Role', {'fields': ('role',)})
+    )
+
+    @admin.display(description='Роль')
+    def get_role(self, obj):
+        if obj.role == 'manager':
+            return "Руководитель"
+        elif obj.role == 'employee':
+            return "Сотрудник"
+        return "Пользователь"
+
     def get_inline_instances(self, request, obj=None):
         inline_instances = super().get_inline_instances(request, obj)
 
@@ -47,20 +65,6 @@ class CustomUserAdmin(admin.ModelAdmin):
 
         return inline_instances
 
-    @admin.display(description='Роль')
-    def get_role(self, obj):
-        if obj.role == 'manager':
-            return "Руководитель"
-        elif obj.role == 'employee':
-            return "Сотрудник"
-        return "Пользователь"
-
-    fieldsets = (
-        (None, {'fields': ('username', 'password')}),
-        ('Personal info', {'fields': (
-            'first_name',
-            'middle_name',
-            'last_name'
-        )}),
-        ('Role', {'fields': ('role',)})
-    )
+    def save_model(self, request, obj, form, change):
+        obj.set_password(obj.password)
+        super().save_model(request, obj, form, change)
