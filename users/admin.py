@@ -32,6 +32,11 @@ class EmployeeAdmin(admin.ModelAdmin):
     search_fields = ('user__email', 'position', 'grade', 'head__user__email')
 
 
+@admin.register(Employee)
+class MEmployeeAdmin(admin.ModelAdmin):
+    pass
+
+
 @admin.register(User)
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'get_role')

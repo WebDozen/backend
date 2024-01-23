@@ -43,7 +43,7 @@ class IDP(models.Model):
         verbose_name='Подробное описание',
     )
     deadline = models.DateTimeField(
-        verbose_name='Дедлайн'
+        verbose_name='Срок выполнения'
     )
     execution_status = models.ForeignKey(
         Execution_status,

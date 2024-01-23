@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from plans.models import IDP
+
+
+@admin.register(IDP)
+class IDPAdmin(admin.ModelAdmin):
+    pass
