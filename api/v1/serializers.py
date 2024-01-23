@@ -29,6 +29,16 @@ class EmployeeSerializer(serializers.ModelSerializer):
                   'message',
                   ]
 
+    def __init__(self, *args, **kwargs):
+        self.manager = kwargs.pop('manager', None)
+        super().__init__(*args, **kwargs)
+
+    def get_task_count(self, obj):
+        if self.manager and obj.head == self.manager:
+            tasks = Task.objects.filter(idp__employee=obj)
+            return tasks.count()
+        return 0
+
     def get_idp_status(self, obj):
         idps = obj.IDP.all()
         if idps.exists():
@@ -52,13 +62,3 @@ class EmployeeSerializer(serializers.ModelSerializer):
             return idps.first().message
         else:
             return None
-
-    def get_task_count(self, obj):
-        tasks = Task.objects.filter(idp__employee=obj)
-        return tasks.count()
-
-    # def to_representation(self, instance):
-    #     representation = super().to_representation(instance)
-    #     representation['head_id'] = representation.pop('head')
-    #     representation['employee_id'] = representation.pop('id')
-    #     return representation
