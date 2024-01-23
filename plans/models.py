@@ -2,7 +2,7 @@ from django.db import models
 from users.models import Employee, Manager, User
 
 
-class Execution_status(models.Model):
+class ExecutionStatus(models.Model):
     name = models.CharField(
         verbose_name='Название',
         max_length=50,
@@ -46,7 +46,7 @@ class IDP(models.Model):
         verbose_name='Срок выполнения'
     )
     execution_status = models.ForeignKey(
-        Execution_status,
+        ExecutionStatus,
         on_delete=models.CASCADE,
         related_name='IDP',
         verbose_name='Статус исполнения',
@@ -66,7 +66,7 @@ class IDP(models.Model):
         return f'{self.name}'
 
 
-class Type_task(models.Model):
+class TypeTask(models.Model):
     name = models.CharField(
         verbose_name='Название',
         max_length=200,
@@ -92,7 +92,7 @@ class Task(models.Model):
         verbose_name='ИПР',
     )
     type = models.ForeignKey(
-        Type_task,
+        TypeTask,
         on_delete=models.CASCADE,
         related_name='task',
         verbose_name='Тип задачи',
@@ -105,7 +105,7 @@ class Task(models.Model):
         verbose_name='Подробное описание',
     )
     execution_status = models.ForeignKey(
-        Execution_status,
+        ExecutionStatus,
         on_delete=models.CASCADE,
         related_name='task',
         verbose_name='Статус исполнения',
@@ -142,7 +142,7 @@ class Comments(models.Model):
         abstract = True
 
 
-class idp_comment(Comments):
+class IdpComment(Comments):
     idp = models.ForeignKey(
         IDP,
         on_delete=models.CASCADE,
@@ -158,7 +158,7 @@ class idp_comment(Comments):
         return f'{self.text}'
 
 
-class task_comment(Comments):
+class TaskComment(Comments):
     task = models.ForeignKey(
         Task,
         on_delete=models.CASCADE,

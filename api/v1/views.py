@@ -7,7 +7,7 @@ from .serializers import IDPSerializer
 
 
 class IDPViewSet(viewsets.ModelViewSet):
-    serializer_class=IDPSerializer
+    serializer_class = IDPSerializer
 
     def get_queryset(self):
         employee_id = self.kwargs.get('employee_id')

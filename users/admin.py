@@ -23,18 +23,13 @@ class EmployeeInline(admin.TabularInline):
 @admin.register(Manager)
 class ManagerAdmin(admin.ModelAdmin):
     inlines = (EmployeeInline,)
-    list_display = ('user',)
+    list_display = ('id', 'user',)
 
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
-    list_display = ('user', 'position', 'grade', 'head')
+    list_display = ('id', 'user', 'position', 'grade', 'head')
     search_fields = ('user__email', 'position', 'grade', 'head__user__email')
-
-
-@admin.register(Employee)
-class MEmployeeAdmin(admin.ModelAdmin):
-    pass
 
 
 @admin.register(User)
