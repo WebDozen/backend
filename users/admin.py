@@ -34,7 +34,7 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 @admin.register(User)
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'get_role')
+    list_display = ('id', 'first_name', 'last_name', 'get_role')
     ordering = ('last_name',)
 
     fieldsets = (

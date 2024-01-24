@@ -16,8 +16,8 @@ class ExecutionStatus(models.Model):
         verbose_name = 'Статус исполнения'
         verbose_name_plural = 'Статусы исполнения'
 
-    def __str__(self):
-        return f'{self.name}'
+    # def __str__(self):
+    #     return f'{self.name}'
 
 
 class IDP(models.Model):
@@ -50,9 +50,12 @@ class IDP(models.Model):
         on_delete=models.CASCADE,
         related_name='IDP',
         verbose_name='Статус исполнения',
+        blank=True,
+        null=True
     )
     message = models.TextField(
-        verbose_name='Мотивационное сообщение'
+        verbose_name='Мотивационное сообщение',
+        blank=True
     )
     pub_date = models.DateTimeField(
         verbose_name='Дата создания',
@@ -62,8 +65,8 @@ class IDP(models.Model):
     class Meta:
         verbose_name = 'IDP'
 
-    def __str__(self):
-        return f'{self.name}'
+    # def __str__(self):
+    #     return f'{self.name}'
 
 
 class TypeTask(models.Model):
@@ -77,11 +80,11 @@ class TypeTask(models.Model):
     )
 
     class Meta:
-        verbose_name = 'Тип задачи'
-        verbose_name_plural = 'Типы задачи'
+        verbose_name = 'Тип задач'
+        verbose_name_plural = 'Типы задач'
 
-    def __str__(self):
-        return f'{self.name}'
+    # def __str__(self):
+    #     return f'{self.name}'
 
 
 class Task(models.Model):
@@ -109,6 +112,8 @@ class Task(models.Model):
         on_delete=models.CASCADE,
         related_name='task',
         verbose_name='Статус исполнения',
+        blank=True,
+        null=True
     )
     pub_date = models.DateTimeField(
         verbose_name='Дата создания',
@@ -119,8 +124,8 @@ class Task(models.Model):
         verbose_name = 'Задача'
         verbose_name_plural = 'Задачи'
 
-    def __str__(self):
-        return f'{self.name}'
+    # def __str__(self):
+    #     return f'{self.name}'
 
 
 class Comments(models.Model):
