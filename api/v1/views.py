@@ -11,6 +11,7 @@ from .serializers import (
 
 
 class IDPViewSet(viewsets.ModelViewSet):
+    http_method_names = ['get', 'post', 'patch']
 
     def get_serializer_class(self):
         if self.action in ['create', 'partial_update']:
