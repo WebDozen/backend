@@ -21,13 +21,10 @@ class IDPViewSet(viewsets.ModelViewSet):
         return IDPSerializer
 
     def perform_create(self, serializer):
-        # print('create start')
         manager = Manager.objects.get(user=self.request.user)
         serializer.save(author=manager)
-        # print('create compolete')
 
     def get_queryset(self):
-        # print('get_queryset start')
         employee_id = self.kwargs.get('employee_id')
         employee = get_object_or_404(Employee, id=employee_id)
         return IDP.objects.filter(employee=employee).prefetch_related('task')
