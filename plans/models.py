@@ -16,8 +16,8 @@ class ExecutionStatus(models.Model):
         verbose_name = 'Статус исполнения'
         verbose_name_plural = 'Статусы исполнения'
 
-    # def __str__(self):
-    #     return f'{self.name}'
+    def __str__(self):
+        return f'{self.name}'
 
 
 class IDP(models.Model):
@@ -65,8 +65,8 @@ class IDP(models.Model):
     class Meta:
         verbose_name = 'IDP'
 
-    # def __str__(self):
-    #     return f'{self.name}'
+    def __str__(self):
+        return f'{self.name}'
 
 
 class TypeTask(models.Model):
@@ -83,8 +83,8 @@ class TypeTask(models.Model):
         verbose_name = 'Тип задач'
         verbose_name_plural = 'Типы задач'
 
-    # def __str__(self):
-    #     return f'{self.name}'
+    def __str__(self):
+        return f'{self.name}'
 
 
 class Task(models.Model):
@@ -124,8 +124,8 @@ class Task(models.Model):
         verbose_name = 'Задача'
         verbose_name_plural = 'Задачи'
 
-    # def __str__(self):
-    #     return f'{self.name}'
+    def __str__(self):
+        return f'{self.name}'
 
 
 class Comments(models.Model):
