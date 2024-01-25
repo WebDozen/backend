@@ -5,3 +5,4 @@ python-dotenv==1.0.0
 pytz==2023.3.post1
 setuptools==69.0.3
 sqlparse==0.4.4
+russian-names==0.1.2

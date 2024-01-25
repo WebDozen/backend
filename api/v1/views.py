@@ -1,8 +1,11 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
-
+from rest_framework.decorators import action
 from plans.models import IDP
 from users.models import Employee, Manager
+from rest_framework import permissions, status, viewsets
+from django.http import HttpResponse
+from rest_framework.response import Response
 from .serializers import (
     IDPCreateAndUpdateSerializer,
     IDPSerializer,
@@ -36,3 +39,14 @@ class IDPViewSet(viewsets.ModelViewSet):
         context = super().get_serializer_context()
         context.update({"employee_id": self.kwargs.get('employee_id')})
         return context
+
+    @action(
+        detail=True,
+        methods=['PATCH']
+    )
+    def status_change(self, request, employee_id, pk):
+        """Подписка."""
+        print('status', request, '\n\n\n')
+        return Response(
+            data='YES', status=status.HTTP_201_CREATED
+        )
