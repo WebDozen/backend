@@ -1,4 +1,6 @@
+from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
+
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from plans.models import IDP
@@ -6,11 +8,21 @@ from users.models import Employee, Manager, MentorEmployee, User
 from rest_framework import permissions, status, viewsets
 from django.http import HttpResponse
 from rest_framework.response import Response
+
+from rest_framework import viewsets, status
+
+from users.models import Employee, Manager
+from plans.models import IDP
+
 from .serializers import (
     IDPCreateAndUpdateSerializer,
     IDPSerializer,
     IDPDetailSerializer,
+
     HeadStatisticSerializer
+
+    EmployeeSerializer
+
 )
 
 
@@ -42,6 +54,7 @@ class IDPViewSet(viewsets.ModelViewSet):
         return context
 
 
+
 class HeadStatisticViewSet(viewsets.ModelViewSet):
     serializer_class = HeadStatisticSerializer
 
@@ -50,3 +63,40 @@ class HeadStatisticViewSet(viewsets.ModelViewSet):
         print(Manager.objects.filter(id=head_id))
         return Manager.objects.filter(id=head_id)
     
+
+class EmployeeViewSet(viewsets.ModelViewSet):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        try:
+            manager = self.request.user.manager_profile
+            context.update({'manager': manager})
+        except Manager.DoesNotExist:
+            context.update({'manager': None})
+        return context
+
+    def list(self, request, *args, **kwargs):
+        manager = self.get_serializer_context()['manager']
+        if manager:
+            queryset = self.queryset.filter(head=manager)
+            serializer = self.serializer_class(
+                queryset, many=True,
+                context=self.get_serializer_context())
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response([], status=status.HTTP_200_OK)
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        manager = self.get_serializer_context()['manager']
+
+        if manager and instance.head == manager:
+            serializer = self.serializer_class(
+                instance,
+                context=self.get_serializer_context())
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response([], status=status.HTTP_200_OK)
+

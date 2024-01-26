@@ -4,6 +4,7 @@ from plans.models import IDP, Task, ExecutionStatus
 from users.models import User, Manager, MentorEmployee, Employee
 
 
+
 class TaskSerializer(serializers.ModelSerializer):
     """Возвращает объекты модели Task"""
 
@@ -131,6 +132,7 @@ class IDPCreateAndUpdateSerializer(serializers.ModelSerializer):
         return IDPDetailSerializer(instance).data
 
 
+
 class HeadStatisticSerializer(serializers.ModelSerializer):
     """Возвращает объекты модели Task"""
     count_employe = serializers.SerializerMethodField()
@@ -202,3 +204,64 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
             execution_status=status
         )
         return len(idp_awaiting_review)
+
+class EmployeeSerializer(serializers.ModelSerializer):
+    idp_status = serializers.SerializerMethodField()
+    mentor_id = serializers.SerializerMethodField()
+    idp_id = serializers.SerializerMethodField()
+    last_name = serializers.ReadOnlyField(source='user.last_name')
+    first_name = serializers.ReadOnlyField(source='user.first_name')
+    middle_name = serializers.ReadOnlyField(source='user.middle_name')
+    message = serializers.SerializerMethodField()
+    task_count = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Employee
+        fields = ['id',
+                  'head',
+                  'mentor_id',
+                  'idp_id',
+                  'last_name',
+                  'first_name',
+                  'middle_name',
+                  'grade',
+                  'position',
+                  'task_count',
+                  'idp_status',
+                  'message',
+                  ]
+
+    def __init__(self, *args, **kwargs):
+        self.manager = kwargs.pop('manager', None)
+        super().__init__(*args, **kwargs)
+
+    def get_task_count(self, obj):
+        if self.manager and obj.head == self.manager:
+            tasks = Task.objects.filter(idp__employee=obj)
+            return tasks.count()
+        return 0
+
+    def get_idp_status(self, obj):
+        idps = obj.IDP.all()
+        if idps.exists():
+            return idps.first().execution_status.name
+        else:
+            return None
+
+    def get_mentor_id(self, obj):
+        return obj.mentor.exists()
+
+    def get_idp_id(self, obj):
+        idps = obj.IDP.all()
+        if idps.exists():
+            return idps.first().id
+        else:
+            return None
+
+    def get_message(self, obj):
+        idps = obj.IDP.all()
+        if idps.exists():
+            return idps.first().message
+        else:
+            return None
+
