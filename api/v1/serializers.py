@@ -179,7 +179,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
     def get_idp_status(self, obj):
         idps = obj.IDP.all()
         if idps.exists():
-            return idps.first().execution_status.name
+            return idps.last().execution_status.name
         else:
             return None
 

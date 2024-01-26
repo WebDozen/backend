@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, status
+from rest_framework.decorators import action
 
 from users.models import Employee, Manager
 from plans.models import IDP
@@ -50,7 +51,8 @@ class EmployeeViewSet(viewsets.ModelViewSet):
             context.update({'manager': None})
         return context
 
-    def list(self, request, *args, **kwargs):
+    @action(detail=False, methods=['GET'])
+    def list_employees(self, request, *args, **kwargs):
         manager = self.get_serializer_context()['manager']
         if manager:
             queryset = self.queryset.filter(head=manager)
@@ -61,7 +63,8 @@ class EmployeeViewSet(viewsets.ModelViewSet):
         else:
             return Response([], status=status.HTTP_200_OK)
 
-    def retrieve(self, request, *args, **kwargs):
+    @action(detail=True, methods=['GET'])
+    def retrieve_employee(self, request, *args, **kwargs):
         instance = self.get_object()
         manager = self.get_serializer_context()['manager']
 
