@@ -55,6 +55,10 @@ class IDPDetailSerializer(serializers.ModelSerializer):
         source='task',
         read_only=True
     )
+    execution_status = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='slug'
+    )
 
     class Meta:
         model = IDP

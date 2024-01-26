@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from plans.models import IDP, Task, TypeTask
+from plans.models import IDP, ExecutionStatus, Task, TypeTask
 
 
 class TaskInlines(admin.StackedInline):
@@ -23,4 +23,9 @@ class TaskAdmin(admin.ModelAdmin):
 
 @admin.register(TypeTask)
 class TypeTaskAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'slug')
+
+
+@admin.register(ExecutionStatus)
+class ExecutionStatusAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'slug')

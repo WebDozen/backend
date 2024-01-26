@@ -51,7 +51,8 @@ class IDP(models.Model):
         related_name='IDP',
         verbose_name='Статус исполнения',
         blank=True,
-        null=True
+        null=True,
+        # default=1  # ПРОВЕРИТЬ!!!
     )
     message = models.TextField(
         verbose_name='Мотивационное сообщение',
@@ -67,6 +68,13 @@ class IDP(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+    def save(self, *args, **kwargs):  # ПРОВЕРИТЬ!!!!
+        default_status_slug = 'open'
+        self.execution_status, created = ExecutionStatus.objects.get_or_create(
+            slug=default_status_slug
+        )
+        super().save(*args, **kwargs)
 
 
 class TypeTask(models.Model):
