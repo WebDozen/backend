@@ -2,7 +2,7 @@ from celery import Celery
 from django.utils import timezone
 from plans.models import IDP, ExecutionStatus
 
-app = Celery('api')
+app = Celery('api', broker='redis://localhost:6379')
 
 
 @app.task
