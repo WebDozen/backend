@@ -1,8 +1,10 @@
 from django.db import models
+from colorfield.fields import ColorField
+
 from users.models import Employee, Manager, User
 
 
-class ExecutionStatus(models.Model):
+class StatusIDP(models.Model):
     name = models.CharField(
         verbose_name='Название',
         max_length=50,
@@ -11,10 +13,12 @@ class ExecutionStatus(models.Model):
         verbose_name='Слаг статуса',
         unique=True
     )
+    color_fon = ColorField(verbose_name='Цвет фона')
+    color_text = ColorField(verbose_name='Цвет текста')
 
     class Meta:
-        verbose_name = 'Статус исполнения'
-        verbose_name_plural = 'Статусы исполнения'
+        verbose_name = 'Статус исполнения ИПР'
+        verbose_name_plural = 'Статусы исполнения ИПР'
 
     def __str__(self):
         return f'{self.name}'
@@ -45,14 +49,13 @@ class IDP(models.Model):
     deadline = models.DateTimeField(
         verbose_name='Срок выполнения'
     )
-    execution_status = models.ForeignKey(
-        ExecutionStatus,
+    status = models.ForeignKey(
+        StatusIDP,
         on_delete=models.CASCADE,
         related_name='IDP',
         verbose_name='Статус исполнения',
         blank=True,
         null=True,
-        # default=1  # ПРОВЕРИТЬ!!!
     )
     message = models.TextField(
         verbose_name='Мотивационное сообщение',
@@ -69,12 +72,32 @@ class IDP(models.Model):
     def __str__(self):
         return f'{self.name}'
 
-    def save(self, *args, **kwargs):  # ПРОВЕРИТЬ!!!!
+    def save(self, *args, **kwargs):
         default_status_slug = 'open'
-        self.execution_status, created = ExecutionStatus.objects.get_or_create(
+        self.execution_status, created = StatusIDP.objects.get_or_create(
             slug=default_status_slug
         )
         super().save(*args, **kwargs)
+
+
+class StatusTask(models.Model):
+    name = models.CharField(
+        verbose_name='Название',
+        max_length=50,
+    )
+    slug = models.SlugField(
+        verbose_name='Слаг статуса',
+        unique=True
+    )
+    color_fon = ColorField(verbose_name='Цвет фона')
+    color_text = ColorField(verbose_name='Цвет текста')
+
+    class Meta:
+        verbose_name = 'Статус исполнения задачи'
+        verbose_name_plural = 'Статусы исполнения задачи'
+
+    def __str__(self):
+        return f'{self.name}'
 
 
 class TypeTask(models.Model):
@@ -115,8 +138,8 @@ class Task(models.Model):
     description = models.TextField(
         verbose_name='Подробное описание',
     )
-    execution_status = models.ForeignKey(
-        ExecutionStatus,
+    status = models.ForeignKey(
+        StatusTask,
         on_delete=models.CASCADE,
         related_name='task',
         verbose_name='Статус исполнения',

@@ -1,6 +1,14 @@
 from rest_framework import serializers
 
-from plans.models import IDP, Task
+from plans.models import IDP, Task, StatusIDP
+
+
+class StatusIDPSerializer(serializers.ModelSerializer):
+    """Возвращает объекты модели ExecutionStatus"""
+
+    class Meta:
+        model = StatusIDP
+        fields = '__all__'
 
 
 class TaskSerializer(serializers.ModelSerializer):
@@ -13,7 +21,7 @@ class TaskSerializer(serializers.ModelSerializer):
             'name',
             'description',
             'type',
-            'execution_status',
+            'status',
             'pub_date'
         )
 
@@ -43,7 +51,7 @@ class IDPSerializer(serializers.ModelSerializer):
             'employee',
             'name',
             'deadline',
-            'execution_status',
+            'status',
         )
 
 
@@ -55,10 +63,7 @@ class IDPDetailSerializer(serializers.ModelSerializer):
         source='task',
         read_only=True
     )
-    execution_status = serializers.SlugRelatedField(
-        read_only=True,
-        slug_field='slug'
-    )
+    status = StatusIDPSerializer()
 
     class Meta:
         model = IDP
@@ -69,7 +74,7 @@ class IDPDetailSerializer(serializers.ModelSerializer):
             'description',
             'pub_date',
             'deadline',
-            'execution_status',
+            'status',
             'tasks'
         )
 

@@ -29,6 +29,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
+    'colorfield',
     
     'users.apps.UsersConfig',
     'plans.apps.PlansConfig',
