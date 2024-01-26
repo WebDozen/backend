@@ -1,11 +1,9 @@
-from celery import Celery
+from celery import shared_task
 from django.utils import timezone
 from plans.models import IDP, ExecutionStatus
 
-app = Celery('api', broker='redis://localhost:6379')
 
-
-@app.task
+@shared_task()
 def determine_status(ipr_id):
     instance = IDP.objects.get(pk=ipr_id)
     instance.execution_status = determine_status_function(instance)
