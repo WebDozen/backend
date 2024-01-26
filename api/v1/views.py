@@ -2,14 +2,15 @@ from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from plans.models import IDP
-from users.models import Employee, Manager
+from users.models import Employee, Manager, MentorEmployee, User
 from rest_framework import permissions, status, viewsets
 from django.http import HttpResponse
 from rest_framework.response import Response
 from .serializers import (
     IDPCreateAndUpdateSerializer,
     IDPSerializer,
-    IDPDetailSerializer
+    IDPDetailSerializer,
+    HeadStatisticSerializer
 )
 
 
@@ -39,3 +40,13 @@ class IDPViewSet(viewsets.ModelViewSet):
         context = super().get_serializer_context()
         context.update({"employee_id": self.kwargs.get('employee_id')})
         return context
+
+
+class HeadStatisticViewSet(viewsets.ModelViewSet):
+    serializer_class = HeadStatisticSerializer
+
+    def get_queryset(self):
+        head_id = self.kwargs.get('head_id')
+        print(Manager.objects.filter(id=head_id))
+        return Manager.objects.filter(id=head_id)
+    

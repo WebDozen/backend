@@ -19,7 +19,7 @@ def create_test_user(role):
     """Создание тестового пользователя."""
     password = 'test_password'
     first_name, middle_name, last_name = RussianNames().get_person().split(' ')
-    username = f'{last_name}_{first_name[0]}.{last_name[0]}.'
+    username = f'{last_name}_{first_name[0]}.{middle_name[0]}.'
     user = User.objects.get_or_create(
         username=username, password=password,
         first_name=first_name, middle_name=middle_name,

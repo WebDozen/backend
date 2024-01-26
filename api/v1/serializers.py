@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from plans.models import IDP, Task
+from plans.models import IDP, Task, ExecutionStatus
+from users.models import User, Manager, MentorEmployee, Employee
 
 
 class TaskSerializer(serializers.ModelSerializer):
@@ -20,7 +21,6 @@ class TaskSerializer(serializers.ModelSerializer):
 
 class TaskCreateSerializer(serializers.ModelSerializer):
     """Обрабатывает POST-запросы к модели Task"""
-
     id = serializers.IntegerField(required=False)
 
     class Meta:
@@ -129,3 +129,76 @@ class IDPCreateAndUpdateSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         return IDPDetailSerializer(instance).data
+
+
+class HeadStatisticSerializer(serializers.ModelSerializer):
+    """Возвращает объекты модели Task"""
+    count_employe = serializers.SerializerMethodField()
+    count_employe_with_idp = serializers.SerializerMethodField()
+    percent_progress_employees = serializers.SerializerMethodField()
+    count_employe_without_idp = serializers.SerializerMethodField()
+    count_idp_without_tasks = serializers.SerializerMethodField()
+    count_idp_with_status_not_done = serializers.SerializerMethodField()
+    count_idp_with_status_awaiting_review = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Manager
+
+        fields = (
+            'count_employe',
+            'count_employe_with_idp',
+            'percent_progress_employees',
+            'count_employe_without_idp',
+            'count_idp_without_tasks',
+            'count_idp_with_status_not_done',
+            'count_idp_with_status_awaiting_review',
+        )
+    
+    def get_count_employe(self, obj):
+        count_employe = MentorEmployee.objects.filter(mentor=obj.id).count()
+        return count_employe
+    
+    def get_count_employe_with_idp(self, obj):
+        count_employe_with_idp = Employee.objects.filter(
+            head=obj.id, IDP__isnull=False
+        ) | Employee.objects.filter(
+            mentor=obj.id,
+            IDP__isnull=False
+        )
+        return len(count_employe_with_idp)
+    
+    def get_percent_progress_employees(self, obj):
+        progress = (
+            100 * self.get_count_employe_with_idp(obj) /
+            self.get_count_employe(obj)
+        )
+        return int(progress)
+
+    def get_count_employe_without_idp(self, obj):
+        count_employe_without_idp = (
+            self.get_count_employe(obj) -
+            self.get_count_employe_with_idp(obj)
+        )
+        return count_employe_without_idp
+    
+    def get_count_idp_without_tasks(self, obj):
+        idp_without_tasks = IDP.objects.filter(
+            author=obj.id, task=None
+        ).count()
+        return idp_without_tasks
+    
+    def get_count_idp_with_status_not_done(self, obj):
+        status = ExecutionStatus.objects.get(slug='not_done')
+        idp_not_done = IDP.objects.filter(
+            author=obj.id,
+            execution_status=status
+        )
+        return len(idp_not_done)
+    
+    def get_count_idp_with_status_awaiting_review(self, obj):
+        status = ExecutionStatus.objects.get(slug='awaiting_review')
+        idp_awaiting_review = IDP.objects.filter(
+            author=obj.id,
+            execution_status=status
+        )
+        return len(idp_awaiting_review)

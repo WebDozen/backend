@@ -1,9 +1,13 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .views import IDPViewSet
+from .views import IDPViewSet, HeadStatisticViewSet
 
 router = DefaultRouter()
+router.register(
+    r'head/(?P<head_id>\d+)/statistics', HeadStatisticViewSet, 
+    basename='head_statistic'
+)
 router.register(
     r"employees/(?P<employee_id>\d+)/idps", IDPViewSet, basename="idps"
 )
