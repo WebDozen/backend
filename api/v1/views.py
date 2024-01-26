@@ -1,10 +1,17 @@
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, status
-from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
+
+from drf_spectacular.utils import (
+    extend_schema_view,
+    extend_schema,
+    OpenApiParameter,
+    )
 
 from users.models import Employee, Manager
 from plans.models import IDP
+from api.v1.permissions import IsManagerOfEmployee
 from .serializers import (
     IDPCreateAndUpdateSerializer,
     IDPSerializer,
@@ -13,6 +20,26 @@ from .serializers import (
 )
 
 
+@extend_schema(tags=['ИПР'])
+@extend_schema_view(
+    tags=['ИПР'],
+    list=extend_schema(
+        summary='Получение всех ИПР сотрудника (ДМ 3-9, 35-41)',
+        methods=['GET'],
+    ),
+    retrieve=extend_schema(
+        summary='Получение ИПР сотрудника (ДМ 10-14, 29-33 и 42-43)',
+        methods=['GET'],
+    ),
+    partial_update=extend_schema(
+        summary='Обновление данных ИПР (ДМ 18, 34 и 45-48)',
+        methods=['PATCH'],
+    ),
+    create=extend_schema(
+        summary='Создание нового ИПР (ДМ 19-20, 23-26)',
+        methods=['POST'],
+    ),
+)
 class IDPViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'patch']
 
@@ -38,9 +65,27 @@ class IDPViewSet(viewsets.ModelViewSet):
         return context
 
 
-class EmployeeViewSet(viewsets.ModelViewSet):
+@extend_schema(tags=['Пользователи сервиса ИПР'],)
+@extend_schema_view(
+    list=extend_schema(
+        summary='Получение списка сотрудников'
+        'с данными по последнему ИПР (ДМ 1, 28)',
+        methods=['GET'],
+        parameters=[
+            OpenApiParameter(name='id', required=True, type=int),
+        ],
+        description='Страница руководителя',
+    ),
+    retrieve=extend_schema(
+        summary='Получение всех данных о сотруднике (ДМ 3-5, 35-41)',
+        methods=['GET'],
+    ),
+)
+class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
+    permission_classes = [IsAuthenticated, IsManagerOfEmployee]
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+    http_method_names = ['get']
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
@@ -51,8 +96,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
             context.update({'manager': None})
         return context
 
-    @action(detail=False, methods=['GET'])
-    def list_employees(self, request, *args, **kwargs):
+    def list(self, request, *args, **kwargs):
         manager = self.get_serializer_context()['manager']
         if manager:
             queryset = self.queryset.filter(head=manager)
@@ -63,8 +107,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
         else:
             return Response([], status=status.HTTP_200_OK)
 
-    @action(detail=True, methods=['GET'])
-    def retrieve_employee(self, request, *args, **kwargs):
+    def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         manager = self.get_serializer_context()['manager']
 
