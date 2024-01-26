@@ -2,7 +2,7 @@ from django.db import models
 from users.models import Employee, Manager, User
 
 
-class Execution_status(models.Model):
+class ExecutionStatus(models.Model):
     name = models.CharField(
         verbose_name='Название',
         max_length=50,
@@ -43,16 +43,19 @@ class IDP(models.Model):
         verbose_name='Подробное описание',
     )
     deadline = models.DateTimeField(
-        verbose_name='Дедлайн'
+        verbose_name='Срок выполнения'
     )
     execution_status = models.ForeignKey(
-        Execution_status,
+        ExecutionStatus,
         on_delete=models.CASCADE,
         related_name='IDP',
         verbose_name='Статус исполнения',
+        blank=True,
+        null=True
     )
     message = models.TextField(
-        verbose_name='Мотивационное сообщение'
+        verbose_name='Мотивационное сообщение',
+        blank=True
     )
     pub_date = models.DateTimeField(
         verbose_name='Дата создания',
@@ -66,7 +69,7 @@ class IDP(models.Model):
         return f'{self.name}'
 
 
-class Type_task(models.Model):
+class TypeTask(models.Model):
     name = models.CharField(
         verbose_name='Название',
         max_length=200,
@@ -77,8 +80,8 @@ class Type_task(models.Model):
     )
 
     class Meta:
-        verbose_name = 'Тип задачи'
-        verbose_name_plural = 'Типы задачи'
+        verbose_name = 'Тип задач'
+        verbose_name_plural = 'Типы задач'
 
     def __str__(self):
         return f'{self.name}'
@@ -92,7 +95,7 @@ class Task(models.Model):
         verbose_name='ИПР',
     )
     type = models.ForeignKey(
-        Type_task,
+        TypeTask,
         on_delete=models.CASCADE,
         related_name='task',
         verbose_name='Тип задачи',
@@ -105,10 +108,12 @@ class Task(models.Model):
         verbose_name='Подробное описание',
     )
     execution_status = models.ForeignKey(
-        Execution_status,
+        ExecutionStatus,
         on_delete=models.CASCADE,
         related_name='task',
         verbose_name='Статус исполнения',
+        blank=True,
+        null=True
     )
     pub_date = models.DateTimeField(
         verbose_name='Дата создания',
@@ -142,7 +147,7 @@ class Comments(models.Model):
         abstract = True
 
 
-class idp_comment(Comments):
+class IdpComment(Comments):
     idp = models.ForeignKey(
         IDP,
         on_delete=models.CASCADE,
@@ -158,7 +163,7 @@ class idp_comment(Comments):
         return f'{self.text}'
 
 
-class task_comment(Comments):
+class TaskComment(Comments):
     task = models.ForeignKey(
         Task,
         on_delete=models.CASCADE,

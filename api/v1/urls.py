@@ -1,12 +1,14 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from api.v1.views import EmployeeViewSet
-
+from .views import IDPViewSet, EmployeeViewSet
 
 router = DefaultRouter()
 router.register('employees', EmployeeViewSet, basename='employee')
+router.register(
+    r"employees/(?P<employee_id>\d+)/idps", IDPViewSet, basename="idps"
+)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('', include(router.urls))
 ]
