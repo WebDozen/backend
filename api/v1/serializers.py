@@ -144,6 +144,8 @@ class IDPCreateAndUpdateSerializer(serializers.ModelSerializer):
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
+    """Сериализатор для сотрудников."""
+
     status = serializers.SerializerMethodField()
     mentor = serializers.SerializerMethodField()
     last_name = serializers.ReadOnlyField(source='user.last_name')
@@ -189,7 +191,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
                     'color_fon': status.color_fon,
                     'color_text': status.color_text
                 }
-        return None
+        return 'Нет ИПР'
 
     @extend_schema_field(OpenApiTypes.BOOL)
     def get_mentor(self, obj):

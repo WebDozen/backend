@@ -24,19 +24,19 @@ from .serializers import (
 @extend_schema_view(
     tags=['ИПР'],
     list=extend_schema(
-        summary='Получение всех ИПР сотрудника (ДМ 3-9, 35-41)',
+        summary='Получение всех ИПР сотрудника',
         methods=['GET'],
     ),
     retrieve=extend_schema(
-        summary='Получение ИПР сотрудника (ДМ 10-14, 29-33 и 42-43)',
+        summary='Получение ИПР сотрудника',
         methods=['GET'],
     ),
     partial_update=extend_schema(
-        summary='Обновление данных ИПР (ДМ 18, 34 и 45-48)',
+        summary='Обновление данных ИПР',
         methods=['PATCH'],
     ),
     create=extend_schema(
-        summary='Создание нового ИПР (ДМ 19-20, 23-26)',
+        summary='Создание нового ИПР',
         methods=['POST'],
     ),
 )
@@ -69,7 +69,7 @@ class IDPViewSet(viewsets.ModelViewSet):
 @extend_schema_view(
     list=extend_schema(
         summary='Получение списка сотрудников'
-        'с данными по последнему ИПР (ДМ 1, 28)',
+        'с данными по последнему ИПР',
         methods=['GET'],
         parameters=[
             OpenApiParameter(name='id', required=True, type=int),
@@ -77,11 +77,13 @@ class IDPViewSet(viewsets.ModelViewSet):
         description='Страница руководителя',
     ),
     retrieve=extend_schema(
-        summary='Получение всех данных о сотруднике (ДМ 3-5, 35-41)',
+        summary='Получение всех данных о сотруднике',
         methods=['GET'],
     ),
 )
 class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
+    """Вьюсет для просмотра сотрудников."""
+
     permission_classes = [IsAuthenticated, IsManagerOfEmployee]
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
