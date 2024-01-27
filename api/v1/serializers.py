@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from users.models import Employee
-from plans.models import IDP, Task, StatusIDP
+from users.models import Employee, Manager, User
+from plans.models import IDP, Task, StatusIDP, StatusIDP
 
 
 class StatusIDPSerializer(serializers.ModelSerializer):
-    """Возвращает объекты модели ExecutionStatus"""
+    """Возвращает объекты модели StatusIDP"""
 
     class Meta:
         model = StatusIDP
@@ -199,3 +199,116 @@ class EmployeeSerializer(serializers.ModelSerializer):
             return idps.first().message
         else:
             return None
+
+class HeadStatisticSerializer(serializers.ModelSerializer):
+    """Возвращает статистику по руководителю"""
+    count_employe = serializers.SerializerMethodField()
+    count_employe_with_idp = serializers.SerializerMethodField()
+    percent_progress_employees = serializers.SerializerMethodField()
+    count_employe_without_idp = serializers.SerializerMethodField()
+    count_idp_without_tasks = serializers.SerializerMethodField()
+    count_idp_with_status_not_done = serializers.SerializerMethodField()
+    count_idp_with_status_awaiting_review = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Manager
+
+        fields = (
+            'count_employe',
+            'count_employe_with_idp',
+            'percent_progress_employees',
+            'count_employe_without_idp',
+            'count_idp_without_tasks',
+            'count_idp_with_status_not_done',
+            'count_idp_with_status_awaiting_review',
+        )
+    
+    def get_count_employe(self, obj):
+        """Количество сотрудников"""
+        count_employe = Employee.objects.filter(
+            head=obj.id).count()
+        return count_employe
+    
+    def get_count_employe_with_idp(self, obj):
+        """Количество сотрудников c назначенными ИПР"""
+        count_employe_with_idp = Employee.objects.filter(
+            head=obj.id, IDP__isnull=False
+        ).count()
+        return count_employe_with_idp
+    
+    def get_percent_progress_employees(self, obj):
+        """Процент сотрудников, имеющих ИПР"""
+        progress = (
+            100 * self.get_count_employe_with_idp(obj) /
+            self.get_count_employe(obj)
+        )
+        return int(progress)
+
+    def get_count_employe_without_idp(self, obj):
+        """Количество сотрудников без ИПР"""
+        count_employe_without_idp = (
+            self.get_count_employe(obj) -
+            self.get_count_employe_with_idp(obj)
+        )
+        return count_employe_without_idp
+    
+    def get_count_idp_without_tasks(self, obj):
+        """Количество ИПР без задач"""
+        idp_without_tasks = IDP.objects.filter(
+            author=obj.id, task=None
+        ).count()
+        return idp_without_tasks
+    
+    def get_count_idp_with_status_not_done(self, obj):
+        """Количество ИПР со статусом ИПР Не выполнен"""
+        status = StatusIDP.objects.get(slug='not_done')
+        idp_not_done = IDP.objects.filter(
+            author=obj.id,
+            status=status
+        )
+        return len(idp_not_done)
+    
+    def get_count_idp_with_status_awaiting_review(self, obj):
+        """Количество ИПР со статусом ИПР Ожидает ревью"""
+        status = StatusIDP.objects.get(slug='awaiting_review')
+        idp_awaiting_review = IDP.objects.filter(
+            author=obj.id,
+            status=status
+        )
+        return len(idp_awaiting_review)
+
+class EmployeeStatisticSerializer(serializers.ModelSerializer):
+    """Возвращает статистику по руководителю"""
+    count_idp_with_done = serializers.SerializerMethodField()
+    #progress_last_idp = serializers.SerializerMethodField()
+    no_active_idp = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Employee
+
+        fields = (
+            'count_idp_with_done',
+            #'progress_last_idp',
+            'no_active_idp',
+        )
+    
+    def get_count_idp_with_done(self, obj):
+        """Количество успешно выплненных ИПР"""
+        status = StatusIDP.objects.get(slug='done')
+        idp_with_done = IDP.objects.filter(
+            employee=obj.id, status=status
+        ).count()
+        return idp_with_done
+
+    def get_no_active_idp(self, obj):
+        """Нет активного ИПР"""
+        statuses = [
+            'not_done','awaiting_review', 'in_progress'
+        ]
+        idps = IDP.objects.filter(
+            employee=obj.id
+        )
+        for idp in idps:
+            if idp.status.slug in statuses:
+                return True
+        return False

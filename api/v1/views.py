@@ -1,14 +1,17 @@
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, views, permissions
+from rest_framework import generics
 
-from users.models import Employee, Manager
+from users.models import Employee, Manager, User
 from plans.models import IDP
 from .serializers import (
     IDPCreateAndUpdateSerializer,
     IDPSerializer,
     IDPDetailSerializer,
-    EmployeeSerializer
+    EmployeeSerializer,
+    HeadStatisticSerializer,
+    EmployeeStatisticSerializer
 )
 
 
@@ -72,3 +75,19 @@ class EmployeeViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response([], status=status.HTTP_200_OK)
+
+class HeadStatisticViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = HeadStatisticSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get_queryset(self):
+        head_id = self.kwargs.get('head_id')
+        return Manager.objects.filter(id=head_id)
+
+class EmployeeStatisticViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = EmployeeStatisticSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get_queryset(self):
+        employee_id = self.kwargs.get('employee_id')
+        return Employee.objects.filter(id=employee_id)
