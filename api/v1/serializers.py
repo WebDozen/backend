@@ -44,6 +44,8 @@ class TaskCreateSerializer(serializers.ModelSerializer):
 class IDPSerializer(serializers.ModelSerializer):
     """Возвращает список объектов всех ИПР конкретного сотрудника"""
 
+    status = StatusIDPSerializer()
+
     class Meta:
         model = IDP
         fields = (
@@ -179,7 +181,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
     def get_idp_status(self, obj):
         idps = obj.IDP.all()
         if idps.exists():
-            return idps.first().execution_status.name
+            return idps.first().status.name
         else:
             return None
 
