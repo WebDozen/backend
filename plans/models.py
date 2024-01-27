@@ -73,10 +73,12 @@ class IDP(models.Model):
         return f'{self.name}'
 
     def save(self, *args, **kwargs):
-        default_status_slug = 'open'
-        self.status, created = StatusIDP.objects.get_or_create(
-            slug=default_status_slug
-        )
+        print(self)
+        if not self.status:
+            default_status_slug = 'open'
+            self.status, created = StatusIDP.objects.get_or_create(
+                slug=default_status_slug
+            )
         super().save(*args, **kwargs)
 
 
@@ -159,10 +161,11 @@ class Task(models.Model):
         return f'{self.name}'
 
     def save(self, *args, **kwargs):
-        default_status_slug = 'open'
-        self.status, created = StatusTask.objects.get_or_create(
-            slug=default_status_slug
-        )
+        if not self.status:
+            default_status_slug = 'open'
+            self.status, created = StatusTask.objects.get_or_create(
+                slug=default_status_slug
+            )
         super().save(*args, **kwargs)
 
 
