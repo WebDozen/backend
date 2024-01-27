@@ -144,40 +144,53 @@ class IDPCreateAndUpdateSerializer(serializers.ModelSerializer):
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
-    idp_status = serializers.SerializerMethodField()
-    mentor_id = serializers.SerializerMethodField()
+    status = serializers.SerializerMethodField()
+    mentor = serializers.SerializerMethodField()
     last_name = serializers.ReadOnlyField(source='user.last_name')
     first_name = serializers.ReadOnlyField(source='user.first_name')
     middle_name = serializers.ReadOnlyField(source='user.middle_name')
 
     class Meta:
         model = Employee
-        fields = ('id',
-                  'mentor_id',
-                  'last_name',
-                  'first_name',
-                  'middle_name',
-                  'grade',
-                  'position',
-                  'idp_status',
-                  )
+        fields = (
+            'id',
+            'mentor',
+            'last_name',
+            'first_name',
+            'middle_name',
+            'grade',
+            'position',
+            'status',
+            )
 
     def __init__(self, *args, **kwargs):
         self.manager = kwargs.pop('manager', None)
         super().__init__(*args, **kwargs)
 
-    @extend_schema_field(OpenApiTypes.OBJECT)
-    def get_idp_status(self, obj):
+    @extend_schema_field({
+        'type': 'object',
+        'properties': {
+            'id': {'type': 'integer'},
+            'name': {'type': 'string'},
+            'slug': {'type': 'string'},
+            'color_fon': {'type': 'string'},
+            'color_text': {'type': 'string'},
+        }
+    })
+    def get_status(self, obj):
         idps = obj.IDP.all()
         if idps.exists():
-            status = idps.last().execution_status.first()
+            status = idps.last().status
             if status:
-                return {'name': status.name,
-                        'slug': status.slug,
-                        'color_fon': status.color_fon,
-                        'color_text': status.color_text}
+                return {
+                    'id': status.id,
+                    'name': status.name,
+                    'slug': status.slug,
+                    'color_fon': status.color_fon,
+                    'color_text': status.color_text
+                }
         return None
 
     @extend_schema_field(OpenApiTypes.BOOL)
-    def get_mentor_id(self, obj):
+    def get_mentor(self, obj):
         return obj.mentor.exists()
