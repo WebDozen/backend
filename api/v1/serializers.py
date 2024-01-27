@@ -143,7 +143,7 @@ class IDPCreateAndUpdateSerializer(serializers.ModelSerializer):
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
-    idp_status = serializers.SerializerMethodField()
+    # idp_status = serializers.SerializerMethodField()
     mentor_id = serializers.SerializerMethodField()
     idp_id = serializers.SerializerMethodField()
     last_name = serializers.ReadOnlyField(source='user.last_name')
@@ -164,7 +164,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
                   'grade',
                   'position',
                   'task_count',
-                  'idp_status',
+                  # 'idp_status',
                   'message',
                   ]
 
