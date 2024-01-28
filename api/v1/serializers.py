@@ -47,6 +47,8 @@ class TaskCreateSerializer(serializers.ModelSerializer):
 class IDPSerializer(serializers.ModelSerializer):
     """Возвращает список объектов всех ИПР конкретного сотрудника"""
 
+    status = StatusIDPSerializer()
+
     class Meta:
         model = IDP
         fields = (
