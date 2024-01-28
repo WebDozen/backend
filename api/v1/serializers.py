@@ -146,7 +146,7 @@ class IDPCreateAndUpdateSerializer(serializers.ModelSerializer):
 class EmployeeSerializer(serializers.ModelSerializer):
     """Сериализатор для сотрудников."""
 
-    status = serializers.SerializerMethodField()
+    idp = serializers.SerializerMethodField()
     mentor = serializers.SerializerMethodField()
     last_name = serializers.ReadOnlyField(source='user.last_name')
     first_name = serializers.ReadOnlyField(source='user.first_name')
@@ -162,36 +162,36 @@ class EmployeeSerializer(serializers.ModelSerializer):
             'middle_name',
             'grade',
             'position',
-            'status',
+            'idp',
             )
 
     def __init__(self, *args, **kwargs):
-        self.manager = kwargs.pop('manager', None)
+        self.exclude_mentor_and_status = kwargs.pop(
+            'exclude_mentor_and_status',
+            False)
         super().__init__(*args, **kwargs)
 
     @extend_schema_field({
         'type': 'object',
         'properties': {
-            'id': {'type': 'integer'},
-            'name': {'type': 'string'},
-            'slug': {'type': 'string'},
-            'color_fon': {'type': 'string'},
-            'color_text': {'type': 'string'},
+            'status': {'type': 'string'},
+            'hasTask': {'type': 'boolean'}
         }
     })
-    def get_status(self, obj):
+    def get_idp(self, obj):
         idps = obj.IDP.all()
-        if idps.exists():
-            status = idps.last().status
-            if status:
-                return {
-                    'id': status.id,
-                    'name': status.name,
-                    'slug': status.slug,
-                    'color_fon': status.color_fon,
-                    'color_text': status.color_text
-                }
-        return 'Нет ИПР'
+        latest_idp = idps.last() if idps.exists() else None
+        if latest_idp:
+            return {
+                'status':
+                latest_idp.status.name if latest_idp.status else 'none',
+                'hasTask':
+                latest_idp.task.exists() if latest_idp else False
+            }
+        return {
+            'status': 'none',
+            'hasTask': False
+        }
 
     @extend_schema_field(OpenApiTypes.BOOL)
     def get_mentor(self, obj):

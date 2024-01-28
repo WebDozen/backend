@@ -103,7 +103,8 @@ class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
         if manager:
             queryset = self.queryset.filter(head=manager)
             serializer = self.serializer_class(
-                queryset, many=True,
+                queryset,
+                many=True,
                 context=self.get_serializer_context())
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
@@ -111,12 +112,11 @@ class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        manager = self.get_serializer_context()['manager']
+        self.check_object_permissions(request, instance)
+        serializer_context = self.get_serializer_context()
 
-        if manager and instance.head == manager:
-            serializer = self.serializer_class(
-                instance,
-                context=self.get_serializer_context())
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        else:
-            return Response([], status=status.HTTP_200_OK)
+        serializer_context['exclude_mentor_and_status'] = True
+        serializer = self.serializer_class(
+            instance,
+            context=serializer_context)
+        return Response(serializer.data, status=status.HTTP_200_OK)
