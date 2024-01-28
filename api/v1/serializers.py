@@ -163,7 +163,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
             'grade',
             'position',
             'idp',
-            )
+        )
 
     def __init__(self, *args, **kwargs):
         self.exclude_mentor_and_status = kwargs.pop(
@@ -175,22 +175,28 @@ class EmployeeSerializer(serializers.ModelSerializer):
         'type': 'object',
         'properties': {
             'status': {'type': 'string'},
-            'hasTask': {'type': 'boolean'}
+            'has_Task': {'type': 'boolean'},
+            'total_Completed_IDPs': {'type': 'integer'},
+            'completed_Tasks_Count': {'type': 'integer'},
         }
     })
     def get_idp(self, obj):
         idps = obj.IDP.all()
         latest_idp = idps.last() if idps.exists() else None
         if latest_idp:
+            completed_tasks_count = latest_idp.task.filter(status__slug='completed').count()
+            total_completed_idps = idps.filter(status__slug='completed').count()
             return {
-                'status':
-                latest_idp.status.name if latest_idp.status else 'none',
-                'hasTask':
-                latest_idp.task.exists() if latest_idp else False
+                'status': latest_idp.status.name if latest_idp.status else 'none',
+                'has_Task': latest_idp.task.exists() if latest_idp else False,
+                'total_Completed_IDPs': total_completed_idps,
+                'completed_Tasks_Count': completed_tasks_count,
             }
         return {
             'status': 'none',
-            'hasTask': False
+            'has_Task': False,
+            'total_Completed_IDPs': 0,
+            'completed_Tasks_Count': 0,
         }
 
     @extend_schema_field(OpenApiTypes.BOOL)
