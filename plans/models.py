@@ -2,7 +2,7 @@ from django.db import models
 from users.models import Employee, Manager, User
 
 
-class Execution_status(models.Model):
+class StatusIDP(models.Model):
     name = models.CharField(
         verbose_name='Название',
         max_length=50,
@@ -45,8 +45,8 @@ class IDP(models.Model):
     deadline = models.DateTimeField(
         verbose_name='Дедлайн'
     )
-    execution_status = models.ForeignKey(
-        Execution_status,
+    status = models.ForeignKey(
+        StatusIDP,
         on_delete=models.CASCADE,
         related_name='IDP',
         verbose_name='Статус исполнения',
@@ -65,8 +65,33 @@ class IDP(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+    def save(self, *args, **kwargs):
+        default_status_slug = 'open'
+        self.execution_status, created = StatusIDP.objects.get_or_create(
+            slug=default_status_slug
+        )
+        super().save(*args, **kwargs)
 
-class Type_task(models.Model):
+
+class StatusTask(models.Model):
+    name = models.CharField(
+        verbose_name='Название',
+        max_length=50,
+    )
+    slug = models.SlugField(
+        verbose_name='Слаг статуса',
+        unique=True
+    )
+
+    class Meta:
+        verbose_name = 'Статус исполнения задачи'
+        verbose_name_plural = 'Статусы исполнения задачи'
+
+    def __str__(self):
+        return f'{self.name}'
+
+
+class Typetask(models.Model):
     name = models.CharField(
         verbose_name='Название',
         max_length=200,
@@ -92,7 +117,7 @@ class Task(models.Model):
         verbose_name='ИПР',
     )
     type = models.ForeignKey(
-        Type_task,
+        Typetask,
         on_delete=models.CASCADE,
         related_name='task',
         verbose_name='Тип задачи',
@@ -105,10 +130,12 @@ class Task(models.Model):
         verbose_name='Подробное описание',
     )
     execution_status = models.ForeignKey(
-        Execution_status,
+        StatusTask,
         on_delete=models.CASCADE,
         related_name='task',
-        verbose_name='Статус исполнения',
+        verbose_name='Статус исполнения задачи',
+        blank=True,
+        null=True
     )
     pub_date = models.DateTimeField(
         verbose_name='Дата создания',
@@ -121,6 +148,13 @@ class Task(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+ 
+    def save(self, *args, **kwargs):
+        default_status_slug = 'open'
+        self.execution_status, created = StatusTask.objects.get_or_create(
+            slug=default_status_slug
+        )
+        super().save(*args, **kwargs)
 
 
 class Comments(models.Model):
