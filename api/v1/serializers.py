@@ -184,8 +184,10 @@ class EmployeeSerializer(serializers.ModelSerializer):
         idps = obj.IDP.all()
         latest_idp = idps.last() if idps.exists() else None
         if latest_idp:
-            completed_tasks_count = latest_idp.task.filter(status__slug='completed').count()
-            total_completed_idps = idps.filter(status__slug='completed').count()
+            completed_tasks_count = latest_idp.task.filter(
+                status__slug='completed').count()
+            total_completed_idps = idps.filter(
+                status__slug='completed').count()
             return {
                 'status': latest_idp.status.name if latest_idp.status else 'none',
                 'has_Task': latest_idp.task.exists() if latest_idp else False,
