@@ -1,4 +1,7 @@
 from rest_framework import serializers
+from drf_spectacular.utils import extend_schema_field, OpenApiTypes
+
+
 from users.models import Employee
 from plans.models import IDP, Task, StatusIDP
 
@@ -143,61 +146,67 @@ class IDPCreateAndUpdateSerializer(serializers.ModelSerializer):
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
-    idp_status = serializers.SerializerMethodField()
-    mentor_id = serializers.SerializerMethodField()
-    idp_id = serializers.SerializerMethodField()
+    """Сериализатор для сотрудников."""
+
+    idp = serializers.SerializerMethodField()
+    mentor = serializers.SerializerMethodField()
     last_name = serializers.ReadOnlyField(source='user.last_name')
     first_name = serializers.ReadOnlyField(source='user.first_name')
     middle_name = serializers.ReadOnlyField(source='user.middle_name')
-    message = serializers.SerializerMethodField()
-    task_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Employee
-        fields = ['id',
-                  'head',
-                  'mentor_id',
-                  'idp_id',
-                  'last_name',
-                  'first_name',
-                  'middle_name',
-                  'grade',
-                  'position',
-                  'task_count',
-                  'idp_status',
-                  'message',
-                  ]
+        fields = (
+            'id',
+            'mentor',
+            'last_name',
+            'first_name',
+            'middle_name',
+            'grade',
+            'position',
+            'idp',
+        )
 
     def __init__(self, *args, **kwargs):
-        self.manager = kwargs.pop('manager', None)
+        self.exclude_mentor_and_status = kwargs.pop(
+            'exclude_mentor_and_status',
+            False)
         super().__init__(*args, **kwargs)
 
-    def get_task_count(self, obj):
-        if self.manager and obj.head == self.manager:
-            tasks = Task.objects.filter(idp__employee=obj)
-            return tasks.count()
-        return 0
-
-    def get_idp_status(self, obj):
+    @extend_schema_field({
+        'type': 'object',
+        'properties': {
+            'status': {'type': 'string'},
+            'has_task': {'type': 'boolean'},
+            'total_completed_idps': {'type': 'integer'},
+            'completed_tasks_count': {'type': 'integer'},
+            'total_idps_count': {'type': 'integer'},
+        }
+    })
+    def get_idp(self, obj):
         idps = obj.IDP.all()
-        if idps.exists():
-            return idps.first().status.name
-        else:
-            return None
+        total_idps_count = idps.count()
+        latest_idp = idps.last() if idps.exists() else None
+        if latest_idp:
+            completed_tasks_count = latest_idp.task.filter(
+                status__slug='completed').count()
+            total_completed_idps = idps.filter(
+                status__slug='completed').count()
+            return {
+                'status': latest_idp.status.slug if latest_idp.status else 'none',
+                'has_task': latest_idp.task.exists() if latest_idp else False,
+                'total_completed_idps': total_completed_idps,
+                'completed_tasks_count': completed_tasks_count,
+                'total_idps_count': total_idps_count,
+            }
+        return {
+            'status': 'none',
+            'has_task': False,
+            'total_completed_idps': 0,
+            'completed_tasks_count': 0,
+            'total_idps_count': total_idps_count,
+        }
 
-    def get_mentor_id(self, obj):
+    @extend_schema_field(OpenApiTypes.BOOL)
+    def get_mentor(self, obj):
         return obj.mentor.exists()
-
-    def get_idp_id(self, obj):
-        idps = obj.IDP.all()
-        if idps.exists():
-            return idps.first().id
-        else:
-            return None
-
-    def get_message(self, obj):
-        idps = obj.IDP.all()
-        if idps.exists():
-            return idps.first().message
-        else:
-            return None
