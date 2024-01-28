@@ -177,13 +177,15 @@ class EmployeeSerializer(serializers.ModelSerializer):
         'type': 'object',
         'properties': {
             'status': {'type': 'string'},
-            'has_Task': {'type': 'boolean'},
-            'total_Completed_IDPs': {'type': 'integer'},
-            'completed_Tasks_Count': {'type': 'integer'},
+            'has_task': {'type': 'boolean'},
+            'total_completed_idps': {'type': 'integer'},
+            'completed_tasks_count': {'type': 'integer'},
+            'total_idps_count': {'type': 'integer'},
         }
     })
     def get_idp(self, obj):
         idps = obj.IDP.all()
+        total_idps_count = idps.count()
         latest_idp = idps.last() if idps.exists() else None
         if latest_idp:
             completed_tasks_count = latest_idp.task.filter(
@@ -191,16 +193,18 @@ class EmployeeSerializer(serializers.ModelSerializer):
             total_completed_idps = idps.filter(
                 status__slug='completed').count()
             return {
-                'status': latest_idp.status.name if latest_idp.status else 'none',
-                'has_Task': latest_idp.task.exists() if latest_idp else False,
-                'total_Completed_IDPs': total_completed_idps,
-                'completed_Tasks_Count': completed_tasks_count,
+                'status': latest_idp.status.slug if latest_idp.status else 'none',
+                'has_task': latest_idp.task.exists() if latest_idp else False,
+                'total_completed_idps': total_completed_idps,
+                'completed_tasks_count': completed_tasks_count,
+                'total_idps_count': total_idps_count,
             }
         return {
             'status': 'none',
-            'has_Task': False,
-            'total_Completed_IDPs': 0,
-            'completed_Tasks_Count': 0,
+            'has_task': False,
+            'total_completed_idps': 0,
+            'completed_tasks_count': 0,
+            'total_idps_count': total_idps_count,
         }
 
     @extend_schema_field(OpenApiTypes.BOOL)
