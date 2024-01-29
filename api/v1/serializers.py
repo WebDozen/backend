@@ -69,18 +69,26 @@ class IDPSerializer(serializers.ModelSerializer):
     """Возвращает список объектов всех ИПР конкретного сотрудника"""
 
     status = StatusIDPSerializer()
-    mentor = MentorSerializer()
+    mentor = serializers.SerializerMethodField()
+    tasks = serializers.SerializerMethodField()
 
     class Meta:
         model = IDP
         fields = (
             'id',
             'employee',
-            'mentor',
             'name',
             'deadline',
+            'mentor',
+            'tasks',
             'status',
         )
+
+    def get_mentor(self, obj):
+        return obj.mentor is not None
+
+    def get_tasks(self, obj):
+        return obj.task.exists()
 
 
 class IDPDetailSerializer(serializers.ModelSerializer):
@@ -93,6 +101,7 @@ class IDPDetailSerializer(serializers.ModelSerializer):
     )
     status = StatusIDPSerializer()
     mentor = MentorSerializer()
+    statistic = serializers.SerializerMethodField()
 
     class Meta:
         model = IDP
@@ -105,8 +114,16 @@ class IDPDetailSerializer(serializers.ModelSerializer):
             'pub_date',
             'deadline',
             'status',
-            'tasks'
+            'tasks',
+            'statistic'
         )
+
+    def get_statistic(self, obj):
+        count_task = obj.task.count()
+        print(count_task)
+        task_done = obj.task.filter(status__slug='done').count()
+        print(task_done)
+        return {'count_task': count_task, 'task_done': task_done}
 
 
 class IDPCreateAndUpdateSerializer(serializers.ModelSerializer):
