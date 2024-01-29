@@ -11,7 +11,7 @@ from drf_spectacular.utils import (
 
 from users.models import Employee, Manager
 from plans.models import IDP
-from api.v1.permissions import IsManagerOfEmployee
+from .permissions import IsManagerOfEmployee, IsMentor, IsSelfEmployee
 from .serializers import (
     IDPCreateAndUpdateSerializer,
     IDPSerializer,
@@ -94,6 +94,7 @@ from .serializers import (
 )
 class IDPViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'patch']
+    permission_classes = [IsManagerOfEmployee | IsSelfEmployee | IsMentor]
 
     def get_serializer_class(self):
         if self.action in ['create', 'partial_update']:
@@ -115,6 +116,14 @@ class IDPViewSet(viewsets.ModelViewSet):
         context = super().get_serializer_context()
         context.update({'employee_id': self.kwargs.get('employee_id')})
         return context
+
+    # def get_permissions(self):
+    #     employee_id = self.kwargs.get('employee_id')
+    #     if self.action in ['create', 'partial_update']:
+    #         return super().get_permissions()
+    #     elif self.action == 'retrieve':
+    #         return [IsManagerOfEmployee()]
+    #     return [permission() for permission in self.permission_classes]
 
 
 @extend_schema(tags=['Пользователи сервиса ИПР'],)
