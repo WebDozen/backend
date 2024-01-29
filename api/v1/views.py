@@ -117,13 +117,12 @@ class IDPViewSet(viewsets.ModelViewSet):
         context.update({'employee_id': self.kwargs.get('employee_id')})
         return context
 
-    # def get_permissions(self):
-    #     employee_id = self.kwargs.get('employee_id')
-    #     if self.action in ['create', 'partial_update']:
-    #         return super().get_permissions()
-    #     elif self.action == 'retrieve':
-    #         return [IsManagerOfEmployee()]
-    #     return [permission() for permission in self.permission_classes]
+    def get_permissions(self):
+        if self.action == 'create':
+            self.permission_classes = [IsManagerOfEmployee]
+        elif self.action == 'partial_update':
+            self.permission_classes = [IsManagerOfEmployee | IsMentor]
+        return [permission() for permission in self.permission_classes]
 
 
 @extend_schema(tags=['Пользователи сервиса ИПР'],)
