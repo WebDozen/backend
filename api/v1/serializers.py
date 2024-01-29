@@ -1,10 +1,13 @@
 from django.utils import timezone
 from rest_framework import serializers
-from drf_spectacular.utils import extend_schema_field, OpenApiTypes
+from drf_spectacular.utils import (
+    extend_schema_field,
+    OpenApiTypes
+)
 
 
 from users.models import Employee
-from plans.models import IDP, Task, StatusIDP
+from plans.models import IDP, StatusTask, Task, StatusIDP
 
 
 class MentorSerializer(serializers.ModelSerializer):
@@ -33,8 +36,17 @@ class StatusIDPSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class StatusTaskSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = StatusTask
+        fields = '__all__'
+
+
 class TaskSerializer(serializers.ModelSerializer):
     """Возвращает объекты модели Task"""
+
+    status = StatusTaskSerializer()
 
     class Meta:
         model = Task
@@ -84,10 +96,10 @@ class IDPSerializer(serializers.ModelSerializer):
             'status',
         )
 
-    def get_mentor(self, obj):
+    def get_mentor(self, obj) -> bool:
         return obj.mentor is not None
 
-    def get_tasks(self, obj):
+    def get_tasks(self, obj) -> bool:
         return obj.task.exists()
 
 
@@ -118,11 +130,15 @@ class IDPDetailSerializer(serializers.ModelSerializer):
             'statistic'
         )
 
-    def get_statistic(self, obj):
+    @extend_schema_field({
+        'properties': {
+            'count_task': {'type': 'integer'},
+            'task_done': {'type': 'integer'}
+        }
+    })
+    def get_statistic(self, obj) -> dict:
         count_task = obj.task.count()
-        print(count_task)
         task_done = obj.task.filter(status__slug='done').count()
-        print(task_done)
         return {'count_task': count_task, 'task_done': task_done}
 
 
@@ -204,7 +220,6 @@ class IDPCreateAndUpdateSerializer(serializers.ModelSerializer):
     def create_tasks(self, instance, tasks_data):
         """Создает задачи и прикрепляет их к ИПР"""
         for task in tasks_data:
-            print(task)
             Task.objects.create(idp=instance, **task)
 
     def create(self, validated_data):
@@ -299,7 +314,9 @@ class EmployeeSerializer(serializers.ModelSerializer):
             total_completed_idps = idps.filter(
                 status__slug='completed').count()
             return {
-                'status': latest_idp.status.slug if latest_idp.status else 'none',
+                'status': (
+                    latest_idp.status.slug if latest_idp.status else 'none'
+                ),
                 'has_task': latest_idp.task.exists() if latest_idp else False,
                 'total_completed_idps': total_completed_idps,
                 'completed_tasks_count': completed_tasks_count,

@@ -26,18 +26,70 @@ from .serializers import (
     list=extend_schema(
         summary='Получение всех ИПР сотрудника',
         methods=['GET'],
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='employee_id',
+                required=True,
+                type=int
+            ),
+        ],
     ),
     retrieve=extend_schema(
         summary='Получение ИПР сотрудника',
         methods=['GET'],
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='employee_id',
+                required=True,
+                type=int
+            ),
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='id',
+                required=True,
+                type=int
+            ),
+        ],
     ),
     partial_update=extend_schema(
         summary='Обновление данных ИПР',
         methods=['PATCH'],
+        request=IDPCreateAndUpdateSerializer,
+        responses={
+            status.HTTP_200_OK: IDPDetailSerializer
+        },
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='employee_id',
+                required=True,
+                type=int
+            ),
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='id',
+                required=True,
+                type=int
+            ),
+        ],
     ),
     create=extend_schema(
         summary='Создание нового ИПР',
         methods=['POST'],
+        request=IDPCreateAndUpdateSerializer,
+        responses={
+            status.HTTP_200_OK: IDPDetailSerializer
+        },
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='employee_id',
+                required=True,
+                type=int
+            ),
+        ],
     ),
 )
 class IDPViewSet(viewsets.ModelViewSet):

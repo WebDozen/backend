@@ -6,7 +6,7 @@ from .views import IDPViewSet, EmployeeViewSet
 router = DefaultRouter()
 router.register('employees', EmployeeViewSet, basename='employee')
 router.register(
-    r"employees/(?P<employee_id>\d+)/idps", IDPViewSet, basename="idps"
+    r'employees/(?P<employee_id>\d+)/idps', IDPViewSet, basename='idps'
 )
 
 urlpatterns = [
