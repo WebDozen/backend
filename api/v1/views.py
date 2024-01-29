@@ -61,7 +61,7 @@ class IDPViewSet(viewsets.ModelViewSet):
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
-        context.update({"employee_id": self.kwargs.get('employee_id')})
+        context.update({'employee_id': self.kwargs.get('employee_id')})
         return context
 
 
