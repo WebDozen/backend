@@ -110,7 +110,19 @@ class IDPViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         employee_id = self.kwargs.get('employee_id')
         employee = get_object_or_404(Employee, id=employee_id)
-        return IDP.objects.filter(employee=employee).prefetch_related('task')
+
+        if (
+            self.request.user.role == 'manager' or
+            self.request.user.id == employee.id
+        ):
+            return IDP.objects.filter(
+                employee=employee
+            ).prefetch_related('task')
+        else:
+            return IDP.objects.filter(
+                employee=employee,
+                mentor=self.request.user.id
+            ).prefetch_related('task')
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
