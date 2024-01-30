@@ -11,9 +11,10 @@ from drf_spectacular.utils import (
     OpenApiParameter,
     )
 
+from .permissions import IsManagerOfEmployee, IsMentor, IsSelfEmployee
 from users.models import Employee, Manager
 from plans.models import IDP, Task, StatusTask
-from api.v1.permissions import IsManagerOfEmployee
+
 from .serializers import (
     IDPCreateAndUpdateSerializer,
     IDPSerializer,
@@ -98,6 +99,7 @@ from .serializers import (
 )
 class IDPViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'patch']
+    permission_classes = [IsManagerOfEmployee | IsSelfEmployee | IsMentor]
 
     def get_serializer_class(self):
         if self.action in ['create', 'partial_update']:
@@ -113,12 +115,31 @@ class IDPViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         employee_id = self.kwargs.get('employee_id')
         employee = get_object_or_404(Employee, id=employee_id)
-        return IDP.objects.filter(employee=employee).prefetch_related('task')
+
+        if (
+            self.request.user.role == 'manager' or
+            self.request.user.id == employee.id
+        ):
+            return IDP.objects.filter(
+                employee=employee
+            ).prefetch_related('task')
+        else:
+            return IDP.objects.filter(
+                employee=employee,
+                mentor=self.request.user.id
+            ).prefetch_related('task')
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
         context.update({'employee_id': self.kwargs.get('employee_id')})
         return context
+
+    def get_permissions(self):
+        if self.action == 'create':
+            self.permission_classes = [IsManagerOfEmployee]
+        elif self.action == 'partial_update':
+            self.permission_classes = [IsManagerOfEmployee | IsMentor]
+        return [permission() for permission in self.permission_classes]
 
 
 @extend_schema(tags=['Пользователи сервиса ИПР'],)
