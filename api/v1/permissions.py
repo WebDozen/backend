@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import BasePermission
+
+from users.models import Manager, Employee
 from plans.models import IDP
-from users.models import Employee
 
 
 class IsManagerOfEmployee(BasePermission):

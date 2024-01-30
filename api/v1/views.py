@@ -1,7 +1,9 @@
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, permissions
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import action
+from rest_framework.exceptions import PermissionDenied
 
 from drf_spectacular.utils import (
     extend_schema_view,
@@ -9,14 +11,17 @@ from drf_spectacular.utils import (
     OpenApiParameter,
     )
 
-from users.models import Employee, Manager
-from plans.models import IDP
 from .permissions import IsManagerOfEmployee, IsMentor, IsSelfEmployee
+from users.models import Employee, Manager
+from plans.models import IDP, Task, StatusTask
+
 from .serializers import (
     IDPCreateAndUpdateSerializer,
     IDPSerializer,
     IDPDetailSerializer,
-    EmployeeSerializer
+    EmployeeSerializer,
+    HeadStatisticSerializer,
+    TaskSerializer
 )
 
 
@@ -161,34 +166,63 @@ class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = EmployeeSerializer
     http_method_names = ['get']
 
-    def get_serializer_context(self):
-        context = super().get_serializer_context()
-        try:
-            manager = self.request.user.manager_profile
-            context.update({'manager': manager})
-        except Manager.DoesNotExist:
-            context.update({'manager': None})
-        return context
-
     def list(self, request, *args, **kwargs):
-        manager = self.get_serializer_context()['manager']
-        if manager:
-            queryset = self.queryset.filter(head=manager)
-            serializer = self.serializer_class(
-                queryset,
-                many=True,
-                context=self.get_serializer_context())
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        else:
-            return Response([], status=status.HTTP_200_OK)
+        user = request.user
+        queryset = self.queryset.none()
+        if hasattr(user, 'manager_profile'):
+            if user.manager_profile:
+                queryset = self.get_subordinates(user.manager_profile)
+        elif hasattr(user, 'employee_profile'):
+            mentor_idp = IDP.objects.filter(mentor=user.employee_profile)
+            employee_ids = [idp.employee.id for idp in mentor_idp]
+            queryset = Employee.objects.filter(id__in=employee_ids)
+            if not queryset.exists():
+                raise PermissionDenied('У вас нет прав доступа к этому ресурсу.')
+
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         self.check_object_permissions(request, instance)
-        serializer_context = self.get_serializer_context()
-
-        serializer_context['exclude_mentor_and_status'] = True
-        serializer = self.serializer_class(
-            instance,
-            context=serializer_context)
+        serializer = self.serializer_class(instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def get_subordinates(self, manager):
+        """Возвращает подчиненных сотрудников данного руководителя."""
+        return Employee.objects.filter(head=manager)
+
+
+class HeadStatisticViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = HeadStatisticSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get_queryset(self):
+        head_id = self.kwargs.get('head_id')
+        queryset = Manager.objects.filter(id=head_id)
+        return queryset
+
+class TaskStatusChangeViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = TaskSerializer
+    permission_classes = [permissions.AllowAny]
+    queryset = Task.objects.all()
+
+
+    @action(
+        detail=False,
+        methods=['patch'],
+    )
+    def status(self, request, idp_id, task_id):
+        """Изменение статуса задачи."""
+        new_status_slug = request.data['status_slug']
+        new_status_id = get_object_or_404(StatusTask, slug=new_status_slug).id
+        task = get_object_or_404(Task, idp=idp_id, id=task_id)
+        serializer = TaskSerializer(
+            task, data={'status':new_status_id}, partial=True
+        )
+        if serializer.is_valid():
+            serializer.save()
+        return Response(
+            serializer.data, 
+            status=status.HTTP_200_OK
+        )
