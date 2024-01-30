@@ -1,9 +1,8 @@
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, status, permissions
-from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
-
+from rest_framework.decorators import action
 from drf_spectacular.utils import (
     extend_schema_view,
     extend_schema,
@@ -11,14 +10,15 @@ from drf_spectacular.utils import (
     )
 
 from users.models import Employee, Manager
-from plans.models import IDP
+from plans.models import IDP, Task, StatusTask
 from api.v1.permissions import IsManagerOfEmployee
 from .serializers import (
     IDPCreateAndUpdateSerializer,
     IDPSerializer,
     IDPDetailSerializer,
     EmployeeSerializer,
-    HeadStatisticSerializer
+    HeadStatisticSerializer,
+    TaskSerializer
 )
 
 
@@ -126,8 +126,34 @@ class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
 
 class HeadStatisticViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = HeadStatisticSerializer
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         head_id = self.kwargs.get('head_id')
         queryset = Manager.objects.filter(id=head_id)
         return queryset
+
+class TaskStatusChangeViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = TaskSerializer
+    permission_classes = [permissions.AllowAny]
+    queryset = Task.objects.all()
+
+
+    @action(
+        detail=False,
+        methods=['patch'],
+    )
+    def status(self, request, idp_id, task_id):
+        """Изменение статуса задачи."""
+        new_status_slug = request.data['status_slug']
+        new_status_id = get_object_or_404(StatusTask, slug=new_status_slug).id
+        task = get_object_or_404(Task, idp=idp_id, id=task_id)
+        serializer = TaskSerializer(
+            task, data={'status':new_status_id}, partial=True
+        )
+        if serializer.is_valid():
+            serializer.save()
+        return Response(
+            serializer.data, 
+            status=status.HTTP_200_OK
+        )

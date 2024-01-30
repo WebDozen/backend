@@ -4,7 +4,6 @@ from itertools import chain
 from django.db.models import Q
 from users.models import Employee, Manager
 from plans.models import IDP, Task, StatusIDP
-import plans
 
 class StatusIDPSerializer(serializers.ModelSerializer):
     """Возвращает объекты модели ExecutionStatus"""
@@ -258,7 +257,6 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
             )
         else:
             percent_progress_employees = None
-        
         count_employe_without_idp = (
             count_employe - count_employe_with_idp
         )
@@ -271,3 +269,10 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
         data['count_idp_with_status_awaiting_review'] = count_idp_status_review
 
         return data
+
+
+class TaskSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Task
+        fields = ['id', 'pub_date', 'name', 'description', 'status']

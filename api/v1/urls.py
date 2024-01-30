@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .views import IDPViewSet, EmployeeViewSet, HeadStatisticViewSet
+from .views import IDPViewSet, EmployeeViewSet, HeadStatisticViewSet, TaskStatusChangeViewSet
 
 router = DefaultRouter()
 router.register('employees', EmployeeViewSet, basename='employee')
@@ -11,6 +11,10 @@ router.register(
 router.register(
     r'head/(?P<head_id>\d+)/statistics', HeadStatisticViewSet, 
     basename='head_statistic'
+)
+router.register(
+    r'idps/(?P<idp_id>\d+)/tasks/(?P<task_id>\d+)', TaskStatusChangeViewSet, 
+    basename='task_status'
 )
 urlpatterns = [
     path('', include(router.urls))
