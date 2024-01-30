@@ -91,7 +91,7 @@ class StatusTask(models.Model):
         return f'{self.name}'
 
 
-class Typetask(models.Model):
+class TypeTask(models.Model):
     name = models.CharField(
         verbose_name='Название',
         max_length=200,
@@ -117,7 +117,7 @@ class Task(models.Model):
         verbose_name='ИПР',
     )
     type = models.ForeignKey(
-        Typetask,
+        TypeTask,
         on_delete=models.CASCADE,
         related_name='task',
         verbose_name='Тип задачи',
@@ -148,7 +148,7 @@ class Task(models.Model):
 
     def __str__(self):
         return f'{self.name}'
- 
+
     def save(self, *args, **kwargs):
         default_status_slug = 'open'
         self.execution_status, created = StatusTask.objects.get_or_create(

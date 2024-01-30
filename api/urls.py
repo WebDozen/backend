@@ -1,15 +1,8 @@
-"""URL-роутинг приложения API."""
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
 
-from .views import TaskViewSet
+from alfa_people.urls import VERSION_API
 
-router = DefaultRouter()
-
-router.register(
-    r"idps/(?P<ipdId>\d+)/tasks", TaskViewSet, basename="tasks"
-)
 
 urlpatterns = [
-    path('', include(router.urls))
+    path(f'v{VERSION_API}/', include(f'api.v{VERSION_API}.urls')),
 ]
