@@ -334,7 +334,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
             'completed_tasks_count': 0,
             'total_completed_idps': 0,
             'total_tasks_count': 0,
-            'total_idp_count': total_idp_count,
+            'total_idp_count': 0,
         }
 
     def get_mentor(self, obj) -> bool:

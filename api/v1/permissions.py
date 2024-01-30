@@ -5,6 +5,10 @@ from users.models import Manager, Employee
 from plans.models import IDP
 
 
+from rest_framework.permissions import BasePermission
+from users.models import Manager
+
+
 class IsManagerOfEmployee(BasePermission):
     def check_permission(self, user, employee):
         if not hasattr(user, 'manager_profile'):
@@ -55,3 +59,24 @@ class IsMentor(BasePermission):
             obj.mentor is not None and
             obj.mentor.id == request.user.employee_profile.id
         )
+
+
+class IsManagerandEmployee(BasePermission):
+    def has_permission(self, request, view):
+        if request.user.is_authenticated:
+            if hasattr(request.user, 'manager_profile'):
+                return True
+            return True
+        return False
+
+    def has_object_permission(self, request, view, obj):
+        if hasattr(request.user, 'manager_profile'):
+            return True
+        if hasattr(request.user, 'employee_profile'):
+            mentor_idp = IDP.objects.filter(
+                mentor=request.user.employee_profile,
+                employee=obj)
+            if mentor_idp.exists():
+                return True
+            return obj == request.user.employee_profile
+        return False

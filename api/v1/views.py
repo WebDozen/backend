@@ -18,7 +18,12 @@ from drf_spectacular.utils import (
     inline_serializer
 )
 
-from .permissions import IsManagerOfEmployee, IsMentor, IsSelfEmployee
+from .permissions import (
+    IsManagerOfEmployee,
+    IsMentor,
+    IsSelfEmployee,
+    IsManagerandEmployee)
+
 from users.models import Employee, Manager
 from plans.models import IDP, Task, StatusTask
 
@@ -167,7 +172,7 @@ class IDPViewSet(viewsets.ModelViewSet):
 class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
     """Вьюсет для просмотра сотрудников."""
 
-    permission_classes = [IsAuthenticated, IsManagerOfEmployee]
+    permission_classes = [IsAuthenticated, IsManagerandEmployee]
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
     http_method_names = ['get']
