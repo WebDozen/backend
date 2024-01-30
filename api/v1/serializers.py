@@ -1,19 +1,15 @@
 from django.utils import timezone
 from rest_framework import serializers
+from drf_spectacular.utils import (
+    extend_schema_field
+)
 
-from itertools import chain
-from django.db.models import Q
 from users.models import Employee, Manager
 from plans.models import IDP, StatusTask, Task, StatusIDP
-import plans
-
-from drf_spectacular.utils import (
-    extend_schema_field,
-    OpenApiTypes
-)
 
 
 class MentorSerializer(serializers.ModelSerializer):
+    """Возвращает объект Employee, который является ментором"""
 
     last_name = serializers.ReadOnlyField(source='user.last_name')
     first_name = serializers.ReadOnlyField(source='user.first_name')
@@ -32,7 +28,7 @@ class MentorSerializer(serializers.ModelSerializer):
 
 
 class StatusIDPSerializer(serializers.ModelSerializer):
-    """Возвращает объекты модели ExecutionStatus"""
+    """Возвращает объекты модели StatusIDP"""
 
     class Meta:
         model = StatusIDP
@@ -40,6 +36,7 @@ class StatusIDPSerializer(serializers.ModelSerializer):
 
 
 class StatusTaskSerializer(serializers.ModelSerializer):
+    """Возвращает объекты модели StatusTask"""
 
     class Meta:
         model = StatusTask
@@ -59,8 +56,7 @@ class TaskSerializer(serializers.ModelSerializer):
             'description',
             'type',
             'source',
-            'status',
-            'pub_date'
+            'status'
         )
 
 
@@ -100,9 +96,11 @@ class IDPSerializer(serializers.ModelSerializer):
         )
 
     def get_mentor(self, obj) -> bool:
+        """Проверка есть ли ментор у ИПР"""
         return obj.mentor is not None
 
     def get_tasks(self, obj) -> bool:
+        """Проверка есть ли задачи у ИПР"""
         return obj.task.exists()
 
 
@@ -140,6 +138,7 @@ class IDPDetailSerializer(serializers.ModelSerializer):
         }
     })
     def get_statistic(self, obj) -> dict:
+        """Возвращает кол-во задач и кол-во завершенных задач ИПР"""
         count_task = obj.task.count()
         task_done = obj.task.filter(status__slug='done').count()
         return {'count_task': count_task, 'task_done': task_done}
@@ -338,25 +337,37 @@ class EmployeeSerializer(serializers.ModelSerializer):
             'total_idp_count': total_idp_count,
         }
 
-    @extend_schema_field(OpenApiTypes.BOOL)
-    def get_mentor(self, obj):
+    def get_mentor(self, obj) -> bool:
         latest_idp = obj.IDP.last()
         if latest_idp:
             return bool(latest_idp.mentor)
         return False
 
-    def get_is_mentor(self, obj):
+    def get_is_mentor(self, obj) -> bool:
         return obj.IDP_mentor.exists()
 
 
 class HeadStatisticSerializer(serializers.ModelSerializer):
     """Возвращает статистику по руководителю"""
+
     statistics = serializers.SerializerMethodField()
 
     class Meta:
         model = Manager
         fields = ('statistics',)
 
+    @extend_schema_field({
+        'type': 'object',
+        'properties': {
+            'count_employe': {'type': 'integer'},
+            'count_employe_with_idp': {'type': 'integer'},
+            'percent_progress_employees': {'type': 'integer'},
+            'count_employe_without_idp': {'type': 'integer'},
+            'count_idp_without_tasks': {'type': 'integer'},
+            'count_idp_with_status_not_done': {'type': 'integer'},
+            'count_idp_with_status_awaiting_review': {'type': 'integer'},
+        }
+    })
     def get_statistics(self, obj):
         """Сериализатор статистики"""
         data = {}
@@ -384,10 +395,12 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
                     count_idp_status_review += 1
                 current_idps.append(idp)
         count_employe = employees.count()
-        
+
         idps_with_tasks = idps.filter(task__in=tasks)
         count_idp_without_tasks = (
-            count_employe_with_idp - len(set(current_idps).intersection(list(idps_with_tasks)))
+            count_employe_with_idp - len(
+                set(current_idps).intersection(list(idps_with_tasks))
+            )
         )
         if count_employe:
             percent_progress_employees = int(
@@ -395,7 +408,6 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
             )
         else:
             percent_progress_employees = None
-        
         count_employe_without_idp = (
             count_employe - count_employe_with_idp
         )

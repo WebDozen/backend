@@ -1,30 +1,39 @@
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, status, permissions
-from rest_framework import viewsets, status
+from rest_framework import (
+    viewsets,
+    status,
+    permissions,
+    mixins,
+    serializers
+)
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import action
 from rest_framework.exceptions import PermissionDenied
+
 from drf_spectacular.utils import (
     extend_schema_view,
     extend_schema,
     OpenApiParameter,
-    )
+    inline_serializer
+)
 
+from .permissions import IsManagerOfEmployee, IsMentor, IsSelfEmployee
 from users.models import Employee, Manager
-from plans.models import IDP
-from api.v1.permissions import IsManagerOfEmployee
+from plans.models import IDP, Task, StatusTask
+
 from .serializers import (
     IDPCreateAndUpdateSerializer,
     IDPSerializer,
     IDPDetailSerializer,
     EmployeeSerializer,
-    HeadStatisticSerializer
+    HeadStatisticSerializer,
+    TaskSerializer
 )
 
 
 @extend_schema(tags=['ИПР'])
 @extend_schema_view(
-    tags=['ИПР'],
     list=extend_schema(
         summary='Получение всех ИПР сотрудника',
         methods=['GET'],
@@ -96,6 +105,7 @@ from .serializers import (
 )
 class IDPViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'patch']
+    permission_classes = [IsManagerOfEmployee | IsSelfEmployee | IsMentor]
 
     def get_serializer_class(self):
         if self.action in ['create', 'partial_update']:
@@ -111,18 +121,37 @@ class IDPViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         employee_id = self.kwargs.get('employee_id')
         employee = get_object_or_404(Employee, id=employee_id)
-        return IDP.objects.filter(employee=employee).prefetch_related('task')
+
+        if (
+            self.request.user.role == 'manager' or
+            self.request.user.id == employee.id
+        ):
+            return IDP.objects.filter(
+                employee=employee
+            ).prefetch_related('task')
+        else:
+            return IDP.objects.filter(
+                employee=employee,
+                mentor=self.request.user.id
+            ).prefetch_related('task')
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
         context.update({'employee_id': self.kwargs.get('employee_id')})
         return context
 
+    def get_permissions(self):
+        if self.action == 'create':
+            self.permission_classes = [IsManagerOfEmployee]
+        elif self.action == 'partial_update':
+            self.permission_classes = [IsManagerOfEmployee | IsMentor]
+        return [permission() for permission in self.permission_classes]
+
 
 @extend_schema(tags=['Пользователи сервиса ИПР'],)
 @extend_schema_view(
     list=extend_schema(
-        summary='Получение списка сотрудников'
+        summary='Получение списка сотрудников '
         'с данными по последнему ИПР',
         methods=['GET'],
         parameters=[
@@ -154,7 +183,9 @@ class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
             employee_ids = [idp.employee.id for idp in mentor_idp]
             queryset = Employee.objects.filter(id__in=employee_ids)
             if not queryset.exists():
-                raise PermissionDenied('У вас нет прав доступа к этому ресурсу.')
+                raise PermissionDenied(
+                    'У вас нет прав доступа к этому ресурсу.'
+                )
 
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -170,10 +201,73 @@ class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
         return Employee.objects.filter(head=manager)
 
 
-class HeadStatisticViewSet(viewsets.ReadOnlyModelViewSet):
+@extend_schema(tags=['Статистика для руководителя'])
+@extend_schema_view(
+    list=extend_schema(
+        summary='Получение статистики сотрудников по ИПР',
+        methods=['GET'],
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='head_id',
+                required=True,
+                type=int
+            ),
+        ],
+        description='Страница руководителя',
+    )
+)
+class HeadStatisticViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = HeadStatisticSerializer
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         head_id = self.kwargs.get('head_id')
         queryset = Manager.objects.filter(id=head_id)
         return queryset
+
+
+@extend_schema(tags=['Статусы'])
+class TaskStatusChangeViewSet(viewsets.ViewSet):
+    serializer_class = TaskSerializer
+    permission_classes = [permissions.AllowAny]
+    queryset = Task.objects.all()
+
+    @extend_schema(
+        request=inline_serializer(
+            name="InlineFormSerializer",
+            fields={
+                "status_slug": serializers.CharField()
+            },
+        ),
+        responses={200: TaskSerializer(many=True)},
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='idp_id',
+                required=True,
+                type=int
+            ),
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='task_id',
+                required=True,
+                type=int
+            ),
+        ]
+    )
+    @action(detail=False, methods=['patch'])
+    def status(self, request, idp_id, task_id):
+        """Изменение статуса задачи."""
+        new_status_slug = request.data['status_slug']
+        new_status_id = get_object_or_404(StatusTask, slug=new_status_slug).id
+        task = get_object_or_404(Task, idp=idp_id, id=task_id)
+        serializer = TaskSerializer(
+            task, data={'status': new_status_id}, partial=True
+        )
+        if serializer.is_valid():
+            serializer.save()
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK
+        )
