@@ -163,6 +163,10 @@ class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
         serializer = self.serializer_class(instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    def get_subordinates(self, manager):
+        """Возвращает подчиненных сотрудников данного руководителя."""
+        return Employee.objects.filter(head=manager)
+
 
 class HeadStatisticViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = HeadStatisticSerializer

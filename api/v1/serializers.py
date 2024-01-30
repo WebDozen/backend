@@ -338,6 +338,9 @@ class EmployeeSerializer(serializers.ModelSerializer):
     def get_mentor(self, obj):
         return obj.mentor.exists()
 
+    def get_is_mentor(self, obj):
+        return obj.IDP_mentor.exists()
+
 
 class HeadStatisticSerializer(serializers.ModelSerializer):
     """Возвращает статистику по руководителю"""
