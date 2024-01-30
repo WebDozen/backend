@@ -289,8 +289,8 @@ class EmployeeSerializer(serializers.ModelSerializer):
             'middle_name',
             'grade',
             'position',
-            'idp',
             'is_mentor',
+            'idp',
         )
 
     def __init__(self, *args, **kwargs):
