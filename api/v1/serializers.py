@@ -336,7 +336,10 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
     @extend_schema_field(OpenApiTypes.BOOL)
     def get_mentor(self, obj):
-        return obj.mentor.exists()
+        latest_idp = obj.IDP.last()
+        if latest_idp:
+            return bool(latest_idp.mentor)
+        return False
 
     def get_is_mentor(self, obj):
         return obj.IDP_mentor.exists()
