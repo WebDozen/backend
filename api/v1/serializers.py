@@ -307,11 +307,13 @@ class EmployeeSerializer(serializers.ModelSerializer):
             'completed_tasks_count': {'type': 'integer'},
             'total_completed_idps': {'type': 'integer'},
             'total_tasks_count': {'type': 'integer'},
+            'total_idp_count': {'type': 'integer'},
         }
     })
     def get_idp(self, obj):
         idps = obj.IDP.all()
         latest_idp = idps.last() if idps.exists() else None
+        total_idp_count = idps.count()
         if latest_idp:
             completed_tasks_count = latest_idp.task.filter(
                 status__slug='completed').count()
@@ -325,6 +327,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
                 'completed_tasks_count': completed_tasks_count,
                 'total_completed_idps': total_completed_idps,
                 'total_tasks_count': total_tasks_count,
+                'total_idp_count': total_idp_count,
             }
         return {
             'status': 'none',
@@ -332,6 +335,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
             'completed_tasks_count': 0,
             'total_completed_idps': 0,
             'total_tasks_count': 0,
+            'total_idp_count': total_idp_count,
         }
 
     @extend_schema_field(OpenApiTypes.BOOL)
