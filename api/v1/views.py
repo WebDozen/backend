@@ -1,6 +1,12 @@
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, status, permissions
+from rest_framework import (
+    viewsets,
+    status,
+    permissions,
+    mixins,
+    serializers
+)
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.exceptions import PermissionDenied
@@ -9,7 +15,8 @@ from drf_spectacular.utils import (
     extend_schema_view,
     extend_schema,
     OpenApiParameter,
-    )
+    inline_serializer
+)
 
 from .permissions import IsManagerOfEmployee, IsMentor, IsSelfEmployee
 from users.models import Employee, Manager
@@ -27,7 +34,6 @@ from .serializers import (
 
 @extend_schema(tags=['ИПР'])
 @extend_schema_view(
-    tags=['ИПР'],
     list=extend_schema(
         summary='Получение всех ИПР сотрудника',
         methods=['GET'],
@@ -145,7 +151,7 @@ class IDPViewSet(viewsets.ModelViewSet):
 @extend_schema(tags=['Пользователи сервиса ИПР'],)
 @extend_schema_view(
     list=extend_schema(
-        summary='Получение списка сотрудников'
+        summary='Получение списка сотрудников '
         'с данными по последнему ИПР',
         methods=['GET'],
         parameters=[
@@ -177,7 +183,9 @@ class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
             employee_ids = [idp.employee.id for idp in mentor_idp]
             queryset = Employee.objects.filter(id__in=employee_ids)
             if not queryset.exists():
-                raise PermissionDenied('У вас нет прав доступа к этому ресурсу.')
+                raise PermissionDenied(
+                    'У вас нет прав доступа к этому ресурсу.'
+                )
 
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -193,7 +201,23 @@ class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
         return Employee.objects.filter(head=manager)
 
 
-class HeadStatisticViewSet(viewsets.ReadOnlyModelViewSet):
+@extend_schema(tags=['Статистика для руководителя'])
+@extend_schema_view(
+    list=extend_schema(
+        summary='Получение статистики сотрудников по ИПР',
+        methods=['GET'],
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='head_id',
+                required=True,
+                type=int
+            ),
+        ],
+        description='Страница руководителя',
+    )
+)
+class HeadStatisticViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = HeadStatisticSerializer
     permission_classes = [permissions.AllowAny]
 
@@ -202,27 +226,48 @@ class HeadStatisticViewSet(viewsets.ReadOnlyModelViewSet):
         queryset = Manager.objects.filter(id=head_id)
         return queryset
 
-class TaskStatusChangeViewSet(viewsets.ReadOnlyModelViewSet):
+
+@extend_schema(tags=['Статусы'])
+class TaskStatusChangeViewSet(viewsets.ViewSet):
     serializer_class = TaskSerializer
     permission_classes = [permissions.AllowAny]
     queryset = Task.objects.all()
 
-
-    @action(
-        detail=False,
-        methods=['patch'],
+    @extend_schema(
+        request=inline_serializer(
+            name="InlineFormSerializer",
+            fields={
+                "status_slug": serializers.CharField()
+            },
+        ),
+        responses={200: TaskSerializer(many=True)},
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='idp_id',
+                required=True,
+                type=int
+            ),
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='task_id',
+                required=True,
+                type=int
+            ),
+        ]
     )
+    @action(detail=False, methods=['patch'])
     def status(self, request, idp_id, task_id):
         """Изменение статуса задачи."""
         new_status_slug = request.data['status_slug']
         new_status_id = get_object_or_404(StatusTask, slug=new_status_slug).id
         task = get_object_or_404(Task, idp=idp_id, id=task_id)
         serializer = TaskSerializer(
-            task, data={'status':new_status_id}, partial=True
+            task, data={'status': new_status_id}, partial=True
         )
         if serializer.is_valid():
             serializer.save()
         return Response(
-            serializer.data, 
+            serializer.data,
             status=status.HTTP_200_OK
         )
