@@ -50,4 +50,7 @@ class IsMentor(BasePermission):
         ).exists()
 
     def has_object_permission(self, request, view, obj):
-        return obj.mentor is not None and obj.mentor.id == request.user.employee_profile.id
+        return (
+            obj.mentor is not None and
+            obj.mentor.id == request.user.employee_profile.id
+        )
