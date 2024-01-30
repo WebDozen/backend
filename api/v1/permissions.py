@@ -1,5 +1,6 @@
 from rest_framework.permissions import BasePermission
 from users.models import Manager
+from plans.models import IDP
 
 
 class IsManagerOfEmployee(BasePermission):
@@ -11,6 +12,10 @@ class IsManagerOfEmployee(BasePermission):
                     return True
             except Manager.DoesNotExist:
                 pass
+            if IDP.objects.filter(
+                    employee=obj,
+                    mentor=request.user.employee_profile).exists():
+                return True
             if request.user.employee_profile == obj:
                 return True
         return False

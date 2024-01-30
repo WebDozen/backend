@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, status, permissions
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
-
+from rest_framework.exceptions import PermissionDenied
 from drf_spectacular.utils import (
     extend_schema_view,
     extend_schema,
@@ -153,6 +153,8 @@ class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
             mentor_idp = IDP.objects.filter(mentor=user.employee_profile)
             employee_ids = [idp.employee.id for idp in mentor_idp]
             queryset = Employee.objects.filter(id__in=employee_ids)
+            if not queryset.exists():
+                raise PermissionDenied('У вас нет прав доступа к этому ресурсу.')
 
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
