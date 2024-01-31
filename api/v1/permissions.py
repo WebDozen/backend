@@ -40,14 +40,12 @@ class IsMentorIDP(BasePermission):
         if request.user.role == 'employee':
             if idp_pk:
                 try:
-                    print('try')
                     employee = Employee.objects.get(id=employee_id)
-                    idp = IDP.objects.get(
+                    IDP.objects.get(
                         id=idp_pk,
                         employee=employee,
                         mentor=request.user.employee_profile.id
                     )
-                    print(idp)
                     return True
                 except IDP.DoesNotExist:
                     return False
