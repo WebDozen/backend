@@ -420,3 +420,13 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
         data['count_idp_with_status_awaiting_review'] = count_idp_status_review
 
         return data
+
+
+class TaskStatusUpdateSerializer(serializers.ModelSerializer):
+    """Возвращает объекты модели Task (изменение статуса)"""
+    class Meta:
+        model = Task
+        fields = '__all__'
+                  
+    def to_representation(self, instance):
+        return TaskSerializer(instance).data
