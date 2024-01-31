@@ -1,19 +1,122 @@
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, status
+from rest_framework import (
+    viewsets,
+    status,
+    permissions,
+    mixins,
+    serializers
+)
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import action
+from rest_framework.exceptions import PermissionDenied
+
+from drf_spectacular.utils import (
+    extend_schema_view,
+    extend_schema,
+    OpenApiParameter,
+    inline_serializer
+)
+
+from .permissions import (
+    IsManagerIDP,
+    IsMentorIDP,
+    IsEmployeeIDP,
+    IsManagerandEmployee)
 
 from users.models import Employee, Manager
-from plans.models import IDP
+from plans.models import IDP, Task, StatusTask
+
 from .serializers import (
     IDPCreateAndUpdateSerializer,
     IDPSerializer,
     IDPDetailSerializer,
-    EmployeeSerializer
+    EmployeeSerializer,
+    HeadStatisticSerializer,
+    IDPStatusUpdateSerializer,
+    StatusIDPSerializer,
+    TaskSerializer
 )
 
 
+@extend_schema(tags=['ИПР'])
+@extend_schema_view(
+    list=extend_schema(
+        summary='Получение всех ИПР сотрудника',
+        methods=['GET'],
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='employee_id',
+                required=True,
+                type=int
+            ),
+        ],
+    ),
+    retrieve=extend_schema(
+        summary='Получение ИПР сотрудника',
+        methods=['GET'],
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='employee_id',
+                required=True,
+                type=int
+            ),
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='id',
+                required=True,
+                type=int
+            ),
+        ],
+    ),
+    partial_update=extend_schema(
+        summary='Обновление данных ИПР',
+        methods=['PATCH'],
+        request=IDPCreateAndUpdateSerializer,
+        responses={
+            status.HTTP_200_OK: IDPDetailSerializer
+        },
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='employee_id',
+                required=True,
+                type=int
+            ),
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='id',
+                required=True,
+                type=int
+            ),
+        ],
+    ),
+    create=extend_schema(
+        summary='Создание нового ИПР',
+        methods=['POST'],
+        request=IDPCreateAndUpdateSerializer,
+        responses={
+            status.HTTP_200_OK: IDPDetailSerializer
+        },
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='employee_id',
+                required=True,
+                type=int
+            ),
+        ],
+    ),
+)
 class IDPViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'patch']
+    permission_classes = [
+        IsManagerIDP
+        | IsEmployeeIDP
+        | IsMentorIDP
+    ]
 
     def get_serializer_class(self):
         if self.action in ['create', 'partial_update']:
@@ -29,46 +132,195 @@ class IDPViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         employee_id = self.kwargs.get('employee_id')
         employee = get_object_or_404(Employee, id=employee_id)
-        return IDP.objects.filter(employee=employee).prefetch_related('task')
+
+        if (
+            self.request.user.role == 'manager' or
+            self.request.user.id == employee.id
+        ):
+            return IDP.objects.filter(
+                employee=employee
+            ).prefetch_related('task')
+        else:
+            return IDP.objects.filter(
+                employee=employee,
+                mentor=self.request.user.id
+            ).prefetch_related('task')
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
-        context.update({"employee_id": self.kwargs.get('employee_id')})
+        context.update({'employee_id': self.kwargs.get('employee_id')})
         return context
 
+    def get_permissions(self):
+        if self.action == 'create':
+            self.permission_classes = [IsManagerIDP]
+        elif self.action == 'partial_update':
+            self.permission_classes = [IsManagerIDP | IsMentorIDP]
+        return [permission() for permission in self.permission_classes]
 
-class EmployeeViewSet(viewsets.ModelViewSet):
+    @extend_schema(
+        summary='Обновление статуса ИПР',
+        request=inline_serializer(
+            name='PatchInlineFormSerializer',
+            fields={
+                'status': serializers.CharField()
+            },
+        ),
+        responses={200: StatusIDPSerializer(many=False)},
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='employee_id',
+                required=True,
+                type=int
+            ),
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='id',
+                required=True,
+                type=int
+            ),
+        ]
+    )
+    @action(
+        detail=True,
+        methods=['patch'],
+        permission_classes=[IsManagerIDP | IsMentorIDP]
+    )
+    def status(self, request, employee_id, pk):
+        """Изменяет статус ИПР"""
+        idp = get_object_or_404(IDP, id=pk)
+        serializer = IDPStatusUpdateSerializer(
+            idp, data=request.data, partial=True
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK
+        )
+
+
+@extend_schema(tags=['Пользователи сервиса ИПР'],)
+@extend_schema_view(
+    list=extend_schema(
+        summary='Получение списка сотрудников '
+        'с данными по последнему ИПР',
+        methods=['GET'],
+        parameters=[
+            OpenApiParameter(name='id', required=True, type=int),
+        ],
+        description='Страница руководителя',
+    ),
+    retrieve=extend_schema(
+        summary='Получение всех данных о сотруднике',
+        methods=['GET'],
+    ),
+)
+class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
+    """Вьюсет для просмотра сотрудников."""
+
+    permission_classes = [IsAuthenticated, IsManagerandEmployee]
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
-
-    def get_serializer_context(self):
-        context = super().get_serializer_context()
-        try:
-            manager = self.request.user.manager_profile
-            context.update({'manager': manager})
-        except Manager.DoesNotExist:
-            context.update({'manager': None})
-        return context
+    http_method_names = ['get']
 
     def list(self, request, *args, **kwargs):
-        manager = self.get_serializer_context()['manager']
-        if manager:
-            queryset = self.queryset.filter(head=manager)
-            serializer = self.serializer_class(
-                queryset, many=True,
-                context=self.get_serializer_context())
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        else:
-            return Response([], status=status.HTTP_200_OK)
+        user = request.user
+        queryset = self.queryset.none()
+        if hasattr(user, 'manager_profile'):
+            if user.manager_profile:
+                queryset = self.get_subordinates(user.manager_profile)
+        elif hasattr(user, 'employee_profile'):
+            mentor_idp = IDP.objects.filter(mentor=user.employee_profile)
+            employee_ids = [idp.employee.id for idp in mentor_idp]
+            queryset = Employee.objects.filter(id__in=employee_ids)
+            if not queryset.exists():
+                raise PermissionDenied(
+                    'У вас нет прав доступа к этому ресурсу.'
+                )
+
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        manager = self.get_serializer_context()['manager']
+        self.check_object_permissions(request, instance)
+        serializer = self.serializer_class(instance)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
-        if manager and instance.head == manager:
-            serializer = self.serializer_class(
-                instance,
-                context=self.get_serializer_context())
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        else:
-            return Response([], status=status.HTTP_200_OK)
+    def get_subordinates(self, manager):
+        """Возвращает подчиненных сотрудников данного руководителя."""
+        return Employee.objects.filter(head=manager)
+
+
+@extend_schema(tags=['Статистика для руководителя'])
+@extend_schema_view(
+    list=extend_schema(
+        summary='Получение статистики сотрудников по ИПР',
+        methods=['GET'],
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='head_id',
+                required=True,
+                type=int
+            ),
+        ],
+        description='Страница руководителя',
+    )
+)
+class HeadStatisticViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+    serializer_class = HeadStatisticSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get_queryset(self):
+        head_id = self.kwargs.get('head_id')
+        queryset = Manager.objects.filter(id=head_id)
+        return queryset
+
+
+@extend_schema(tags=['Статусы'])
+class TaskStatusChangeViewSet(viewsets.ViewSet):
+    serializer_class = TaskSerializer
+    permission_classes = [permissions.AllowAny]
+    queryset = Task.objects.all()
+
+    @extend_schema(
+        request=inline_serializer(
+            name='InlineFormSerializer',
+            fields={
+                'status_slug': serializers.CharField()
+            },
+        ),
+        responses={200: TaskSerializer(many=True)},
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='idp_id',
+                required=True,
+                type=int
+            ),
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='task_id',
+                required=True,
+                type=int
+            ),
+        ]
+    )
+    @action(detail=False, methods=['patch'])
+    def status(self, request, idp_id, task_id):
+        """Изменение статуса задачи."""
+        new_status_slug = request.data['status_slug']
+        new_status_id = get_object_or_404(StatusTask, slug=new_status_slug).id
+        task = get_object_or_404(Task, idp=idp_id, id=task_id)
+        serializer = TaskSerializer(
+            task, data={'status': new_status_id}, partial=True
+        )
+        if serializer.is_valid():
+            serializer.save()
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK
+        )

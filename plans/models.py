@@ -1,5 +1,7 @@
+from django.utils import timezone
 from django.db import models
 from colorfield.fields import ColorField
+from django.core.exceptions import ValidationError
 
 from users.models import Employee, Manager, User
 
@@ -39,15 +41,29 @@ class IDP(models.Model):
         related_name='IDP',
         verbose_name='Сотрудник',
     )
+    mentor = models.ForeignKey(
+        Employee,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='IDP_mentor',
+        verbose_name='Ментор',
+    )
     name = models.CharField(
         verbose_name='Название',
         max_length=200,
+        null=True,
+        blank=True,
     )
     description = models.TextField(
         verbose_name='Подробное описание',
+        null=True,
+        blank=True,
     )
     deadline = models.DateTimeField(
-        verbose_name='Срок выполнения'
+        verbose_name='Срок выполнения',
+        null=True,
+        blank=True,
     )
     status = models.ForeignKey(
         StatusIDP,
@@ -56,10 +72,6 @@ class IDP(models.Model):
         verbose_name='Статус исполнения',
         blank=True,
         null=True,
-    )
-    message = models.TextField(
-        verbose_name='Мотивационное сообщение',
-        blank=True
     )
     pub_date = models.DateTimeField(
         verbose_name='Дата создания',
@@ -72,8 +84,26 @@ class IDP(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+    def clean(self):
+        if self.employee.head != self.author:
+            raise ValidationError(
+                'Руководитель не может назначить ИПР работнику, '
+                'который не является его сотрудником.'
+            )
+        if self.mentor and self.mentor.head != self.author:
+            raise ValidationError(
+                'Руководитель не может назначить ментора, '
+                'который не является его сотрудником.'
+            )
+        if self.mentor == self.employee:
+            raise ValidationError('Сотрудник не может быть своим ментором.')
+        if self.deadline and self.deadline < timezone.now():
+            raise ValidationError(
+                'Срок выполнения не может быть меньше текущей даты'
+            )
+
     def save(self, *args, **kwargs):
-        print(self)
+        self.clean()
         if not self.status:
             default_status_slug = 'open'
             self.status, created = StatusIDP.objects.get_or_create(
@@ -139,6 +169,10 @@ class Task(models.Model):
     )
     description = models.TextField(
         verbose_name='Подробное описание',
+    )
+    source = models.CharField(
+        verbose_name='Источник',
+        max_length=200,
     )
     status = models.ForeignKey(
         StatusTask,

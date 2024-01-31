@@ -29,6 +29,9 @@ class User(AbstractUser):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
 
+    def __str__(self):
+        return f'{self.username}'
+
 
 class Manager(models.Model):
     """Модель руководителя"""
@@ -41,6 +44,9 @@ class Manager(models.Model):
     class Meta:
         verbose_name = 'Руководитель'
         verbose_name_plural = 'Руководители'
+
+    def __str__(self):
+        return f'{self.user.username}'
 
 
 class Employee(models.Model):
@@ -57,6 +63,9 @@ class Employee(models.Model):
     class Meta:
         verbose_name = 'Сотрудник'
         verbose_name_plural = 'Сотрудники'
+
+    def __str__(self):
+        return f'{self.user.username}'
 
 
 class MentorEmployee(models.Model):
