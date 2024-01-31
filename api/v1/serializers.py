@@ -1,6 +1,8 @@
 from django.db import transaction
 from rest_framework import serializers
-from plans.models import TypeTask, Task, StatusTask
+from rest_framework.relations import SlugRelatedField
+
+from plans.models import TypeTask, Task, StatusTask, task_comment, idp_comment
 
 
 class TypeToTaskSerializer(serializers.ModelSerializer):
@@ -40,8 +42,8 @@ class TaskCreateSerializer(serializers.ModelSerializer):
 
     @transaction.atomic
     def create(self, validated_data):
-        idps = self.context.get('idpId')
-        task = Task.objects.create(idpID=idps, **validated_data)
+        idp_id = self.context.get('idpId')
+        task = Task.objects.create(idp_id=idp_id, **validated_data)
         return task
 
     @transaction.atomic
@@ -52,9 +54,27 @@ class TaskCreateSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         return TaskSerializer(instance).data
-"""    def create(self, validate_data):
-        idps = self.context.get('idpId')
-        type_data = validate_data.pop('type')
-        task = Task.objects.create(idpID=idps, **validate_data)
-        self.add_type(task, type_data)
-        return task"""
+
+
+class CommentSerializers(serializers.Serializer):
+    author = SlugRelatedField(
+        slug_field='username',
+        read_only=True
+        )
+
+    class Meta:
+        fields = ['id', 'pub_date', 'author', 'text']
+
+
+class TaskCommentSerializer(CommentSerializers, serializers.ModelSerializer):
+
+    class Meta:
+        model = task_comment
+        fields = CommentSerializers.Meta.fields + ['task_id']
+
+
+class IdpCommentSerializer(CommentSerializers, serializers.ModelSerializer):
+
+    class Meta:
+        model = idp_comment
+        fields = CommentSerializers.Meta.fields + ['idpID']
