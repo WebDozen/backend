@@ -22,7 +22,10 @@ from .permissions import (
     IsManagerIDP,
     IsMentorIDP,
     IsEmployeeIDP,
-    IsManagerandEmployee)
+    IsManagerandEmployee,
+    IsManagerOfEmployee,
+    IsEmployeeIDPExecutor
+)
 
 from users.models import Employee, Manager
 from plans.models import IDP, Task, StatusTask
@@ -33,6 +36,8 @@ from .serializers import (
     IDPDetailSerializer,
     EmployeeSerializer,
     HeadStatisticSerializer,
+    StatusTaskSerializer,
+    TaskStatusUpdateSerializer,
     IDPStatusUpdateSerializer,
     StatusIDPSerializer,
     TaskSerializer
@@ -272,18 +277,23 @@ class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
 )
 class HeadStatisticViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = HeadStatisticSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [IsManagerandEmployee]
 
-    def get_queryset(self):
-        head_id = self.kwargs.get('head_id')
-        queryset = Manager.objects.filter(id=head_id)
-        return queryset
+    def get_queryset(self):       
+        username = self.request.user.username
+        queryset = get_object_or_404(Manager, user__username=username)
+        return [queryset]
+    
+    def list(self, request):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(*serializer.data)
 
 
 @extend_schema(tags=['Статусы'])
 class TaskStatusChangeViewSet(viewsets.ViewSet):
     serializer_class = TaskSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [IsEmployeeIDPExecutor]
     queryset = Task.objects.all()
 
     @extend_schema(
@@ -312,15 +322,16 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['patch'])
     def status(self, request, idp_id, task_id):
         """Изменение статуса задачи."""
+        print(request.data)
         new_status_slug = request.data['status_slug']
         new_status_id = get_object_or_404(StatusTask, slug=new_status_slug).id
         task = get_object_or_404(Task, idp=idp_id, id=task_id)
-        serializer = TaskSerializer(
-            task, data={'status': new_status_id}, partial=True
+        serializer = TaskStatusUpdateSerializer(
+            task, data={'status':new_status_id}, partial=True
         )
         if serializer.is_valid():
             serializer.save()
         return Response(
-            serializer.data,
+            serializer.data, 
             status=status.HTTP_200_OK
         )

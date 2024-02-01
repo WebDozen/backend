@@ -76,3 +76,15 @@ class IsManagerandEmployee(BasePermission):
                 return True
             return obj == request.user.employee_profile
         return False
+
+class IsEmployeeIDPExecutor(IsSelfEmployee):
+    def check_permission(self, user, employee):
+        if not hasattr(user, 'employee_profile'):
+            return False
+        return user.employee_profile.id == employee.id
+
+    def has_permission(self, request, view):
+        idp_id = view.kwargs.get('idp_id')
+        idp = get_object_or_404(IDP, id=idp_id)
+        employee = idp.employee
+        return self.check_permission(request.user, employee)
