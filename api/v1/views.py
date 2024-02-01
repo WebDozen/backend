@@ -272,6 +272,7 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['patch'])
     def status(self, request, idp_id, task_id):
         """Изменение статуса задачи."""
+        print(request.data)
         new_status_slug = request.data['status_slug']
         new_status_id = get_object_or_404(StatusTask, slug=new_status_slug).id
         task = get_object_or_404(Task, idp=idp_id, id=task_id)
