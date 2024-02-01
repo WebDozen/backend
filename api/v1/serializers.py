@@ -140,7 +140,7 @@ class IDPDetailSerializer(serializers.ModelSerializer):
     def get_statistic(self, obj) -> dict:
         """Возвращает кол-во задач и кол-во завершенных задач ИПР"""
         count_task = obj.task.count()
-        task_done = obj.task.filter(status__slug='done').count()
+        task_done = obj.task.filter(status__slug='completed').count()
         return {'count_task': count_task, 'task_done': task_done}
 
 
@@ -447,3 +447,13 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
         data['count_idp_with_status_awaiting_review'] = count_idp_status_review
 
         return data
+
+
+class TaskStatusUpdateSerializer(serializers.ModelSerializer):
+    """Возвращает объекты модели Task (изменение статуса)"""
+    class Meta:
+        model = Task
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        return TaskSerializer(instance).data

@@ -18,6 +18,8 @@ from drf_spectacular.utils import (
     inline_serializer
 )
 
+from api.tasks import determine_status_idp_by_task
+
 from .permissions import (
     IsManagerIDP,
     IsMentorIDP,
@@ -35,7 +37,8 @@ from .serializers import (
     HeadStatisticSerializer,
     IDPStatusUpdateSerializer,
     StatusIDPSerializer,
-    TaskSerializer
+    TaskSerializer,
+    TaskStatusUpdateSerializer
 )
 
 
@@ -315,11 +318,14 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
         new_status_slug = request.data['status_slug']
         new_status_id = get_object_or_404(StatusTask, slug=new_status_slug).id
         task = get_object_or_404(Task, idp=idp_id, id=task_id)
-        serializer = TaskSerializer(
+        serializer = TaskStatusUpdateSerializer(
             task, data={'status': new_status_id}, partial=True
         )
         if serializer.is_valid():
             serializer.save()
+            determine_status_idp_by_task.apply_async(
+                args=[idp_id], countdown=1
+            )
         return Response(
             serializer.data,
             status=status.HTTP_200_OK
