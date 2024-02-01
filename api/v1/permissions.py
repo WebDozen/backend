@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from rest_framework.permissions import BasePermission
 
 from users.models import Employee
@@ -77,7 +78,8 @@ class IsManagerandEmployee(BasePermission):
             return obj == request.user.employee_profile
         return False
 
-class IsEmployeeIDPExecutor(IsSelfEmployee):
+
+class IsEmployeeIDPExecutor(IsEmployeeIDP):
     def check_permission(self, user, employee):
         if not hasattr(user, 'employee_profile'):
             return False

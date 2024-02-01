@@ -3,7 +3,6 @@ from django.shortcuts import get_object_or_404
 from rest_framework import (
     viewsets,
     status,
-    permissions,
     mixins,
     serializers
 )
@@ -25,7 +24,6 @@ from .permissions import (
     IsMentorIDP,
     IsEmployeeIDP,
     IsManagerandEmployee,
-    IsManagerOfEmployee,
     IsEmployeeIDPExecutor
 )
 
@@ -42,8 +40,7 @@ from .serializers import (
     TaskStatusUpdateSerializer,
     IDPStatusUpdateSerializer,
     StatusIDPSerializer,
-    TaskSerializer,
-    TaskStatusUpdateSerializer
+    TaskSerializer
 )
 
 
@@ -267,14 +264,6 @@ class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
     list=extend_schema(
         summary='Получение статистики сотрудников по ИПР',
         methods=['GET'],
-        parameters=[
-            OpenApiParameter(
-                location=OpenApiParameter.PATH,
-                name='head_id',
-                required=True,
-                type=int
-            ),
-        ],
         description='Страница руководителя',
     )
 )
@@ -282,11 +271,11 @@ class HeadStatisticViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = HeadStatisticSerializer
     permission_classes = [IsManagerandEmployee]
 
-    def get_queryset(self):       
+    def get_queryset(self):
         username = self.request.user.username
         queryset = get_object_or_404(Manager, user__username=username)
         return [queryset]
-    
+
     def list(self, request):
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
@@ -306,7 +295,7 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
                 'status_slug': serializers.CharField()
             },
         ),
-        responses={200: TaskSerializer(many=True)},
+        responses={200: StatusTaskSerializer(many=False)},
         parameters=[
             OpenApiParameter(
                 location=OpenApiParameter.PATH,
@@ -325,19 +314,18 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['patch'])
     def status(self, request, idp_id, task_id):
         """Изменение статуса задачи."""
-        print(request.data)
         new_status_slug = request.data['status_slug']
         new_status_id = get_object_or_404(StatusTask, slug=new_status_slug).id
         task = get_object_or_404(Task, idp=idp_id, id=task_id)
         serializer = TaskStatusUpdateSerializer(
             task, data={'status': new_status_id}, partial=True
         )
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
             serializer.save()
             determine_status_idp_by_task.apply_async(
                 args=[idp_id], countdown=1
             )
         return Response(
-            serializer.data, 
+            serializer.data,
             status=status.HTTP_200_OK
         )

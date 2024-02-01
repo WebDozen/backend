@@ -450,10 +450,10 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
 
 
 class TaskStatusUpdateSerializer(serializers.ModelSerializer):
-    """Возвращает объекты модели Task (изменение статуса)"""
+    """Обрабатывает PATCH запрос на обновление статуса задачи ИПР"""
     class Meta:
         model = Task
         fields = '__all__'
 
     def to_representation(self, instance):
-        return TaskSerializer(instance).data
+        return StatusTaskSerializer(instance.status).data
