@@ -1,11 +1,13 @@
 from django.utils import timezone
 from rest_framework import serializers
+from rest_framework.relations import SlugRelatedField
 from drf_spectacular.utils import (
     extend_schema_field
 )
 
 from users.models import Employee, Manager
-from plans.models import IDP, StatusTask, Task, StatusIDP
+from plans.models import (IDP, StatusTask, Task,
+                          StatusIDP, TaskComment, IdpComment)
 
 
 class MentorSerializer(serializers.ModelSerializer):
@@ -447,3 +449,27 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
         data['count_idp_with_status_awaiting_review'] = count_idp_status_review
 
         return data
+
+
+class CommentSerializers(serializers.Serializer):
+    author = SlugRelatedField(
+        slug_field='username',
+        read_only=True
+        )
+
+    class Meta:
+        fields = ['id', 'pub_date', 'author', 'text']
+
+
+class TaskCommentSerializer(CommentSerializers, serializers.ModelSerializer):
+
+    class Meta:
+        model = TaskComment
+        fields = CommentSerializers.Meta.fields + ['task_id']
+
+
+class IdpCommentSerializer(CommentSerializers, serializers.ModelSerializer):
+
+    class Meta:
+        model = IdpComment
+        fields = CommentSerializers.Meta.fields + ['idpID']

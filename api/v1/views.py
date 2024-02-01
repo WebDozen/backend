@@ -25,7 +25,7 @@ from .permissions import (
     IsManagerandEmployee)
 
 from users.models import Employee, Manager
-from plans.models import IDP, Task, StatusTask
+from plans.models import IDP, Task, StatusTask, IdpComment, TaskComment
 
 from .serializers import (
     IDPCreateAndUpdateSerializer,
@@ -35,7 +35,9 @@ from .serializers import (
     HeadStatisticSerializer,
     IDPStatusUpdateSerializer,
     StatusIDPSerializer,
-    TaskSerializer
+    TaskSerializer,
+    IdpCommentSerializer,
+    TaskCommentSerializer
 )
 
 
@@ -324,3 +326,39 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
             serializer.data,
             status=status.HTTP_200_OK
         )
+
+
+class CommentTaskViewsSet(viewsets.ModelViewSet):
+    serializer_class = TaskCommentSerializer
+
+    def get_serializer_class(self):
+        self.action == 'create'
+        return TaskCommentSerializer
+
+    def get_queryset(self):
+        task_id = self.kwargs.get('task_id')
+        task = get_object_or_404(Task, id=task_id)
+        return TaskComment.objects.filter(task=task)
+
+    def perform_create(self, serializer):
+        task_id = self.kwargs.get('task_id')
+        task = get_object_or_404(Task, id=task_id)
+        serializer.save(author=self.request.user, task=task)
+
+
+class CommentIdpViewsSet(viewsets.ModelViewSet):
+    serializer_class = IdpCommentSerializer
+
+    def get_serializer_class(self):
+        self.action == 'create'
+        return IdpCommentSerializer
+
+    def get_queryset(self):
+        idp_id = self.kwargs.get('idpId')
+        idp = get_object_or_404(IDP, id=idp_id)
+        return IdpComment.objects.filter(idp=idp)
+
+    def perform_create(self, serializer):
+        idp_id = self.kwargs.get('idpId')
+        idp = get_object_or_404(IDP, id=idp_id)
+        serializer.save(author=self.request.user, idp=idp)
