@@ -1,0 +1,960 @@
+[
+{
+  "model": "sessions.session",
+  "pk": "x2b5gczkbys4bp4r3z4vv1ev9yohe8cq",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQRO9CHSHEx-CU6XMGtOwuwUkEkrErK3ePLblIminmvZlNRFiXEtfOc5xIXEUQl98uAb64HoCeUB9NYqvLPCV5KPKkXd4b8ft2un8HBXrZ10ZjGNFarZVWlpRXIbFLSACsjRmzGTgHrzlQVokMEznv9kTEwfosPl_lOTjI:1rVVmy:-GRB7cZQiER21fxAYfZyeYUU9B9zcAyvKI2Aj_wmtlk",
+    "expire_date": "2024-02-15T12:03:28.531Z"
+  }
+},
+{
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$BYSeNzkHQ76aquHDiDQxJI$Tdk7Jcmj4+DXioLtrMRZhE/5IHtnLMOwYb4gf2Lei6o=",
+    "last_login": "2024-01-26T23:48:11.546Z",
+    "is_superuser": true,
+    "username": "admin",
+    "email": "a@a.ru",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-01-26T23:47:48.237Z",
+    "first_name": "Руководитель",
+    "middle_name": "Начальник",
+    "last_name": "Боссович",
+    "role": "manager",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$d7DK5sSeYv6ThktEEVLoWJ$UQuL0GCNGP7qLTQ8ljOcs7FUmybbeD0x46Bag+EzXas=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "maximova",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-01-26T23:48:22.951Z",
+    "first_name": "Дарья",
+    "middle_name": "Олеговна",
+    "last_name": "Максимовна",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$i2Dr8bdjmZnRvWoFf1HJAE$flkG+Rnefk33LvacNjf2GZ8EG67gZC+DJkRtzlP9ELo=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "test2",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-01-26T23:48:33.252Z",
+    "first_name": "Мария",
+    "middle_name": "Анатольевна",
+    "last_name": "Филатова",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$ejhuVOiHrLYUcLjRG07f18$d75+tTA7EZoyARfEXCCGVceIdYhxXVqM/5aAfP2MyvM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "ivanov",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-01-27T22:51:29.706Z",
+    "first_name": "Андрей",
+    "middle_name": "Сергеевич",
+    "last_name": "Иванов",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$kryppwPEgLlnamfzxwv9EV$WWeMqzaLf7gxjddJxVIesBtOeOFACz/xmbg3ZTtoUgw=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Empl_head_2",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-01-29T00:33:31.572Z",
+    "first_name": "Пользователь начальника 2",
+    "middle_name": "Пользователь начальника 2",
+    "last_name": "Пользователь начальника 2",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$1lWmMdvyEi4k0nDYTxejvS$uKxmFcEBI15uijAr8Br+9IxTxPe7+s9hWt1RrnjubPM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Manager2",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-01-29T00:33:53.868Z",
+    "first_name": "Manager2",
+    "middle_name": "Manager2",
+    "last_name": "Manager2",
+    "role": "manager",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$v2Tq2ugqnFKhAsC3o7UlAL$1wx+ZvZgwdDDJwqD2EK2p7RTeq5w2T/1Faf5+QPFFHM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "stepanov",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-01-29T22:00:36.532Z",
+    "first_name": "Игорь",
+    "middle_name": "Викторович",
+    "last_name": "Степанов",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$DfdLC9WiHK0BAgO62kNNil$xuYYs+8JV8hWVLWtzOdZkTDFih0JdFyRlSzaXIHwamE=",
+    "last_login": "2024-02-01T12:03:28.422Z",
+    "is_superuser": true,
+    "username": "admin1",
+    "email": "a@a.ru",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-02-01T12:03:16.973Z",
+    "first_name": "",
+    "middle_name": "",
+    "last_name": "",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$FUe39Sk1Ols12HWTzmc2Ah$7j4Z9IAZXedkmWEb/cItksbfH5pbtSiw+std9cBzhg8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "volkova",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-02-01T12:08:28.481Z",
+    "first_name": "Елена",
+    "middle_name": "Николаевна",
+    "last_name": "Волкова",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$umaN6tYUxHvDaIXPTQlib0$CKhQr5nk7I/Qx/JE9lDQobUxxx1e42/ttE1EfuLkJ/Q=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "smirnov",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-02-01T12:09:28.550Z",
+    "first_name": "Вадим",
+    "middle_name": "Алексеевич",
+    "last_name": "Смирнов",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$bcxoIqfxqfUBf7BVlWYVez$MqFGXiTOCBB20icSjORTON8BCulnhin4qoh1bEOsIWY=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "gladkov",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-02-01T12:10:22.798Z",
+    "first_name": "Михаил",
+    "middle_name": "Степанович",
+    "last_name": "Гладков",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.manager",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "admin"
+    ]
+  }
+},
+{
+  "model": "users.manager",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "Manager2"
+    ]
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "maximova"
+    ],
+    "position": "Frontend разработчик",
+    "grade": "Middle",
+    "head": 1
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "test2"
+    ],
+    "position": "Backtend разработчик",
+    "grade": "junior",
+    "head": 1
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "ivanov"
+    ],
+    "position": "Frontend разработчик",
+    "grade": "Middle",
+    "head": 1
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "Empl_head_2"
+    ],
+    "position": "test",
+    "grade": "test",
+    "head": 2
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "stepanov"
+    ],
+    "position": "Devops инженер",
+    "grade": "Middle",
+    "head": 1
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "admin1"
+    ],
+    "position": "",
+    "grade": "",
+    "head": null
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 8,
+  "fields": {
+    "user": [
+      "volkova"
+    ],
+    "position": "Тестировщик ПО",
+    "grade": "Junior +",
+    "head": 1
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 9,
+  "fields": {
+    "user": [
+      "smirnov"
+    ],
+    "position": "Backend разработчик",
+    "grade": "Senior",
+    "head": 1
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 10,
+  "fields": {
+    "user": [
+      "gladkov"
+    ],
+    "position": "Тестировщик ПО",
+    "grade": "Senior+",
+    "head": 1
+  }
+},
+{
+  "model": "plans.statusidp",
+  "pk": 1,
+  "fields": {
+    "name": "Открыт",
+    "slug": "open",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.statusidp",
+  "pk": 2,
+  "fields": {
+    "name": "В работе",
+    "slug": "in_progress",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.statusidp",
+  "pk": 3,
+  "fields": {
+    "name": "На ревью",
+    "slug": "awaiting_review",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.statusidp",
+  "pk": 4,
+  "fields": {
+    "name": "Выполнен",
+    "slug": "completed",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.statusidp",
+  "pk": 5,
+  "fields": {
+    "name": "Просрочен",
+    "slug": "expired",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.statusidp",
+  "pk": 6,
+  "fields": {
+    "name": "Отменен",
+    "slug": "cancelled",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 16,
+  "fields": {
+    "author": 1,
+    "employee": 2,
+    "mentor": null,
+    "name": "Изучение основ React",
+    "description": "Подробное описание Изучение основ React",
+    "deadline": "2021-12-31T12:14:40Z",
+    "status": 5,
+    "pub_date": "2024-02-01T12:15:53.206Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 17,
+  "fields": {
+    "author": 1,
+    "employee": 2,
+    "mentor": 4,
+    "name": "Управление командой разработки",
+    "description": "Описание Управление командой разработки",
+    "deadline": "2022-12-31T12:21:34Z",
+    "status": 4,
+    "pub_date": "2024-02-01T12:22:19.679Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 18,
+  "fields": {
+    "author": 1,
+    "employee": 2,
+    "mentor": 4,
+    "name": "Развитие soft-скиллов",
+    "description": "Повышение компетенциий в области soft-скиллов, включая коммуникативные навыки, умение работать в команде, разрешение конфликтов и управление временем. Эти навыки помогут улучшить взаимодействие с коллегами, повысят эффективность работы в проектах и обеспечат более качественное тестирование програмного обеспечения.\r\nПлан развития по soft-скиллам включает в себя определенное количество задач, которые необходимо закрыть к концу года. Периодически мы будем проводить оценку прогресса и при необходимости можем скорректировать наш план. Развитие soft-скиллов является процессом, который требует постоянного внимания!",
+    "deadline": "2023-12-31T12:55:25Z",
+    "status": 4,
+    "pub_date": "2024-02-01T12:57:01.976Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 19,
+  "fields": {
+    "author": 1,
+    "employee": 4,
+    "mentor": 10,
+    "name": "Развитие soft-скиллов",
+    "description": "Подробное описание:",
+    "deadline": "2024-12-31T14:18:49Z",
+    "status": 1,
+    "pub_date": "2024-02-01T14:18:57.997Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 20,
+  "fields": {
+    "author": 1,
+    "employee": 4,
+    "mentor": null,
+    "name": "Управление командой разработки",
+    "description": "Подробное описание:",
+    "deadline": "2023-12-31T14:20:35Z",
+    "status": 4,
+    "pub_date": "2024-02-01T14:20:48.933Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 21,
+  "fields": {
+    "author": 1,
+    "employee": 6,
+    "mentor": 9,
+    "name": "Управление командой разработки",
+    "description": "Подробное описание:",
+    "deadline": "2023-12-31T14:22:21Z",
+    "status": 4,
+    "pub_date": "2024-02-01T14:22:42.128Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 22,
+  "fields": {
+    "author": 1,
+    "employee": 6,
+    "mentor": null,
+    "name": "Развитие soft-скиллов",
+    "description": "Повышение компетенциий в области soft-скиллов, включая коммуникативные навыки, умение работать в команде, разрешение конфликтов и управление временем. Эти навыки помогут улучшить взаимодействие с коллегами, повысят эффективность работы в проектах и обеспечат более качественное тестирование програмного обеспечения.\r\nПлан развития по soft-скиллам включает в себя определенное количество задач, которые необходимо закрыть к концу года. Периодически мы будем проводить оценку прогресса и при необходимости можем скорректировать наш план. Развитие soft-скиллов является процессом, который требует постоянного внимания!",
+    "deadline": "2024-12-31T14:31:56Z",
+    "status": 2,
+    "pub_date": "2024-02-01T14:33:06.549Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 23,
+  "fields": {
+    "author": 1,
+    "employee": 8,
+    "mentor": null,
+    "name": "Развитие soft-скиллов",
+    "description": "Повышение компетенциий в области soft-скиллов, включая коммуникативные навыки, умение работать в команде, разрешение конфликтов и управление временем. Эти навыки помогут улучшить взаимодействие с коллегами, повысят эффективность работы в проектах и обеспечат более качественное тестирование програмного обеспечения.\r\nПлан развития по soft-скиллам включает в себя определенное количество задач, которые необходимо закрыть к концу года. Периодически мы будем проводить оценку прогресса и при необходимости можем скорректировать наш план. Развитие soft-скиллов является процессом, который требует постоянного внимания!",
+    "deadline": "2024-12-31T14:34:56Z",
+    "status": 3,
+    "pub_date": "2024-02-01T14:35:50.400Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 24,
+  "fields": {
+    "author": 1,
+    "employee": 9,
+    "mentor": null,
+    "name": "Развитие soft-скиллов",
+    "description": "Подробное описание:",
+    "deadline": "2023-01-23T14:45:41Z",
+    "status": 5,
+    "pub_date": "2024-02-01T14:46:16.570Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 25,
+  "fields": {
+    "author": 1,
+    "employee": 10,
+    "mentor": null,
+    "name": "Развитие soft-скиллов",
+    "description": "Подробное описание:",
+    "deadline": "2024-12-31T14:46:58Z",
+    "status": 6,
+    "pub_date": "2024-02-01T14:47:12.171Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 26,
+  "fields": {
+    "author": 1,
+    "employee": 2,
+    "mentor": 4,
+    "name": null,
+    "description": "",
+    "deadline": null,
+    "status": 1,
+    "pub_date": "2024-02-01T14:59:48.284Z"
+  }
+},
+{
+  "model": "plans.statustask",
+  "pk": 1,
+  "fields": {
+    "name": "Открыта",
+    "slug": "open",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.statustask",
+  "pk": 2,
+  "fields": {
+    "name": "В работе",
+    "slug": "in_progress",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.statustask",
+  "pk": 3,
+  "fields": {
+    "name": "Выполнена",
+    "slug": "completed",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.typetask",
+  "pk": 1,
+  "fields": {
+    "name": "Книга",
+    "slug": "book"
+  }
+},
+{
+  "model": "plans.typetask",
+  "pk": 2,
+  "fields": {
+    "name": "Курс",
+    "slug": "course"
+  }
+},
+{
+  "model": "plans.typetask",
+  "pk": 3,
+  "fields": {
+    "name": "Рабочая задача",
+    "slug": "work_task"
+  }
+},
+{
+  "model": "plans.typetask",
+  "pk": 4,
+  "fields": {
+    "name": "Alfa Academy",
+    "slug": "alfa_academy"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 55,
+  "fields": {
+    "idp": 16,
+    "type": 1,
+    "name": "Книга 1",
+    "description": "Описание Книга 1",
+    "source": "Книга 1",
+    "status": 2,
+    "pub_date": "2024-02-01T12:15:53.207Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 56,
+  "fields": {
+    "idp": 17,
+    "type": 1,
+    "name": "Книга 1",
+    "description": "Подробное описание: Книга 1",
+    "source": "Книга 1",
+    "status": 3,
+    "pub_date": "2024-02-01T12:22:19.679Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 57,
+  "fields": {
+    "idp": 17,
+    "type": 2,
+    "name": "Курс",
+    "description": "Подробное описание: Курс",
+    "source": "Курс",
+    "status": 3,
+    "pub_date": "2024-02-01T12:22:19.680Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 58,
+  "fields": {
+    "idp": 18,
+    "type": 2,
+    "name": "курс alfa academy: \"Основы эффективной коммуникации\"",
+    "description": "описание",
+    "source": "ссылка",
+    "status": 3,
+    "pub_date": "2024-02-01T12:57:01.977Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 59,
+  "fields": {
+    "idp": 18,
+    "type": 3,
+    "name": "Подготовить и провести презентацию по результатам тестирования для команды разработчиков",
+    "description": "описание",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-01T12:59:59.975Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 60,
+  "fields": {
+    "idp": 18,
+    "type": 3,
+    "name": "Применение техник тайм-менеджмента в ежедневной работе (методика Pomodoro и правило двух минут)",
+    "description": "описание",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-01T12:59:59.976Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 61,
+  "fields": {
+    "idp": 18,
+    "type": 3,
+    "name": "Обсудить ключевые моменты в книге «Управление конфликтами в профессиональной среде»",
+    "description": "описание",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-01T12:59:59.976Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 62,
+  "fields": {
+    "idp": 18,
+    "type": 3,
+    "name": "Участие в командных мозговых штурмах и проектных встречах с активной ролью",
+    "description": "описание",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-01T12:59:59.976Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 63,
+  "fields": {
+    "idp": 20,
+    "type": 1,
+    "name": "Книга 1",
+    "description": "Подробное описание:",
+    "source": "Книга 1",
+    "status": 3,
+    "pub_date": "2024-02-01T14:20:48.934Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 64,
+  "fields": {
+    "idp": 21,
+    "type": 1,
+    "name": "Книга 1",
+    "description": "Подробное описание:",
+    "source": "Книга 1",
+    "status": 3,
+    "pub_date": "2024-02-01T14:22:42.129Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 65,
+  "fields": {
+    "idp": 22,
+    "type": 2,
+    "name": "курс alfa academy: \"Основы эффективной коммуникации\"",
+    "description": "Подробное описание:",
+    "source": "ссылка",
+    "status": 3,
+    "pub_date": "2024-02-01T14:33:06.550Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 66,
+  "fields": {
+    "idp": 22,
+    "type": 3,
+    "name": "Подготовить и провести презентацию по результатам тестирования для команды разработчиков",
+    "description": "Подробное описание:",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-01T14:33:06.550Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 67,
+  "fields": {
+    "idp": 22,
+    "type": 3,
+    "name": "Применение техник тайм-менеджмента в ежедневной работе (методика Pomodoro и правило двух минут)",
+    "description": "Подробное описание:",
+    "source": "-",
+    "status": 1,
+    "pub_date": "2024-02-01T14:33:06.550Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 68,
+  "fields": {
+    "idp": 22,
+    "type": 3,
+    "name": "Обсудить ключевые моменты в книге «Управление конфликтами в профессиональной среде»",
+    "description": "Подробное описание:",
+    "source": "-",
+    "status": 1,
+    "pub_date": "2024-02-01T14:33:06.550Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 69,
+  "fields": {
+    "idp": 22,
+    "type": 3,
+    "name": "Участие в командных мозговых штурмах и проектных встречах с активной ролью",
+    "description": "Подробное описание:",
+    "source": "-",
+    "status": 1,
+    "pub_date": "2024-02-01T14:33:06.550Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 70,
+  "fields": {
+    "idp": 23,
+    "type": 2,
+    "name": "курс alfa academy: \"Основы эффективной коммуникации\"",
+    "description": "Подробное описание:",
+    "source": "ссылка",
+    "status": 3,
+    "pub_date": "2024-02-01T14:35:50.401Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 71,
+  "fields": {
+    "idp": 23,
+    "type": 3,
+    "name": "Подготовить и провести презентацию по результатам тестирования для команды разработчиков",
+    "description": "Подробное описание:",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-01T14:35:50.401Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 72,
+  "fields": {
+    "idp": 23,
+    "type": 3,
+    "name": "Применение техник тайм-менеджмента в ежедневной работе (методика Pomodoro и правило двух минут)",
+    "description": "Подробное описание:",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-01T14:35:50.401Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 73,
+  "fields": {
+    "idp": 23,
+    "type": 3,
+    "name": "Обсудить ключевые моменты в книге «Управление конфликтами в профессиональной среде»",
+    "description": "Подробное описание:",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-01T14:35:50.401Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 74,
+  "fields": {
+    "idp": 23,
+    "type": 3,
+    "name": "Участие в командных мозговых штурмах и проектных встречах с активной ролью",
+    "description": "Подробное описание:",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-01T14:35:50.401Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 75,
+  "fields": {
+    "idp": 24,
+    "type": 4,
+    "name": "курс alfa academy: \"Основы эффективной коммуникации\"",
+    "description": "Подробное описание:",
+    "source": "ссылка",
+    "status": 3,
+    "pub_date": "2024-02-01T14:46:16.941Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 76,
+  "fields": {
+    "idp": 24,
+    "type": 3,
+    "name": "Подготовить и провести презентацию по результатам тестирования для команды разработчиков",
+    "description": "Подробное описание:",
+    "source": "-",
+    "status": 2,
+    "pub_date": "2024-02-01T14:46:16.942Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 77,
+  "fields": {
+    "idp": 25,
+    "type": 4,
+    "name": "курс alfa academy: \"Основы эффективной коммуникации\"",
+    "description": "Подробное описание:",
+    "source": "ссылка",
+    "status": 2,
+    "pub_date": "2024-02-01T14:47:12.171Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "15b239164b59368405d1a7ba8664bc1f22ac5532",
+  "fields": {
+    "user": [
+      "admin1"
+    ],
+    "created": "2024-02-01T12:03:56.689Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "4fb5b42d5ba3b4d8e771c7938ade85f3fa301d55",
+  "fields": {
+    "user": [
+      "Manager2"
+    ],
+    "created": "2024-01-29T21:51:17.040Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "7770768818aca29747c62c4130a178283e93396c",
+  "fields": {
+    "user": [
+      "admin"
+    ],
+    "created": "2024-01-26T23:48:55.640Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "9c4e27e15afbe34bd27900a43ab3a11d0562ac96",
+  "fields": {
+    "user": [
+      "maximova"
+    ],
+    "created": "2024-01-29T22:17:44.178Z"
+  }
+}
+]

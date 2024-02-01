@@ -11,8 +11,9 @@ class TaskInlines(admin.StackedInline):
 @admin.register(IDP)
 class IDPAdmin(admin.ModelAdmin):
     inlines = [TaskInlines,]
-    list_display = ('id', 'name')
-    pass
+    list_display = ('id', 'name', 'employee', 'mentor', 'deadline', 'status')
+    list_filter = ('employee', 'mentor',)
+    search_fields = ('employee', 'mentor',)
 
 
 @admin.register(Task)
