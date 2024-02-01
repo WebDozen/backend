@@ -14,7 +14,7 @@ router.register(
     r'employees/(?P<employee_id>\d+)/idps', IDPViewSet, basename='idps'
 )
 router.register(
-    r'head/(?P<head_id>\d+)/statistics', HeadStatisticViewSet,
+    'head/statistics', HeadStatisticViewSet,
     basename='head_statistic'
 )
 router.register(
