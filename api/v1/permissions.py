@@ -5,6 +5,7 @@ from users.models import Employee
 from plans.models import IDP
 
 
+
 class IsManagerIDP(BasePermission):
     """Является ли пользователь руководителем сотрудника ИПР"""
 
@@ -80,6 +81,7 @@ class IsManagerandEmployee(BasePermission):
 
 
 class IsEmployeeIDPExecutor(IsEmployeeIDP):
+    """Является ли пользователь исполнителем ИПР"""
     def check_permission(self, user, employee):
         if not hasattr(user, 'employee_profile'):
             return False

@@ -36,7 +36,6 @@ from .serializers import (
     IDPDetailSerializer,
     EmployeeSerializer,
     HeadStatisticSerializer,
-    StatusTaskSerializer,
     TaskStatusUpdateSerializer,
     IDPStatusUpdateSerializer,
     StatusIDPSerializer,
