@@ -17,12 +17,15 @@ from drf_spectacular.utils import (
     inline_serializer
 )
 
+from api.tasks import determine_status_idp_by_task
+
 from .permissions import (
-    IsManagerOfEmployee,
-    IsMentor,
-    IsSelfEmployee,
+    IsManagerIDP,
+    IsMentorIDP,
+    IsEmployeeIDP,
     IsManagerandEmployee,
-    IsEmployeeIDPExecutor)
+    IsEmployeeIDPExecutor
+)
 
 from users.models import Employee, Manager
 from plans.models import IDP, Task, StatusTask
@@ -34,6 +37,8 @@ from .serializers import (
     EmployeeSerializer,
     HeadStatisticSerializer,
     TaskStatusUpdateSerializer,
+    IDPStatusUpdateSerializer,
+    StatusIDPSerializer,
     TaskSerializer
 )
 
@@ -111,7 +116,11 @@ from .serializers import (
 )
 class IDPViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'patch']
-    permission_classes = [IsManagerOfEmployee | IsSelfEmployee | IsMentor]
+    permission_classes = [
+        IsManagerIDP
+        | IsEmployeeIDP
+        | IsMentorIDP
+    ]
 
     def get_serializer_class(self):
         if self.action in ['create', 'partial_update']:
@@ -148,10 +157,52 @@ class IDPViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.action == 'create':
-            self.permission_classes = [IsManagerOfEmployee]
+            self.permission_classes = [IsManagerIDP]
         elif self.action == 'partial_update':
-            self.permission_classes = [IsManagerOfEmployee | IsMentor]
+            self.permission_classes = [IsManagerIDP | IsMentorIDP]
         return [permission() for permission in self.permission_classes]
+
+    @extend_schema(
+        summary='Обновление статуса ИПР',
+        request=inline_serializer(
+            name='PatchInlineFormSerializer',
+            fields={
+                'status': serializers.CharField()
+            },
+        ),
+        responses={200: StatusIDPSerializer(many=False)},
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='employee_id',
+                required=True,
+                type=int
+            ),
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='id',
+                required=True,
+                type=int
+            ),
+        ]
+    )
+    @action(
+        detail=True,
+        methods=['patch'],
+        permission_classes=[IsManagerIDP | IsMentorIDP]
+    )
+    def status(self, request, employee_id, pk):
+        """Изменяет статус ИПР"""
+        idp = get_object_or_404(IDP, id=pk)
+        serializer = IDPStatusUpdateSerializer(
+            idp, data=request.data, partial=True
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK
+        )
 
 
 @extend_schema(tags=['Пользователи сервиса ИПР'],)
@@ -212,14 +263,6 @@ class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
     list=extend_schema(
         summary='Получение статистики сотрудников по ИПР',
         methods=['GET'],
-        parameters=[
-            OpenApiParameter(
-                location=OpenApiParameter.PATH,
-                name='head_id',
-                required=True,
-                type=int
-            ),
-        ],
         description='Страница руководителя',
     )
 )
@@ -246,12 +289,12 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
 
     @extend_schema(
         request=inline_serializer(
-            name="InlineFormSerializer",
+            name='InlineFormSerializer',
             fields={
-                "status_slug": serializers.CharField()
+                'status_slug': serializers.CharField()
             },
         ),
-        responses={200: TaskSerializer(many=True)},
+        responses={200: StatusTaskSerializer(many=False)},
         parameters=[
             OpenApiParameter(
                 location=OpenApiParameter.PATH,
@@ -270,15 +313,17 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['patch'])
     def status(self, request, idp_id, task_id):
         """Изменение статуса задачи."""
-        print(request.data)
         new_status_slug = request.data['status_slug']
         new_status_id = get_object_or_404(StatusTask, slug=new_status_slug).id
         task = get_object_or_404(Task, idp=idp_id, id=task_id)
         serializer = TaskStatusUpdateSerializer(
             task, data={'status': new_status_id}, partial=True
         )
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
             serializer.save()
+            determine_status_idp_by_task.apply_async(
+                args=[idp_id], countdown=1
+            )
         return Response(
             serializer.data,
             status=status.HTTP_200_OK

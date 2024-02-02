@@ -140,7 +140,7 @@ class IDPDetailSerializer(serializers.ModelSerializer):
     def get_statistic(self, obj) -> dict:
         """Возвращает кол-во задач и кол-во завершенных задач ИПР"""
         count_task = obj.task.count()
-        task_done = obj.task.filter(status__slug='done').count()
+        task_done = obj.task.filter(status__slug='completed').count()
         return {'count_task': count_task, 'task_done': task_done}
 
 
@@ -266,6 +266,33 @@ class IDPCreateAndUpdateSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         return IDPDetailSerializer(instance).data
+
+
+class IDPStatusUpdateSerializer(serializers.ModelSerializer):
+    """Обрабатывает PATCH запрос на обновление статуса ИПР"""
+
+    class Meta:
+        model = IDP
+        fields = ['status']
+
+    status = serializers.SlugRelatedField(
+        queryset=StatusIDP.objects.all(),
+        slug_field='slug',
+    )
+
+    def validate_status(self, value):
+        allowed_slugs = ['cancelled', 'completed']
+        if value.slug not in allowed_slugs:
+            raise serializers.ValidationError('Неверный тип статуса')
+        return value
+
+    def update(self, instance, validated_data):
+        instance.status = validated_data['status']
+        instance.save()
+        return instance
+
+    def to_representation(self, instance):
+        return StatusIDPSerializer(instance.status).data
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
@@ -424,10 +451,10 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
 
 
 class TaskStatusUpdateSerializer(serializers.ModelSerializer):
-    """Возвращает объекты модели Task (изменение статуса)"""
+    """Обрабатывает PATCH запрос на обновление статуса задачи ИПР"""
     class Meta:
         model = Task
         fields = '__all__'
 
     def to_representation(self, instance):
-        return TaskSerializer(instance).data
+        return StatusTaskSerializer(instance.status).data
