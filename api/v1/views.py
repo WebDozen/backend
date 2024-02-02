@@ -138,12 +138,15 @@ class IDPViewSet(viewsets.ModelViewSet):
         employee_id = self.kwargs.get('employee_id')
         employee = get_object_or_404(Employee, id=employee_id)
 
-        if (
-            self.request.user.role == 'manager' or
-            self.request.user.id == employee.id
-        ):
+        if self.request.user.role == 'manager':
             return IDP.objects.filter(
                 employee=employee
+            ).prefetch_related('task')
+        elif self.request.user.id == employee.id:
+            return IDP.objects.filter(
+                employee=employee
+            ).exclude(
+                task__isnull=True
             ).prefetch_related('task')
         else:
             return IDP.objects.filter(
