@@ -3,7 +3,6 @@ from django.shortcuts import get_object_or_404
 from rest_framework import (
     viewsets,
     status,
-    permissions,
     mixins,
     serializers
 )
@@ -34,7 +33,6 @@ from .serializers import (
     IDPDetailSerializer,
     EmployeeSerializer,
     HeadStatisticSerializer,
-    StatusTaskSerializer,
     TaskStatusUpdateSerializer,
     TaskSerializer
 )
@@ -229,11 +227,11 @@ class HeadStatisticViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = HeadStatisticSerializer
     permission_classes = [IsManagerandEmployee]
 
-    def get_queryset(self):       
+    def get_queryset(self):
         username = self.request.user.username
         queryset = get_object_or_404(Manager, user__username=username)
         return [queryset]
-    
+
     def list(self, request):
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
@@ -277,11 +275,11 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
         new_status_id = get_object_or_404(StatusTask, slug=new_status_slug).id
         task = get_object_or_404(Task, idp=idp_id, id=task_id)
         serializer = TaskStatusUpdateSerializer(
-            task, data={'status':new_status_id}, partial=True
+            task, data={'status': new_status_id}, partial=True
         )
         if serializer.is_valid():
             serializer.save()
         return Response(
-            serializer.data, 
+            serializer.data,
             status=status.HTTP_200_OK
         )

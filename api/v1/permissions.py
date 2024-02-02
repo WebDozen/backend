@@ -1,12 +1,8 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import BasePermission
 
-from users.models import Manager, Employee
+from users.models import Employee
 from plans.models import IDP
-
-
-from rest_framework.permissions import BasePermission
-from users.models import Manager
 
 
 class IsManagerOfEmployee(BasePermission):
@@ -80,6 +76,7 @@ class IsManagerandEmployee(BasePermission):
                 return True
             return obj == request.user.employee_profile
         return False
+
 
 class IsEmployeeIDPExecutor(IsSelfEmployee):
     def check_permission(self, user, employee):
