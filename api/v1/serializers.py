@@ -397,7 +397,6 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
     })
     def get_statistics(self, obj):
         """Сериализатор статистики"""
-        data = {}
         employees = Employee.objects.filter(
             head=obj.id
         ).prefetch_related('IDP')
@@ -409,6 +408,7 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
 
         count_employe_with_idp = 0
         count_idp_with_status_not_done = 0
+        count_idp_with_status_cancelled = 0
         count_idp_status_review = 0
         active_statuses = ['in_progress', 'open', 'awaiting_review']
         for employee in employees:
@@ -418,6 +418,8 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
                     count_employe_with_idp += 1
                 elif idp.status.slug == 'not_done':
                     count_idp_with_status_not_done += 1
+                elif idp.status.slug == 'cancelled':
+                    count_idp_with_status_cancelled += 1
                 if idp.status.slug == 'awaiting_review':
                     count_idp_status_review += 1
                 current_idps.append(idp)
@@ -425,10 +427,11 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
 
         idps_with_tasks = idps.filter(task__in=tasks)
         count_idp_without_tasks = (
-            count_employe_with_idp - len(
+            len(current_idps) - len(
                 set(current_idps).intersection(list(idps_with_tasks))
             )
         )
+
         if count_employe:
             percent_progress_employees = int(
                 100 * count_employe_with_idp / count_employe
@@ -438,14 +441,16 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
         count_employe_without_idp = (
             count_employe - count_employe_with_idp
         )
-        data['count_employe'] = count_employe
-        data['count_employe_with_idp'] = count_employe_with_idp
-        data['percent_progress_employees'] = percent_progress_employees
-        data['count_employe_without_idp'] = count_employe_without_idp
-        data['count_idp_without_tasks'] = count_idp_without_tasks
-        data['count_idp_with_status_not_done'] = count_idp_with_status_not_done
-        data['count_idp_with_status_awaiting_review'] = count_idp_status_review
-
+        data = {
+            'count_employe': count_employe,
+            'count_employe_with_idp': count_employe_with_idp,
+            'percent_progress_employees': percent_progress_employees,
+            'count_employe_without_idp': count_employe_without_idp,
+            'count_idp_without_tasks': count_idp_without_tasks,
+            'count_idp_with_status_not_done': count_idp_with_status_not_done,
+            'count_idp_with_status_awaiting_review': count_idp_status_review,
+            'count_idp_with_status_cancelled': count_idp_with_status_cancelled
+        }
         return data
 
 
