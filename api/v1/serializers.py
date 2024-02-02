@@ -474,31 +474,20 @@ class TaskStatusUpdateSerializer(serializers.ModelSerializer):
         return StatusTaskSerializer(instance.status).data
 
 
-class ManagerSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
 
     last_name = serializers.ReadOnlyField(source='user.last_name')
     first_name = serializers.ReadOnlyField(source='user.first_name')
     middle_name = serializers.ReadOnlyField(source='user.middle_name')
 
     class Meta:
-        model = Manager
-        fields = fields = (
+        model = User
+        fields = (
             'id',
             'last_name',
             'first_name',
             'middle_name'
         )
-
-
-class ManagerEmployeeField(serializers.RelatedField):
-    def to_representation(self, value):
-        if value.role == User.Role.MANAGER:
-            serializer = ManagerSerializer(value.manager_profile)
-        elif value.role == User.Role.EMPLOYEE:
-            print(value)
-            serializer = EmployeeOrMentorSerializer(value.employee_profile)
-
-        return serializer.data
 
 
 class IDPCommentSerializer(serializers.ModelSerializer):
@@ -524,10 +513,10 @@ class IDPCommentSerializer(serializers.ModelSerializer):
         idp = self.context.get('idp')
         author_data = {}
         if user.role == 'manager':
-            author_data.update(ManagerSerializer(user.manager_profile).data)
+            author_data.update(UserSerializer(user.manager_profile).data)
             author_data['is_mentor'] = False
         elif user.role == 'employee':
-            author_data.update(ManagerSerializer(user.employee_profile).data)
+            author_data.update(UserSerializer(user.employee_profile).data)
             author_data['is_mentor'] = idp.mentor == user.employee_profile
         return author_data
 
@@ -555,9 +544,9 @@ class TaskCommentSerializer(serializers.ModelSerializer):
         idp = self.context.get('idp')
         author_data = {}
         if user.role == 'manager':
-            author_data.update(ManagerSerializer(user.manager_profile).data)
+            author_data.update(UserSerializer(user.manager_profile).data)
             author_data['is_mentor'] = False
         elif user.role == 'employee':
-            author_data.update(ManagerSerializer(user.employee_profile).data)
+            author_data.update(UserSerializer(user.employee_profile).data)
             author_data['is_mentor'] = idp.mentor == user.employee_profile
         return author_data
