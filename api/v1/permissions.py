@@ -78,7 +78,7 @@ class IsManagerandEmployee(BasePermission):
         return False
 
 
-class IsEmployeeIDPExecutor(IsSelfEmployee):
+class IsEmployeeIDPExecutor(BasePermission):
     def check_permission(self, user, employee):
         if not hasattr(user, 'employee_profile'):
             return False

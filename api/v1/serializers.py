@@ -381,6 +381,7 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
 
         count_employe_with_idp = 0
         count_idp_with_status_not_done = 0
+        count_idp_with_status_cancelled = 0
         count_idp_status_review = 0
         active_statuses = ['in_progress', 'open', 'awaiting_review']
         for employee in employees:
@@ -390,6 +391,8 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
                     count_employe_with_idp += 1
                 elif idp.status.slug == 'not_done':
                     count_idp_with_status_not_done += 1
+                elif idp.status.slug == 'cancelled':
+                    count_idp_with_status_cancelled += 1
                 if idp.status.slug == 'awaiting_review':
                     count_idp_status_review += 1
                 current_idps.append(idp)
@@ -419,6 +422,7 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
             'count_idp_without_tasks': count_idp_without_tasks,
             'count_idp_with_status_not_done': count_idp_with_status_not_done,
             'count_idp_with_status_awaiting_review': count_idp_status_review,
+            'count_idp_with_status_cancelled': count_idp_with_status_cancelled
         }
         return data
 
