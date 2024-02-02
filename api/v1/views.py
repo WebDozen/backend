@@ -340,6 +340,35 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
         )
 
 
+class BaseCommentViewSet(
+    mixins.CreateModelMixin,
+    mixins.ListModelMixin,
+    viewsets.GenericViewSet
+):
+    """Базовый класс view для управления комментариями к ИПР и задачам"""
+
+    serializer_class = None
+    permission_classes = [Comments]
+
+    def perform_create(self, serializer, idp=None, task=None):
+        user = self.request.user
+        if idp:
+            serializer.save(author=user, idp=idp)
+        elif task:
+            serializer.save(author=user, task=task)
+
+    def get_queryset(self, idp=None, task=None):
+        if idp:
+            return idp.idp_comments.all()
+        elif task:
+            return task.task_comments.all()
+
+    def get_serializer_context(self, idp=None):
+        context = super().get_serializer_context()
+        context.update({'idp': idp})
+        return context
+
+
 @extend_schema(tags=['Комментарии'])
 @extend_schema_view(
     list=extend_schema(
@@ -363,32 +392,26 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
         ]
     )
 )
-class IDPCommentViewSet(
-    mixins.CreateModelMixin,
-    mixins.ListModelMixin,
-    viewsets.GenericViewSet
-):
+class IDPCommentViewSet(BaseCommentViewSet):
+    """Представление для управления комментариями к ИПР"""
 
     serializer_class = IDPCommentSerializer
-    permission_classes = [Comments]
+
+    def get_idp(self):
+        idp_id = self.kwargs.get('idp_id')
+        return get_object_or_404(IDP, id=idp_id)
 
     def perform_create(self, serializer):
-        idp_id = self.kwargs.get('idp_id')
-        idp = get_object_or_404(IDP, id=idp_id)
-        user = self.request.user
-        serializer.save(author=user, idp=idp)
+        idp = self.get_idp()
+        super().perform_create(serializer, idp=idp)
 
     def get_queryset(self):
-        idp_id = self.kwargs.get('idp_id')
-        idp = get_object_or_404(IDP, id=idp_id)
-        return idp.idp_comments.all()
+        idp = self.get_idp()
+        return super().get_queryset(idp=idp)
 
     def get_serializer_context(self):
-        idp_id = self.kwargs.get('idp_id')
-        idp = get_object_or_404(IDP, id=idp_id)
-        context = super().get_serializer_context()
-        context.update({'idp': idp})
-        return context
+        idp = self.get_idp()
+        return super().get_serializer_context(idp=idp)
 
 
 @extend_schema(tags=['Комментарии'])
@@ -414,30 +437,24 @@ class IDPCommentViewSet(
         ]
     )
 )
-class TaskCommentViewSet(
-    mixins.CreateModelMixin,
-    mixins.ListModelMixin,
-    viewsets.GenericViewSet
-):
+class TaskCommentViewSet(BaseCommentViewSet):
+    """Представление для управления комментариями к задачам ИПР"""
 
     serializer_class = TaskCommentSerializer
-    permission_classes = [Comments]
+
+    def get_task(self):
+        task_id = self.kwargs.get('task_id')
+        return get_object_or_404(Task, id=task_id)
 
     def perform_create(self, serializer):
-        task_id = self.kwargs.get('task_id')
-        task = get_object_or_404(Task, id=task_id)
-        user = self.request.user
-        serializer.save(author=user, task=task)
+        task = self.get_task()
+        super().perform_create(serializer, task=task)
 
     def get_queryset(self):
-        task_id = self.kwargs.get('task_id')
-        task = get_object_or_404(Task, id=task_id)
-        return task.task_comments.all()
+        task = self.get_task()
+        return super().get_queryset(task=task)
 
     def get_serializer_context(self):
-        task_id = self.kwargs.get('task_id')
-        task = get_object_or_404(Task, id=task_id)
+        task = self.get_task()
         idp = task.idp
-        context = super().get_serializer_context()
-        context.update({'idp': idp})
-        return context
+        return super().get_serializer_context(idp=idp)
