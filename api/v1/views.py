@@ -1,5 +1,6 @@
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
+from django.contrib.auth import get_user_model
 from rest_framework import (
     viewsets,
     status,
@@ -31,6 +32,7 @@ from users.models import Employee, Manager
 from plans.models import IDP, Task, StatusTask
 
 from .serializers import (
+    IDPCommentSerializer,
     IDPCreateAndUpdateSerializer,
     IDPSerializer,
     IDPDetailSerializer,
@@ -42,6 +44,8 @@ from .serializers import (
     StatusIDPSerializer,
     TaskSerializer
 )
+
+User = get_user_model()
 
 
 @extend_schema(tags=['ИПР'])
@@ -285,7 +289,7 @@ class HeadStatisticViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         return Response(*serializer.data)
 
 
-@extend_schema(tags=['Статусы'])
+@extend_schema(tags=['Статус задачи'])
 class TaskStatusChangeViewSet(viewsets.ViewSet):
     serializer_class = TaskSerializer
     permission_classes = [IsEmployeeIDPExecutor]
@@ -332,3 +336,53 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
             serializer.data,
             status=status.HTTP_200_OK
         )
+
+
+@extend_schema(tags=['Комментарии'])
+@extend_schema_view(
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='idp_id',
+                required=True,
+                type=int
+            ),
+        ]
+    ),
+    create=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='idp_id',
+                required=True,
+                type=int
+            ),
+        ]
+    )
+)
+class IDPCommentViewSet(
+    mixins.CreateModelMixin,
+    mixins.ListModelMixin,
+    viewsets.GenericViewSet
+):
+
+    serializer_class = IDPCommentSerializer
+
+    def perform_create(self, serializer):
+        idp_id = self.kwargs.get('idp_id')
+        idp = get_object_or_404(IDP, id=idp_id)
+        user = self.request.user
+        serializer.save(author=user, idp=idp)
+
+    def get_queryset(self):
+        idp_id = self.kwargs.get('idp_id')
+        idp = get_object_or_404(IDP, id=idp_id)
+        return idp.idp_comments.all()
+
+    def get_serializer_context(self):
+        idp_id = self.kwargs.get('idp_id')
+        idp = get_object_or_404(IDP, id=idp_id)
+        context = super().get_serializer_context()
+        context.update({'idp': idp})
+        return context

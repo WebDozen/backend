@@ -2,6 +2,7 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
 from .views import (
+    IDPCommentViewSet,
     IDPViewSet,
     EmployeeViewSet,
     HeadStatisticViewSet,
@@ -20,6 +21,9 @@ router.register(
 router.register(
     r'idps/(?P<idp_id>\d+)/tasks/(?P<task_id>\d+)', TaskStatusChangeViewSet,
     basename='task_status'
+)
+router.register(
+    r'idp/(?P<idp_id>\d+)/comments', IDPCommentViewSet, basename='idp_comments'
 )
 urlpatterns = [
     path('', include(router.urls))
