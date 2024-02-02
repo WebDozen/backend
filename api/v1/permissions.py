@@ -5,7 +5,6 @@ from users.models import Employee
 from plans.models import IDP
 
 
-
 class IsManagerIDP(BasePermission):
     """Является ли пользователь руководителем сотрудника ИПР"""
 
