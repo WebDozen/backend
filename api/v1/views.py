@@ -21,6 +21,7 @@ from drf_spectacular.utils import (
 from api.tasks import determine_status_idp_by_task
 
 from .permissions import (
+    Comments,
     IsManagerIDP,
     IsMentorIDP,
     IsEmployeeIDP,
@@ -39,6 +40,7 @@ from .serializers import (
     EmployeeSerializer,
     HeadStatisticSerializer,
     StatusTaskSerializer,
+    TaskCommentSerializer,
     TaskStatusUpdateSerializer,
     IDPStatusUpdateSerializer,
     StatusIDPSerializer,
@@ -368,6 +370,7 @@ class IDPCommentViewSet(
 ):
 
     serializer_class = IDPCommentSerializer
+    permission_classes = [Comments]
 
     def perform_create(self, serializer):
         idp_id = self.kwargs.get('idp_id')
@@ -383,6 +386,58 @@ class IDPCommentViewSet(
     def get_serializer_context(self):
         idp_id = self.kwargs.get('idp_id')
         idp = get_object_or_404(IDP, id=idp_id)
+        context = super().get_serializer_context()
+        context.update({'idp': idp})
+        return context
+
+
+@extend_schema(tags=['Комментарии'])
+@extend_schema_view(
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='task_id',
+                required=True,
+                type=int
+            ),
+        ]
+    ),
+    create=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='task_id',
+                required=True,
+                type=int
+            ),
+        ]
+    )
+)
+class TaskCommentViewSet(
+    mixins.CreateModelMixin,
+    mixins.ListModelMixin,
+    viewsets.GenericViewSet
+):
+
+    serializer_class = TaskCommentSerializer
+    permission_classes = [Comments]
+
+    def perform_create(self, serializer):
+        task_id = self.kwargs.get('task_id')
+        task = get_object_or_404(Task, id=task_id)
+        user = self.request.user
+        serializer.save(author=user, task=task)
+
+    def get_queryset(self):
+        task_id = self.kwargs.get('task_id')
+        task = get_object_or_404(Task, id=task_id)
+        return task.task_comments.all()
+
+    def get_serializer_context(self):
+        task_id = self.kwargs.get('task_id')
+        task = get_object_or_404(Task, id=task_id)
+        idp = task.idp
         context = super().get_serializer_context()
         context.update({'idp': idp})
         return context

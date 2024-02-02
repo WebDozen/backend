@@ -6,6 +6,7 @@ from .views import (
     IDPViewSet,
     EmployeeViewSet,
     HeadStatisticViewSet,
+    TaskCommentViewSet,
     TaskStatusChangeViewSet
 )
 
@@ -24,6 +25,11 @@ router.register(
 )
 router.register(
     r'idp/(?P<idp_id>\d+)/comments', IDPCommentViewSet, basename='idp_comments'
+)
+router.register(
+    r'task/(?P<task_id>\d+)/comments',
+    TaskCommentViewSet,
+    basename='task_comments'
 )
 urlpatterns = [
     path('', include(router.urls))

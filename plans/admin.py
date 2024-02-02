@@ -1,6 +1,14 @@
 from django.contrib import admin
 
-from plans.models import IDP, IdpComment, StatusIDP, Task, TypeTask, StatusTask
+from plans.models import (
+    IDP,
+    IdpComment,
+    StatusIDP,
+    Task,
+    TaskComment,
+    TypeTask,
+    StatusTask
+)
 
 
 class TaskInlines(admin.StackedInline):
@@ -40,3 +48,8 @@ class StatusTaskAdmin(admin.ModelAdmin):
 @admin.register(IdpComment)
 class IdpCommentAdmin(admin.ModelAdmin):
     list_display = ('id', 'idp')
+
+
+@admin.register(TaskComment)
+class TaskCommentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'task')

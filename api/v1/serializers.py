@@ -6,7 +6,14 @@ from drf_spectacular.utils import (
 from django.contrib.auth import get_user_model
 
 from users.models import Employee, Manager
-from plans.models import IDP, IdpComment, StatusTask, Task, StatusIDP
+from plans.models import (
+    IDP,
+    IdpComment,
+    StatusTask,
+    Task,
+    StatusIDP,
+    TaskComment
+)
 
 User = get_user_model()
 
@@ -500,6 +507,37 @@ class IDPCommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = IdpComment
+        fields = ('id', 'text', 'pub_date', 'author')
+
+    @extend_schema_field({
+        'type': 'object',
+        'properties': {
+            'id': {'type': 'integer'},
+                'first_name': {'type': 'string'},
+                'last_name': {'type': 'string'},
+                'middle_name': {'type': 'string'},
+            'is_mentor': {'type': 'boolean'}
+        }
+    })
+    def get_author(self, obj):
+        user = obj.author
+        idp = self.context.get('idp')
+        author_data = {}
+        if user.role == 'manager':
+            author_data.update(ManagerSerializer(user.manager_profile).data)
+            author_data['is_mentor'] = False
+        elif user.role == 'employee':
+            author_data.update(ManagerSerializer(user.employee_profile).data)
+            author_data['is_mentor'] = idp.mentor == user.employee_profile
+        return author_data
+
+
+class TaskCommentSerializer(serializers.ModelSerializer):
+
+    author = serializers.SerializerMethodField()
+
+    class Meta:
+        model = TaskComment
         fields = ('id', 'text', 'pub_date', 'author')
 
     @extend_schema_field({
