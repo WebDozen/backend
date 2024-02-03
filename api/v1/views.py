@@ -18,24 +18,25 @@ from drf_spectacular.utils import (
 )
 
 from api.tasks import determine_status_idp_by_task
-
 from .permissions import (
+    Comments,
     IsManagerIDP,
     IsMentorIDP,
     IsEmployeeIDP,
     IsManagerandEmployee,
     IsEmployeeIDPExecutor
 )
-
 from users.models import Employee, Manager
 from plans.models import IDP, Task, StatusTask
-
 from .serializers import (
+    IDPCommentSerializer,
     IDPCreateAndUpdateSerializer,
     IDPSerializer,
     IDPDetailSerializer,
     EmployeeSerializer,
     HeadStatisticSerializer,
+    StatusTaskSerializer,
+    TaskCommentSerializer,
     TaskStatusUpdateSerializer,
     IDPStatusUpdateSerializer,
     StatusIDPSerializer,
@@ -137,12 +138,15 @@ class IDPViewSet(viewsets.ModelViewSet):
         employee_id = self.kwargs.get('employee_id')
         employee = get_object_or_404(Employee, id=employee_id)
 
-        if (
-            self.request.user.role == 'manager' or
-            self.request.user.id == employee.id
-        ):
+        if self.request.user.role == 'manager':
             return IDP.objects.filter(
                 employee=employee
+            ).prefetch_related('task')
+        elif self.request.user.id == employee.id:
+            return IDP.objects.filter(
+                employee=employee
+            ).exclude(
+                task__isnull=True
             ).prefetch_related('task')
         else:
             return IDP.objects.filter(
@@ -281,7 +285,7 @@ class HeadStatisticViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         return Response(*serializer.data)
 
 
-@extend_schema(tags=['Статусы'])
+@extend_schema(tags=['Статус задачи'])
 class TaskStatusChangeViewSet(viewsets.ViewSet):
     serializer_class = TaskSerializer
     permission_classes = [IsEmployeeIDPExecutor]
@@ -328,3 +332,123 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
             serializer.data,
             status=status.HTTP_200_OK
         )
+
+
+class BaseCommentViewSet(
+    mixins.CreateModelMixin,
+    mixins.ListModelMixin,
+    viewsets.GenericViewSet
+):
+    """Базовый класс view для управления комментариями к ИПР и задачам"""
+
+    serializer_class = None
+    permission_classes = [Comments]
+
+    def perform_create(self, serializer, idp=None, task=None):
+        user = self.request.user
+        if idp:
+            serializer.save(author=user, idp=idp)
+        elif task:
+            serializer.save(author=user, task=task)
+
+    def get_queryset(self, idp=None, task=None):
+        if idp:
+            return idp.idp_comments.all()
+        elif task:
+            return task.task_comments.all()
+
+    def get_serializer_context(self, idp=None):
+        context = super().get_serializer_context()
+        context.update({'idp': idp})
+        return context
+
+
+@extend_schema(tags=['Комментарии'])
+@extend_schema_view(
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='idp_id',
+                required=True,
+                type=int
+            ),
+        ]
+    ),
+    create=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='idp_id',
+                required=True,
+                type=int
+            ),
+        ]
+    )
+)
+class IDPCommentViewSet(BaseCommentViewSet):
+    """Представление для управления комментариями к ИПР"""
+
+    serializer_class = IDPCommentSerializer
+
+    def get_idp(self):
+        idp_id = self.kwargs.get('idp_id')
+        return get_object_or_404(IDP, id=idp_id)
+
+    def perform_create(self, serializer):
+        idp = self.get_idp()
+        super().perform_create(serializer, idp=idp)
+
+    def get_queryset(self):
+        idp = self.get_idp()
+        return super().get_queryset(idp=idp)
+
+    def get_serializer_context(self):
+        idp = self.get_idp()
+        return super().get_serializer_context(idp=idp)
+
+
+@extend_schema(tags=['Комментарии'])
+@extend_schema_view(
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='task_id',
+                required=True,
+                type=int
+            ),
+        ]
+    ),
+    create=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                location=OpenApiParameter.PATH,
+                name='task_id',
+                required=True,
+                type=int
+            ),
+        ]
+    )
+)
+class TaskCommentViewSet(BaseCommentViewSet):
+    """Представление для управления комментариями к задачам ИПР"""
+
+    serializer_class = TaskCommentSerializer
+
+    def get_task(self):
+        task_id = self.kwargs.get('task_id')
+        return get_object_or_404(Task, id=task_id)
+
+    def perform_create(self, serializer):
+        task = self.get_task()
+        super().perform_create(serializer, task=task)
+
+    def get_queryset(self):
+        task = self.get_task()
+        return super().get_queryset(task=task)
+
+    def get_serializer_context(self):
+        task = self.get_task()
+        idp = task.idp
+        return super().get_serializer_context(idp=idp)

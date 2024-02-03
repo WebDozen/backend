@@ -3,13 +3,23 @@ from rest_framework import serializers
 from drf_spectacular.utils import (
     extend_schema_field
 )
+from django.contrib.auth import get_user_model
 
 from users.models import Employee, Manager
-from plans.models import IDP, StatusTask, Task, StatusIDP
+from plans.models import (
+    IDP,
+    IdpComment,
+    StatusTask,
+    Task,
+    StatusIDP,
+    TaskComment
+)
+
+User = get_user_model()
 
 
-class MentorSerializer(serializers.ModelSerializer):
-    """Возвращает объект Employee, который является ментором"""
+class EmployeeOrMentorSerializer(serializers.ModelSerializer):
+    """Возвращает объект Employee"""
 
     last_name = serializers.ReadOnlyField(source='user.last_name')
     first_name = serializers.ReadOnlyField(source='user.first_name')
@@ -113,7 +123,7 @@ class IDPDetailSerializer(serializers.ModelSerializer):
         read_only=True
     )
     status = StatusIDPSerializer()
-    mentor = MentorSerializer()
+    mentor = EmployeeOrMentorSerializer()
     statistic = serializers.SerializerMethodField()
 
     class Meta:
@@ -164,19 +174,30 @@ class IDPCreateAndUpdateSerializer(serializers.ModelSerializer):
         )
 
     def validate(self, data):
+        if self.partial:
+            return data
+
         author_manager = self.context['request'].user.id
         employee_id = self.context.get('employee_id')
         mentor = data.get('mentor', None)
         tasks_data = data.get('tasks', [])
+        last_idp = IDP.objects.filter(
+            employee=employee_id
+        ).order_by('-pub_date').first()
 
-        if self.partial:
-            return data
+        if (
+            last_idp and
+            last_idp.status.slug in ['open', 'in_progress', 'awaiting_review']
+        ):
+            raise serializers.ValidationError(
+                {'status': 'Сотрудник не может иметь несколько активных ИПР'}
+            )
 
         if mentor is not None:
             if mentor.head.id != author_manager:
                 raise serializers.ValidationError(
                     {'mentor': [
-                        'Руководитель не может назначить ментора, '
+                        'Руководитель не может назначить ментором сотрудника, '
                         'который не является его сотрудником.'
                     ]}
                 )
@@ -186,6 +207,10 @@ class IDPCreateAndUpdateSerializer(serializers.ModelSerializer):
                     {'mentor': [
                         'Сотрудник не может быть своим ментором.'
                     ]}
+                )
+            if not data.get('name'):
+                raise serializers.ValidationError(
+                    {'name': 'Укажите название ИПР'}
                 )
             return data
 
@@ -462,3 +487,81 @@ class TaskStatusUpdateSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         return StatusTaskSerializer(instance.status).data
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    last_name = serializers.ReadOnlyField(source='user.last_name')
+    first_name = serializers.ReadOnlyField(source='user.first_name')
+    middle_name = serializers.ReadOnlyField(source='user.middle_name')
+
+    class Meta:
+        model = User
+        fields = (
+            'id',
+            'last_name',
+            'first_name',
+            'middle_name'
+        )
+
+
+class IDPCommentSerializer(serializers.ModelSerializer):
+
+    author = serializers.SerializerMethodField()
+
+    class Meta:
+        model = IdpComment
+        fields = ('id', 'text', 'pub_date', 'author')
+
+    @extend_schema_field({
+        'type': 'object',
+        'properties': {
+            'id': {'type': 'integer'},
+                'first_name': {'type': 'string'},
+                'last_name': {'type': 'string'},
+                'middle_name': {'type': 'string'},
+            'is_mentor': {'type': 'boolean'}
+        }
+    })
+    def get_author(self, obj):
+        user = obj.author
+        idp = self.context.get('idp')
+        author_data = {}
+        if user.role == 'manager':
+            author_data.update(UserSerializer(user.manager_profile).data)
+            author_data['is_mentor'] = False
+        elif user.role == 'employee':
+            author_data.update(UserSerializer(user.employee_profile).data)
+            author_data['is_mentor'] = idp.mentor == user.employee_profile
+        return author_data
+
+
+class TaskCommentSerializer(serializers.ModelSerializer):
+
+    author = serializers.SerializerMethodField()
+
+    class Meta:
+        model = TaskComment
+        fields = ('id', 'text', 'pub_date', 'author')
+
+    @extend_schema_field({
+        'type': 'object',
+        'properties': {
+            'id': {'type': 'integer'},
+                'first_name': {'type': 'string'},
+                'last_name': {'type': 'string'},
+                'middle_name': {'type': 'string'},
+            'is_mentor': {'type': 'boolean'}
+        }
+    })
+    def get_author(self, obj):
+        user = obj.author
+        idp = self.context.get('idp')
+        author_data = {}
+        if user.role == 'manager':
+            author_data.update(UserSerializer(user.manager_profile).data)
+            author_data['is_mentor'] = False
+        elif user.role == 'employee':
+            author_data.update(UserSerializer(user.employee_profile).data)
+            author_data['is_mentor'] = idp.mentor == user.employee_profile
+        return author_data
