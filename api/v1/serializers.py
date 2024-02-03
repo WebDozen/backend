@@ -178,15 +178,23 @@ class IDPCreateAndUpdateSerializer(serializers.ModelSerializer):
         employee_id = self.context.get('employee_id')
         mentor = data.get('mentor', None)
         tasks_data = data.get('tasks', [])
+        last_idp = IDP.objects.filter(
+            employee=employee_id
+        ).order_by('-pub_date').first()
 
         if self.partial:
             return data
+
+        if last_idp.status.slug in ['open', 'in_progress', 'awaiting_review']:
+            raise serializers.ValidationError(
+                {'status': 'Сотрудник не может иметь несколько активных ИПР'}
+            )
 
         if mentor is not None:
             if mentor.head.id != author_manager:
                 raise serializers.ValidationError(
                     {'mentor': [
-                        'Руководитель не может назначить ментора, '
+                        'Руководитель не может назначить ментором сотрудника, '
                         'который не является его сотрудником.'
                     ]}
                 )
@@ -196,6 +204,10 @@ class IDPCreateAndUpdateSerializer(serializers.ModelSerializer):
                     {'mentor': [
                         'Сотрудник не может быть своим ментором.'
                     ]}
+                )
+            if not data.get('name'):
+                raise serializers.ValidationError(
+                    {'name': 'Укажите название ИПР'}
                 )
             return data
 

@@ -1,6 +1,5 @@
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
-from django.contrib.auth import get_user_model
 from rest_framework import (
     viewsets,
     status,
@@ -19,7 +18,6 @@ from drf_spectacular.utils import (
 )
 
 from api.tasks import determine_status_idp_by_task
-
 from .permissions import (
     Comments,
     IsManagerIDP,
@@ -28,10 +26,8 @@ from .permissions import (
     IsManagerandEmployee,
     IsEmployeeIDPExecutor
 )
-
 from users.models import Employee, Manager
 from plans.models import IDP, Task, StatusTask
-
 from .serializers import (
     IDPCommentSerializer,
     IDPCreateAndUpdateSerializer,
@@ -46,8 +42,6 @@ from .serializers import (
     StatusIDPSerializer,
     TaskSerializer
 )
-
-User = get_user_model()
 
 
 @extend_schema(tags=['ИПР'])
