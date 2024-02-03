@@ -16,8 +16,9 @@ logger = get_task_logger(__name__)
 def determine_status_idp_by_task(idp_id):
     """Запускает проверку статуса ИПР после изменения статуса задачи в ИПР"""
     instance = IDP.objects.get(pk=idp_id)
-    instance.status = determine_status_idp(instance)
-    instance.save()
+    if instance.task.exists():
+        instance.status = determine_status_idp(instance)
+        instance.save()
 
 
 def determine_status_idp(instance):
@@ -50,6 +51,7 @@ def check_idp_statuses_by_deadline():
         for idp in result:
             if (
                 idp.status.slug in ['open', 'in_progress', 'awaiting_review']
+                and idp.deadline
                 and idp.deadline < timezone.now()
             ):
                 print(timezone.now())

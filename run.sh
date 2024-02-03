@@ -6,6 +6,12 @@ python manage.py migrate;
 echo "Collecting static files..."
 python manage.py collectstatic --noinput;
 
+echo "Starting Celery worker..."
+celery -A alfa_people worker -l info --pool=solo &
+
+echo "Starting Celery beat..."
+celery -A alfa_people beat --loglevel=info &
+
 # echo "Loading initial data..."
 # python manage.py loaddata user.json;
 # python manage.py loaddata specialties.json;
