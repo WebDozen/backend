@@ -174,6 +174,9 @@ class IDPCreateAndUpdateSerializer(serializers.ModelSerializer):
         )
 
     def validate(self, data):
+        if self.partial:
+            return data
+
         author_manager = self.context['request'].user.id
         employee_id = self.context.get('employee_id')
         mentor = data.get('mentor', None)
@@ -182,10 +185,10 @@ class IDPCreateAndUpdateSerializer(serializers.ModelSerializer):
             employee=employee_id
         ).order_by('-pub_date').first()
 
-        if self.partial:
-            return data
-
-        if last_idp.status.slug in ['open', 'in_progress', 'awaiting_review']:
+        if (
+            last_idp and
+            last_idp.status.slug in ['open', 'in_progress', 'awaiting_review']
+        ):
             raise serializers.ValidationError(
                 {'status': 'Сотрудник не может иметь несколько активных ИПР'}
             )
