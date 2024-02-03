@@ -1,6 +1,14 @@
 [
 {
   "model": "sessions.session",
+  "pk": "4dlczp2vs3n0kxegzu86splnmszu73bz",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQRO9CHSHEx-CU6XMGtOwuwUkEkrErK3ePLblIminmvZlNRFiXEtfOc5xIXEUQl98uAb64HoCeUB9NYqvLPCV5KPKkXd4b8ft2un8HBXrZ10ZjGNFarZVWlpRXIbFLSACsjRmzGTgHrzlQVokMEznv9kTEwfosPl_lOTjI:1rVaf1:qINempFA2uaKccwDmy7WKa8MUQWkBPQHv3YEM3c-j2s",
+    "expire_date": "2024-02-15T17:15:35.607Z"
+  }
+},
+{
+  "model": "sessions.session",
   "pk": "x2b5gczkbys4bp4r3z4vv1ev9yohe8cq",
   "fields": {
     "session_data": ".eJxVjDsOwyAQRO9CHSHEx-CU6XMGtOwuwUkEkrErK3ePLblIminmvZlNRFiXEtfOc5xIXEUQl98uAb64HoCeUB9NYqvLPCV5KPKkXd4b8ft2un8HBXrZ10ZjGNFarZVWlpRXIbFLSACsjRmzGTgHrzlQVokMEznv9kTEwfosPl_lOTjI:1rVVmy:-GRB7cZQiER21fxAYfZyeYUU9B9zcAyvKI2Aj_wmtlk",
@@ -144,7 +152,7 @@
   "model": "users.user",
   "fields": {
     "password": "pbkdf2_sha256$260000$DfdLC9WiHK0BAgO62kNNil$xuYYs+8JV8hWVLWtzOdZkTDFih0JdFyRlSzaXIHwamE=",
-    "last_login": "2024-02-01T12:03:28.422Z",
+    "last_login": "2024-02-01T17:15:35.484Z",
     "is_superuser": true,
     "username": "admin1",
     "email": "a@a.ru",
@@ -783,7 +791,7 @@
     "name": "Применение техник тайм-менеджмента в ежедневной работе (методика Pomodoro и правило двух минут)",
     "description": "Подробное описание:",
     "source": "-",
-    "status": 1,
+    "status": 3,
     "pub_date": "2024-02-01T14:33:06.550Z"
   }
 },
@@ -949,12 +957,2236 @@
 },
 {
   "model": "authtoken.token",
+  "pk": "7ed796f0ab9a35e304d95c6d715978783803ad8d",
+  "fields": {
+    "user": [
+      "stepanov"
+    ],
+    "created": "2024-02-01T22:03:32.966Z"
+  }
+},
+{
+  "model": "authtoken.token",
   "pk": "9c4e27e15afbe34bd27900a43ab3a11d0562ac96",
   "fields": {
     "user": [
       "maximova"
     ],
     "created": "2024-01-29T22:17:44.178Z"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2024-01-26T23:48:09.854Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "1",
+    "object_repr": "admin",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Password\", \"First name\", \"Middle name\", \"Last name\", \"Role\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2024-01-26T23:48:23.068Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "test1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2024-01-26T23:48:33.373Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "test2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2024-01-26T23:48:40.937Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "test1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"Employee object (2)\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2024-01-26T23:48:47.756Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "test2",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"Employee object (3)\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2024-01-26T23:50:08.857Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "typetask"
+    ],
+    "object_id": "1",
+    "object_repr": "Книга",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2024-01-26T23:55:06.791Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statusidp"
+    ],
+    "object_id": "1",
+    "object_repr": "Открыт",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2024-01-26T23:55:15.117Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statusidp"
+    ],
+    "object_id": "2",
+    "object_repr": "В работе",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2024-01-26T23:55:26.146Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statustask"
+    ],
+    "object_id": "1",
+    "object_repr": "Открыта",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2024-01-26T23:56:02.390Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statustask"
+    ],
+    "object_id": "1",
+    "object_repr": "Открыта",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u043b\\u0430\\u0433 \\u0441\\u0442\\u0430\\u0442\\u0443\\u0441\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2024-01-26T23:56:12.628Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statustask"
+    ],
+    "object_id": "2",
+    "object_repr": "В работе",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2024-01-26T23:59:18.330Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statustask"
+    ],
+    "object_id": "3",
+    "object_repr": "Завершено",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2024-01-27T00:02:01.535Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statusidp"
+    ],
+    "object_id": "3",
+    "object_repr": "Просрочен",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2024-01-27T00:02:14.276Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statusidp"
+    ],
+    "object_id": "4",
+    "object_repr": "На ревью",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2024-01-27T00:05:33.064Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "task"
+    ],
+    "object_id": "2",
+    "object_repr": "Прочитать книгу",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2024-01-27T00:05:44.984Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "2",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0447\\u0438\\u0442\\u0430\\u0442\\u044c \\u043a\\u043d\\u0438\\u0433\\u0443\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2024-01-27T00:05:55.787Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "2",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0447\\u0438\\u0442\\u0430\\u0442\\u044c \\u043a\\u043d\\u0438\\u0433\\u0443\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2024-01-27T13:36:13.690Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "2",
+    "object_repr": "Развитие Soft-скиллов тестовый",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2024-01-27T14:23:34.284Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "2",
+    "object_repr": "Развитие Soft-скиллов тестовый",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2024-01-27T14:27:42.366Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "1",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0447\\u0438\\u0442\\u0430\\u0442\\u044c \\u043a\\u043d\\u0438\\u0433\\u0443\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2024-01-27T22:38:31.560Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statusidp"
+    ],
+    "object_id": "5",
+    "object_repr": "Отменен",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2024-01-27T22:38:42.696Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statustask"
+    ],
+    "object_id": "3",
+    "object_repr": "Завершена",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2024-01-27T22:38:55.340Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "typetask"
+    ],
+    "object_id": "2",
+    "object_repr": "Курс",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2024-01-27T22:39:39.826Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statusidp"
+    ],
+    "object_id": "6",
+    "object_repr": "Выполнен",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2024-01-27T22:40:02.276Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "1",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\", \"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0447\\u0438\\u0442\\u0430\\u0442\\u044c \\u043a\\u043d\\u0438\\u0433\\u0443\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2024-01-27T22:40:15.297Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "2",
+    "object_repr": "Развитие Soft-скиллов тестовый",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0447\\u0438\\u0442\\u0430\\u0442\\u044c \\u043a\\u043d\\u0438\\u0433\\u0443\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2024-01-27T22:41:13.758Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "4",
+    "object_repr": "ИПР сотрудника_2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u043a\\u043d\\u0438\\u0433\\u0430\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041a\\u0443\\u0440\\u0441\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2024-01-27T22:41:48.747Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "5",
+    "object_repr": "ИПР сотрудника_3 выполненый",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u043a\\u0443\\u0440\\u0441\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2024-01-27T22:45:33.977Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "1",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0447\\u0438\\u0442\\u0430\\u0442\\u044c \\u043a\\u043d\\u0438\\u0433\\u0443\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0447\\u0438\\u0442\\u0430\\u0442\\u044c \\u043a\\u043d\\u0438\\u0433\\u0443 \\u043d\\u043e\\u0432\\u0430\\u044f\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2024-01-27T22:46:51.570Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "1",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2024-01-27T22:47:55.523Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "1",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0447\\u0438\\u0442\\u0430\\u0442\\u044c \\u043a\\u043d\\u0438\\u0433\\u0443\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0447\\u0438\\u0442\\u0430\\u0442\\u044c \\u043a\\u043d\\u0438\\u0433\\u0443 \\u043d\\u043e\\u0432\\u0430\\u044f\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2024-01-27T22:48:51.227Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statustask"
+    ],
+    "object_id": "3",
+    "object_repr": "Выполнена",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2024-01-27T22:49:12.061Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "2",
+    "object_repr": "Развитие Soft-скиллов тестовый",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0447\\u0438\\u0442\\u0430\\u0442\\u044c \\u043a\\u043d\\u0438\\u0433\\u0443\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2024-01-27T22:49:21.384Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "3",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0447\\u0438\\u0442\\u0430\\u0442\\u044c \\u043a\\u043d\\u0438\\u0433\\u0443\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2024-01-27T22:49:54.957Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "4",
+    "object_repr": "ИПР сотрудника_2",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u043a\\u043d\\u0438\\u0433\\u0430\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041a\\u0443\\u0440\\u0441\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2024-01-27T22:50:12.707Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "3",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2024-01-27T22:50:23.119Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "4",
+    "object_repr": "ИПР сотрудника_2",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u043a\\u043d\\u0438\\u0433\\u0430\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041a\\u0443\\u0440\\u0441\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2024-01-27T22:50:30.659Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "5",
+    "object_repr": "ИПР сотрудника_3 выполненый",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u043a\\u0443\\u0440\\u0441\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2024-01-27T22:51:14.730Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "6",
+    "object_repr": "ИПР сотрудника_3 в работе",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u043a\\u043d\\u0438\\u0433\\u0430\\u043a\\u043d\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041a\\u0443\\u0440\\u0441\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2024-01-27T22:51:29.856Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "4",
+    "object_repr": "test3",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2024-01-27T22:51:37.152Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "4",
+    "object_repr": "test3",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"Employee object (4)\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 42,
+  "fields": {
+    "action_time": "2024-01-28T18:39:00.453Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statustask"
+    ],
+    "object_id": "3",
+    "object_repr": "Выполнена",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u043b\\u0430\\u0433 \\u0441\\u0442\\u0430\\u0442\\u0443\\u0441\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 43,
+  "fields": {
+    "action_time": "2024-01-28T22:07:28.443Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "7",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041c\\u0435\\u043d\\u0442\\u043e\\u0440\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 44,
+  "fields": {
+    "action_time": "2024-01-28T22:12:10.119Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "7",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 2,
+    "change_message": "[{\"deleted\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0447\\u0438\\u0442\\u0430\\u0442\\u044c \\u043a\\u043d\\u0438\\u0433\\u04433\"}}, {\"deleted\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0447\\u0438\\u0442\\u0430\\u0442\\u044c \\u043a\\u043d\\u0438\\u0433\\u04434\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 45,
+  "fields": {
+    "action_time": "2024-01-29T00:12:33.699Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "11",
+    "object_repr": "None",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 46,
+  "fields": {
+    "action_time": "2024-01-29T00:12:41.759Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "11",
+    "object_repr": "None",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 47,
+  "fields": {
+    "action_time": "2024-01-29T00:33:31.712Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "5",
+    "object_repr": "Empl_head_2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 48,
+  "fields": {
+    "action_time": "2024-01-29T00:33:53.983Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "6",
+    "object_repr": "Manager2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 49,
+  "fields": {
+    "action_time": "2024-01-29T00:34:14.245Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "5",
+    "object_repr": "Empl_head_2",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"Employee object (5)\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 50,
+  "fields": {
+    "action_time": "2024-01-29T00:34:51.874Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "13",
+    "object_repr": "None",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 51,
+  "fields": {
+    "action_time": "2024-01-29T00:36:10.009Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "13",
+    "object_repr": "None",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 52,
+  "fields": {
+    "action_time": "2024-01-29T01:14:07.895Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "14",
+    "object_repr": "None",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 53,
+  "fields": {
+    "action_time": "2024-01-29T01:34:58.478Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "9",
+    "object_repr": "Развитие Soft-скиллов",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0440\\u043e\\u043a \\u0432\\u044b\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0447\\u0438\\u0442\\u0430\\u0442\\u044c \\u043a\\u043d\\u0438\\u0433\\u0443 21\", \"fields\": [\"\\u0418\\u0441\\u0442\\u043e\\u0447\\u043d\\u0438\\u043a\", \"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0447\\u0438\\u0442\\u0430\\u0442\\u044c \\u043a\\u043d\\u0438\\u0433\\u0443\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 54,
+  "fields": {
+    "action_time": "2024-01-29T21:51:08.193Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "6",
+    "object_repr": "Manager2",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 55,
+  "fields": {
+    "action_time": "2024-01-29T22:00:36.659Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "7",
+    "object_repr": "test5",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 56,
+  "fields": {
+    "action_time": "2024-01-29T22:02:00.427Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "7",
+    "object_repr": "test5",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"Employee object (6)\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 57,
+  "fields": {
+    "action_time": "2024-01-29T22:17:33.526Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "test1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 58,
+  "fields": {
+    "action_time": "2024-01-29T23:17:25.359Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "12",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"\\u041c\\u0435\\u043d\\u0442\\u043e\\u0440\", \"\\u0421\\u0440\\u043e\\u043a \\u0432\\u044b\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 59,
+  "fields": {
+    "action_time": "2024-01-30T00:45:15.939Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "12",
+    "object_repr": "Развитие Soft-скиллов",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041c\\u0435\\u043d\\u0442\\u043e\\u0440\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 60,
+  "fields": {
+    "action_time": "2024-01-30T00:47:50.573Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "12",
+    "object_repr": "Развитие Soft-скиллов",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041c\\u0435\\u043d\\u0442\\u043e\\u0440\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 61,
+  "fields": {
+    "action_time": "2024-01-30T00:50:30.179Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "12",
+    "object_repr": "Развитие Soft-скиллов12",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 62,
+  "fields": {
+    "action_time": "2024-01-30T18:42:14.139Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statusidp"
+    ],
+    "object_id": "2",
+    "object_repr": "В работе",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u043b\\u0430\\u0433 \\u0441\\u0442\\u0430\\u0442\\u0443\\u0441\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 63,
+  "fields": {
+    "action_time": "2024-01-30T18:42:27.190Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statusidp"
+    ],
+    "object_id": "3",
+    "object_repr": "Ожидает ревью",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\", \"\\u0421\\u043b\\u0430\\u0433 \\u0441\\u0442\\u0430\\u0442\\u0443\\u0441\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 64,
+  "fields": {
+    "action_time": "2024-01-30T18:42:37.253Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statusidp"
+    ],
+    "object_id": "4",
+    "object_repr": "Выполнен",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\", \"\\u0421\\u043b\\u0430\\u0433 \\u0441\\u0442\\u0430\\u0442\\u0443\\u0441\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 65,
+  "fields": {
+    "action_time": "2024-01-30T18:44:26.179Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statusidp"
+    ],
+    "object_id": "5",
+    "object_repr": "Просрочен",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\", \"\\u0421\\u043b\\u0430\\u0433 \\u0441\\u0442\\u0430\\u0442\\u0443\\u0441\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 66,
+  "fields": {
+    "action_time": "2024-01-30T18:44:34.287Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statusidp"
+    ],
+    "object_id": "6",
+    "object_repr": "Отменен",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\", \"\\u0421\\u043b\\u0430\\u0433 \\u0441\\u0442\\u0430\\u0442\\u0443\\u0441\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 67,
+  "fields": {
+    "action_time": "2024-01-30T18:45:10.199Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statustask"
+    ],
+    "object_id": "2",
+    "object_repr": "В работе",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u043b\\u0430\\u0433 \\u0441\\u0442\\u0430\\u0442\\u0443\\u0441\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 68,
+  "fields": {
+    "action_time": "2024-01-30T18:45:16.041Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "statustask"
+    ],
+    "object_id": "3",
+    "object_repr": "Выполнена",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u043b\\u0430\\u0433 \\u0441\\u0442\\u0430\\u0442\\u0443\\u0441\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 69,
+  "fields": {
+    "action_time": "2024-01-31T14:55:18.390Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "6",
+    "object_repr": "ИПР сотрудника_3 в работе",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0440\\u043e\\u043a \\u0432\\u044b\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 70,
+  "fields": {
+    "action_time": "2024-01-31T14:57:20.260Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "15",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 71,
+  "fields": {
+    "action_time": "2024-01-31T14:58:13.996Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "15",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 72,
+  "fields": {
+    "action_time": "2024-01-31T15:41:58.849Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "15",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 73,
+  "fields": {
+    "action_time": "2024-02-01T11:59:13.932Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "1",
+    "object_repr": "admin",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Middle name\", \"Last name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 74,
+  "fields": {
+    "action_time": "2024-02-01T12:03:39.276Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "1",
+    "object_repr": "admin",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 75,
+  "fields": {
+    "action_time": "2024-02-01T12:04:26.666Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "15",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 76,
+  "fields": {
+    "action_time": "2024-02-01T12:04:26.765Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "12",
+    "object_repr": "Развитие Soft-скиллов12",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 77,
+  "fields": {
+    "action_time": "2024-02-01T12:04:26.881Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "10",
+    "object_repr": "None",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 78,
+  "fields": {
+    "action_time": "2024-02-01T12:04:27.023Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "9",
+    "object_repr": "Развитие Soft-скиллов",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 79,
+  "fields": {
+    "action_time": "2024-02-01T12:04:27.156Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "8",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 80,
+  "fields": {
+    "action_time": "2024-02-01T12:04:27.298Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "7",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 81,
+  "fields": {
+    "action_time": "2024-02-01T12:04:27.415Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "6",
+    "object_repr": "ИПР сотрудника_3 в работе",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 82,
+  "fields": {
+    "action_time": "2024-02-01T12:04:27.557Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "5",
+    "object_repr": "ИПР сотрудника_3 выполненый",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 83,
+  "fields": {
+    "action_time": "2024-02-01T12:04:27.681Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "4",
+    "object_repr": "ИПР сотрудника_2",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 84,
+  "fields": {
+    "action_time": "2024-02-01T12:04:27.815Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "3",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 85,
+  "fields": {
+    "action_time": "2024-02-01T12:04:27.956Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "2",
+    "object_repr": "Развитие Soft-скиллов тестовый",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 86,
+  "fields": {
+    "action_time": "2024-02-01T12:04:28.123Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "1",
+    "object_repr": "Развитие Soft-скиллов1",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 87,
+  "fields": {
+    "action_time": "2024-02-01T12:05:23.308Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "test1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Middle name\", \"Last name\"]}}, {\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"test1\", \"fields\": [\"Position\", \"Grade\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 88,
+  "fields": {
+    "action_time": "2024-02-01T12:06:25.073Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "test2",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Middle name\", \"Last name\"]}}, {\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"test2\", \"fields\": [\"Position\", \"Grade\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 89,
+  "fields": {
+    "action_time": "2024-02-01T12:06:54.248Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "4",
+    "object_repr": "test3",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Middle name\", \"Last name\"]}}, {\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"test3\", \"fields\": [\"Position\", \"Grade\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 90,
+  "fields": {
+    "action_time": "2024-02-01T12:07:37.730Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "7",
+    "object_repr": "test5",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Middle name\", \"Last name\"]}}, {\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"test5\", \"fields\": [\"Position\", \"Grade\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 91,
+  "fields": {
+    "action_time": "2024-02-01T12:08:28.597Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "9",
+    "object_repr": "volkova",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 92,
+  "fields": {
+    "action_time": "2024-02-01T12:08:53.786Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "9",
+    "object_repr": "volkova",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"volkova\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 93,
+  "fields": {
+    "action_time": "2024-02-01T12:09:28.663Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "10",
+    "object_repr": "smirnov",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 94,
+  "fields": {
+    "action_time": "2024-02-01T12:10:01.110Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "10",
+    "object_repr": "smirnov",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"smirnov\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 95,
+  "fields": {
+    "action_time": "2024-02-01T12:10:22.914Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "11",
+    "object_repr": "gladkov",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 96,
+  "fields": {
+    "action_time": "2024-02-01T12:10:43.950Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "11",
+    "object_repr": "gladkov",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"gladkov\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 97,
+  "fields": {
+    "action_time": "2024-02-01T12:12:26.274Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "maximova",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Username\", \"Password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 98,
+  "fields": {
+    "action_time": "2024-02-01T12:13:35.639Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "4",
+    "object_repr": "ivanov",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Username\", \"Password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 99,
+  "fields": {
+    "action_time": "2024-02-01T12:15:53.207Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "16",
+    "object_repr": "Изучение основ React",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041a\\u043d\\u0438\\u0433\\u0430 1\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 100,
+  "fields": {
+    "action_time": "2024-02-01T12:22:19.680Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "17",
+    "object_repr": "Управление командой разработки",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041a\\u043d\\u0438\\u0433\\u0430 1\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041a\\u0443\\u0440\\u0441\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 101,
+  "fields": {
+    "action_time": "2024-02-01T12:57:01.978Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "18",
+    "object_repr": "Развитие soft-скиллов",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u043a\\u0443\\u0440\\u0441 alfa academy: \\\"\\u041e\\u0441\\u043d\\u043e\\u0432\\u044b \\u044d\\u0444\\u0444\\u0435\\u043a\\u0442\\u0438\\u0432\\u043d\\u043e\\u0439 \\u043a\\u043e\\u043c\\u043c\\u0443\\u043d\\u0438\\u043a\\u0430\\u0446\\u0438\\u0438\\\"\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 102,
+  "fields": {
+    "action_time": "2024-02-01T12:58:06.463Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "typetask"
+    ],
+    "object_id": "3",
+    "object_repr": "Рабочая задача",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 103,
+  "fields": {
+    "action_time": "2024-02-01T12:58:24.608Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "typetask"
+    ],
+    "object_id": "4",
+    "object_repr": "Alfa Academy",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 104,
+  "fields": {
+    "action_time": "2024-02-01T12:59:59.976Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "18",
+    "object_repr": "Развитие soft-скиллов",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u043e\\u0434\\u0433\\u043e\\u0442\\u043e\\u0432\\u0438\\u0442\\u044c \\u0438\\u00a0\\u043f\\u0440\\u043e\\u0432\\u0435\\u0441\\u0442\\u0438 \\u043f\\u0440\\u0435\\u0437\\u0435\\u043d\\u0442\\u0430\\u0446\\u0438\\u044e \\u043f\\u043e\\u00a0\\u0440\\u0435\\u0437\\u0443\\u043b\\u044c\\u0442\\u0430\\u0442\\u0430\\u043c \\u0442\\u0435\\u0441\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u044f \\u0434\\u043b\\u044f \\u043a\\u043e\\u043c\\u0430\\u043d\\u0434\\u044b \\u0440\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u0447\\u0438\\u043a\\u043e\\u0432\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u0438\\u043c\\u0435\\u043d\\u0435\\u043d\\u0438\\u0435 \\u0442\\u0435\\u0445\\u043d\\u0438\\u043a \\u0442\\u0430\\u0439\\u043c-\\u043c\\u0435\\u043d\\u0435\\u0434\\u0436\\u043c\\u0435\\u043d\\u0442\\u0430 \\u0432\\u00a0\\u0435\\u0436\\u0435\\u0434\\u043d\\u0435\\u0432\\u043d\\u043e\\u0439 \\u0440\\u0430\\u0431\\u043e\\u0442\\u0435 (\\u043c\\u0435\\u0442\\u043e\\u0434\\u0438\\u043a\\u0430 Pomodoro \\u0438\\u00a0\\u043f\\u0440\\u0430\\u0432\\u0438\\u043b\\u043e \\u0434\\u0432\\u0443\\u0445 \\u043c\\u0438\\u043d\\u0443\\u0442)\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041e\\u0431\\u0441\\u0443\\u0434\\u0438\\u0442\\u044c \\u043a\\u043b\\u044e\\u0447\\u0435\\u0432\\u044b\\u0435 \\u043c\\u043e\\u043c\\u0435\\u043d\\u0442\\u044b \\u0432\\u00a0\\u043a\\u043d\\u0438\\u0433\\u0435 \\u00ab\\u0423\\u043f\\u0440\\u0430\\u0432\\u043b\\u0435\\u043d\\u0438\\u0435 \\u043a\\u043e\\u043d\\u0444\\u043b\\u0438\\u043a\\u0442\\u0430\\u043c\\u0438 \\u0432\\u00a0\\u043f\\u0440\\u043e\\u0444\\u0435\\u0441\\u0441\\u0438\\u043e\\u043d\\u0430\\u043b\\u044c\\u043d\\u043e\\u0439 \\u0441\\u0440\\u0435\\u0434\\u0435\\u00bb\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0423\\u0447\\u0430\\u0441\\u0442\\u0438\\u0435 \\u0432\\u00a0\\u043a\\u043e\\u043c\\u0430\\u043d\\u0434\\u043d\\u044b\\u0445 \\u043c\\u043e\\u0437\\u0433\\u043e\\u0432\\u044b\\u0445 \\u0448\\u0442\\u0443\\u0440\\u043c\\u0430\\u0445 \\u0438\\u00a0\\u043f\\u0440\\u043e\\u0435\\u043a\\u0442\\u043d\\u044b\\u0445 \\u0432\\u0441\\u0442\\u0440\\u0435\\u0447\\u0430\\u0445 \\u0441\\u00a0\\u0430\\u043a\\u0442\\u0438\\u0432\\u043d\\u043e\\u0439 \\u0440\\u043e\\u043b\\u044c\\u044e\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 105,
+  "fields": {
+    "action_time": "2024-02-01T14:18:57.999Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "19",
+    "object_repr": "Развитие soft-скиллов",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 106,
+  "fields": {
+    "action_time": "2024-02-01T14:20:48.935Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "20",
+    "object_repr": "Управление командой разработки",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041a\\u043d\\u0438\\u0433\\u0430 1\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 107,
+  "fields": {
+    "action_time": "2024-02-01T14:21:38.582Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "users",
+      "user"
+    ],
+    "object_id": "7",
+    "object_repr": "stepanov",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Username\", \"Password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 108,
+  "fields": {
+    "action_time": "2024-02-01T14:22:42.129Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "21",
+    "object_repr": "Управление командой разработки",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041a\\u043d\\u0438\\u0433\\u0430 1\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 109,
+  "fields": {
+    "action_time": "2024-02-01T14:33:06.551Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "22",
+    "object_repr": "Развитие soft-скиллов",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u043a\\u0443\\u0440\\u0441 alfa academy: \\\"\\u041e\\u0441\\u043d\\u043e\\u0432\\u044b \\u044d\\u0444\\u0444\\u0435\\u043a\\u0442\\u0438\\u0432\\u043d\\u043e\\u0439 \\u043a\\u043e\\u043c\\u043c\\u0443\\u043d\\u0438\\u043a\\u0430\\u0446\\u0438\\u0438\\\"\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u043e\\u0434\\u0433\\u043e\\u0442\\u043e\\u0432\\u0438\\u0442\\u044c \\u0438\\u00a0\\u043f\\u0440\\u043e\\u0432\\u0435\\u0441\\u0442\\u0438 \\u043f\\u0440\\u0435\\u0437\\u0435\\u043d\\u0442\\u0430\\u0446\\u0438\\u044e \\u043f\\u043e\\u00a0\\u0440\\u0435\\u0437\\u0443\\u043b\\u044c\\u0442\\u0430\\u0442\\u0430\\u043c \\u0442\\u0435\\u0441\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u044f \\u0434\\u043b\\u044f \\u043a\\u043e\\u043c\\u0430\\u043d\\u0434\\u044b \\u0440\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u0447\\u0438\\u043a\\u043e\\u0432\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u0438\\u043c\\u0435\\u043d\\u0435\\u043d\\u0438\\u0435 \\u0442\\u0435\\u0445\\u043d\\u0438\\u043a \\u0442\\u0430\\u0439\\u043c-\\u043c\\u0435\\u043d\\u0435\\u0434\\u0436\\u043c\\u0435\\u043d\\u0442\\u0430 \\u0432\\u00a0\\u0435\\u0436\\u0435\\u0434\\u043d\\u0435\\u0432\\u043d\\u043e\\u0439 \\u0440\\u0430\\u0431\\u043e\\u0442\\u0435 (\\u043c\\u0435\\u0442\\u043e\\u0434\\u0438\\u043a\\u0430 Pomodoro \\u0438\\u00a0\\u043f\\u0440\\u0430\\u0432\\u0438\\u043b\\u043e \\u0434\\u0432\\u0443\\u0445 \\u043c\\u0438\\u043d\\u0443\\u0442)\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041e\\u0431\\u0441\\u0443\\u0434\\u0438\\u0442\\u044c \\u043a\\u043b\\u044e\\u0447\\u0435\\u0432\\u044b\\u0435 \\u043c\\u043e\\u043c\\u0435\\u043d\\u0442\\u044b \\u0432\\u00a0\\u043a\\u043d\\u0438\\u0433\\u0435 \\u00ab\\u0423\\u043f\\u0440\\u0430\\u0432\\u043b\\u0435\\u043d\\u0438\\u0435 \\u043a\\u043e\\u043d\\u0444\\u043b\\u0438\\u043a\\u0442\\u0430\\u043c\\u0438 \\u0432\\u00a0\\u043f\\u0440\\u043e\\u0444\\u0435\\u0441\\u0441\\u0438\\u043e\\u043d\\u0430\\u043b\\u044c\\u043d\\u043e\\u0439 \\u0441\\u0440\\u0435\\u0434\\u0435\\u00bb\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0423\\u0447\\u0430\\u0441\\u0442\\u0438\\u0435 \\u0432\\u00a0\\u043a\\u043e\\u043c\\u0430\\u043d\\u0434\\u043d\\u044b\\u0445 \\u043c\\u043e\\u0437\\u0433\\u043e\\u0432\\u044b\\u0445 \\u0448\\u0442\\u0443\\u0440\\u043c\\u0430\\u0445 \\u0438\\u00a0\\u043f\\u0440\\u043e\\u0435\\u043a\\u0442\\u043d\\u044b\\u0445 \\u0432\\u0441\\u0442\\u0440\\u0435\\u0447\\u0430\\u0445 \\u0441\\u00a0\\u0430\\u043a\\u0442\\u0438\\u0432\\u043d\\u043e\\u0439 \\u0440\\u043e\\u043b\\u044c\\u044e\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 110,
+  "fields": {
+    "action_time": "2024-02-01T14:35:50.402Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "23",
+    "object_repr": "Развитие soft-скиллов",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u043a\\u0443\\u0440\\u0441 alfa academy: \\\"\\u041e\\u0441\\u043d\\u043e\\u0432\\u044b \\u044d\\u0444\\u0444\\u0435\\u043a\\u0442\\u0438\\u0432\\u043d\\u043e\\u0439 \\u043a\\u043e\\u043c\\u043c\\u0443\\u043d\\u0438\\u043a\\u0430\\u0446\\u0438\\u0438\\\"\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u043e\\u0434\\u0433\\u043e\\u0442\\u043e\\u0432\\u0438\\u0442\\u044c \\u0438\\u00a0\\u043f\\u0440\\u043e\\u0432\\u0435\\u0441\\u0442\\u0438 \\u043f\\u0440\\u0435\\u0437\\u0435\\u043d\\u0442\\u0430\\u0446\\u0438\\u044e \\u043f\\u043e\\u00a0\\u0440\\u0435\\u0437\\u0443\\u043b\\u044c\\u0442\\u0430\\u0442\\u0430\\u043c \\u0442\\u0435\\u0441\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u044f \\u0434\\u043b\\u044f \\u043a\\u043e\\u043c\\u0430\\u043d\\u0434\\u044b \\u0440\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u0447\\u0438\\u043a\\u043e\\u0432\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u0438\\u043c\\u0435\\u043d\\u0435\\u043d\\u0438\\u0435 \\u0442\\u0435\\u0445\\u043d\\u0438\\u043a \\u0442\\u0430\\u0439\\u043c-\\u043c\\u0435\\u043d\\u0435\\u0434\\u0436\\u043c\\u0435\\u043d\\u0442\\u0430 \\u0432\\u00a0\\u0435\\u0436\\u0435\\u0434\\u043d\\u0435\\u0432\\u043d\\u043e\\u0439 \\u0440\\u0430\\u0431\\u043e\\u0442\\u0435 (\\u043c\\u0435\\u0442\\u043e\\u0434\\u0438\\u043a\\u0430 Pomodoro \\u0438\\u00a0\\u043f\\u0440\\u0430\\u0432\\u0438\\u043b\\u043e \\u0434\\u0432\\u0443\\u0445 \\u043c\\u0438\\u043d\\u0443\\u0442)\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041e\\u0431\\u0441\\u0443\\u0434\\u0438\\u0442\\u044c \\u043a\\u043b\\u044e\\u0447\\u0435\\u0432\\u044b\\u0435 \\u043c\\u043e\\u043c\\u0435\\u043d\\u0442\\u044b \\u0432\\u00a0\\u043a\\u043d\\u0438\\u0433\\u0435 \\u00ab\\u0423\\u043f\\u0440\\u0430\\u0432\\u043b\\u0435\\u043d\\u0438\\u0435 \\u043a\\u043e\\u043d\\u0444\\u043b\\u0438\\u043a\\u0442\\u0430\\u043c\\u0438 \\u0432\\u00a0\\u043f\\u0440\\u043e\\u0444\\u0435\\u0441\\u0441\\u0438\\u043e\\u043d\\u0430\\u043b\\u044c\\u043d\\u043e\\u0439 \\u0441\\u0440\\u0435\\u0434\\u0435\\u00bb\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0423\\u0447\\u0430\\u0441\\u0442\\u0438\\u0435 \\u0432\\u00a0\\u043a\\u043e\\u043c\\u0430\\u043d\\u0434\\u043d\\u044b\\u0445 \\u043c\\u043e\\u0437\\u0433\\u043e\\u0432\\u044b\\u0445 \\u0448\\u0442\\u0443\\u0440\\u043c\\u0430\\u0445 \\u0438\\u00a0\\u043f\\u0440\\u043e\\u0435\\u043a\\u0442\\u043d\\u044b\\u0445 \\u0432\\u0441\\u0442\\u0440\\u0435\\u0447\\u0430\\u0445 \\u0441\\u00a0\\u0430\\u043a\\u0442\\u0438\\u0432\\u043d\\u043e\\u0439 \\u0440\\u043e\\u043b\\u044c\\u044e\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 111,
+  "fields": {
+    "action_time": "2024-02-01T14:37:58.263Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "statusidp"
+    ],
+    "object_id": "3",
+    "object_repr": "На ревью",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 112,
+  "fields": {
+    "action_time": "2024-02-01T14:46:16.942Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "24",
+    "object_repr": "Развитие soft-скиллов",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u043a\\u0443\\u0440\\u0441 alfa academy: \\\"\\u041e\\u0441\\u043d\\u043e\\u0432\\u044b \\u044d\\u0444\\u0444\\u0435\\u043a\\u0442\\u0438\\u0432\\u043d\\u043e\\u0439 \\u043a\\u043e\\u043c\\u043c\\u0443\\u043d\\u0438\\u043a\\u0430\\u0446\\u0438\\u0438\\\"\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u043e\\u0434\\u0433\\u043e\\u0442\\u043e\\u0432\\u0438\\u0442\\u044c \\u0438\\u00a0\\u043f\\u0440\\u043e\\u0432\\u0435\\u0441\\u0442\\u0438 \\u043f\\u0440\\u0435\\u0437\\u0435\\u043d\\u0442\\u0430\\u0446\\u0438\\u044e \\u043f\\u043e\\u00a0\\u0440\\u0435\\u0437\\u0443\\u043b\\u044c\\u0442\\u0430\\u0442\\u0430\\u043c \\u0442\\u0435\\u0441\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u044f \\u0434\\u043b\\u044f \\u043a\\u043e\\u043c\\u0430\\u043d\\u0434\\u044b \\u0440\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u0447\\u0438\\u043a\\u043e\\u0432\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 113,
+  "fields": {
+    "action_time": "2024-02-01T14:47:12.172Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "25",
+    "object_repr": "Развитие soft-скиллов",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u043a\\u0443\\u0440\\u0441 alfa academy: \\\"\\u041e\\u0441\\u043d\\u043e\\u0432\\u044b \\u044d\\u0444\\u0444\\u0435\\u043a\\u0442\\u0438\\u0432\\u043d\\u043e\\u0439 \\u043a\\u043e\\u043c\\u043c\\u0443\\u043d\\u0438\\u043a\\u0430\\u0446\\u0438\\u0438\\\"\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 114,
+  "fields": {
+    "action_time": "2024-02-01T14:59:48.299Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "26",
+    "object_repr": "None",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 115,
+  "fields": {
+    "action_time": "2024-02-01T17:19:56.130Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "27",
+    "object_repr": "Тест статусов ИПР с задачами",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0432\\u0430\\u043f\\u0432\\u0430\\u043f\\u0440\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0432\\u0430\\u043f\\u0440\\u0432\\u0430\\u043f\\u0440\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 116,
+  "fields": {
+    "action_time": "2024-02-01T17:34:34.053Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "27",
+    "object_repr": "Тест статусов ИПР с задачами",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0432\\u0430\\u043f\\u0432\\u0430\\u043f\\u0440\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 117,
+  "fields": {
+    "action_time": "2024-02-01T17:36:26.001Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "27",
+    "object_repr": "Тест статусов ИПР с задачами",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0432\\u0430\\u043f\\u0432\\u0430\\u043f\\u0440\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 118,
+  "fields": {
+    "action_time": "2024-02-01T17:39:18.807Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "27",
+    "object_repr": "Тест статусов ИПР с задачами",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0432\\u0430\\u043f\\u0432\\u0430\\u043f\\u0440\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 119,
+  "fields": {
+    "action_time": "2024-02-01T17:43:03.802Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "27",
+    "object_repr": "Тест статусов ИПР с задачами",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0432\\u0430\\u043f\\u0440\\u0432\\u0430\\u043f\\u0440\", \"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 120,
+  "fields": {
+    "action_time": "2024-02-01T21:35:54.516Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "28",
+    "object_repr": "Тестовый на дату просрочки",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0443\\u043a\\u0430\\u0435\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 121,
+  "fields": {
+    "action_time": "2024-02-01T21:36:42.051Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "28",
+    "object_repr": "Тестовый на дату просрочки",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 122,
+  "fields": {
+    "action_time": "2024-02-01T21:41:56.423Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "27",
+    "object_repr": "Тест статусов ИПР с задачами",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 123,
+  "fields": {
+    "action_time": "2024-02-01T22:02:03.877Z",
+    "user": [
+      "admin1"
+    ],
+    "content_type": [
+      "plans",
+      "idp"
+    ],
+    "object_id": "22",
+    "object_repr": "Развитие soft-скиллов",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u0438\\u0441\\u043f\\u043e\\u043b\\u043d\\u0435\\u043d\\u0438\\u044f\"]}}]"
   }
 }
 ]

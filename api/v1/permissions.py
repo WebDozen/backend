@@ -1,7 +1,8 @@
+from django.shortcuts import get_object_or_404
 from rest_framework.permissions import BasePermission
 
 from users.models import Employee
-from plans.models import IDP
+from plans.models import IDP, Task
 
 
 class IsManagerIDP(BasePermission):
@@ -75,4 +76,61 @@ class IsManagerandEmployee(BasePermission):
             if mentor_idp.exists():
                 return True
             return obj == request.user.employee_profile
+        return False
+
+
+class IsEmployeeIDPExecutor(IsEmployeeIDP):
+    """Является ли пользователь исполнителем ИПР"""
+
+    def check_permission(self, user, employee):
+        if not hasattr(user, 'employee_profile'):
+            return False
+        return user.employee_profile.id == employee.id
+
+    def has_permission(self, request, view):
+        idp_id = view.kwargs.get('idp_id')
+        idp = get_object_or_404(IDP, id=idp_id)
+        employee = idp.employee
+        return self.check_permission(request.user, employee)
+
+
+class Comments(BasePermission):
+    """
+    Разрешение для управления комментариями к ИПР и задачам
+    в зависмости от роли пользователя
+    """
+
+    def has_permission(self, request, view):
+        idp_id = view.kwargs.get('idp_id', None)
+        task_id = view.kwargs.get('task_id', None)
+        current_user = request.user
+
+        def is_manager_author(idp):
+            """Является ли пользователь руководителем сотрудника"""
+            return idp.employee.head == current_user.manager_profile
+
+        def is_employee_or_mentor(idp):
+            """Связан ли пользователь с ИПР как сотрудник или ментор"""
+            return (
+                idp.employee == current_user.employee_profile or
+                idp.mentor == current_user.employee_profile
+            )
+
+        def get_idp():
+            """Получает объет ИПР"""
+            if idp_id:
+                return IDP.objects.get(id=idp_id)
+            elif task_id:
+                task = Task.objects.get(id=task_id)
+                return task.idp
+
+        try:
+            idp = get_idp()
+            if current_user.role == 'manager':
+                return is_manager_author(idp)
+            elif current_user.role == 'employee':
+                return is_employee_or_mentor(idp)
+        except (IDP.DoesNotExist, Task.DoesNotExist):
+            return False
+
         return False
