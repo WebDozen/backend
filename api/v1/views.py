@@ -299,18 +299,17 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['patch'])
     def status(self, request, idp_id, task_id):
         """Изменение статуса задачи."""
-
         new_status_slug = request.data['status_slug']
         new_status_id = get_object_or_404(StatusTask, slug=new_status_slug).id
-        task = get_object_or_404(Task, idp=idp_id, id=task_id)
+        task = get_object_or_404(Task, idp= idp_id, id=task_id)
         serializer = TaskStatusUpdateSerializer(
             task, data={'status': new_status_id}, partial=True
         )
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            determine_status_idp_by_task.apply_async(
+            '''determine_status_idp_by_task.apply_async(
                 args=[idp_id], countdown=1
-            )
+            )'''
         return Response(
             serializer.data,
             status=status.HTTP_200_OK
