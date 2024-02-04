@@ -34,7 +34,14 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 @admin.register(User)
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'first_name', 'last_name', 'get_role')
+    list_display = (
+        'id',
+        'first_name',
+        'last_name',
+        'get_role',
+        'position',
+        'grade'
+    )
     ordering = ('last_name',)
 
     fieldsets = (
@@ -54,6 +61,16 @@ class CustomUserAdmin(admin.ModelAdmin):
         elif obj.role == 'employee':
             return "Сотрудник"
         return "Пользователь"
+
+    @admin.display(description='Должность')
+    def position(self, obj):
+        if obj.role == 'employee':
+            return obj.employee_profile.position
+
+    @admin.display(description='Грейд')
+    def grade(self, obj):
+        if obj.role == 'employee':
+            return obj.employee_profile.grade
 
     def get_inline_instances(self, request, obj=None):
         inline_instances = super().get_inline_instances(request, obj)

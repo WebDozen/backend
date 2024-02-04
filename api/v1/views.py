@@ -142,16 +142,19 @@ class IDPViewSet(viewsets.ModelViewSet):
             return IDP.objects.filter(
                 employee=employee
             ).prefetch_related('task')
-        elif self.request.user.id == employee.id:
+        elif self.request.user.employee_profile == employee:
+            print('elif')
             return IDP.objects.filter(
                 employee=employee
             ).exclude(
                 task__isnull=True
             ).prefetch_related('task')
         else:
+            print('else')
+            print(self.request.user.id)
             return IDP.objects.filter(
                 employee=employee,
-                mentor=self.request.user.id
+                mentor=self.request.user.employee_profile
             ).prefetch_related('task')
 
     def get_serializer_context(self):
