@@ -1,0 +1,57 @@
+version: '3.3'
+
+volumes:
+#   pg_data:
+  static:
+#   media:
+
+services:
+
+  # db:
+  #   image: postgres:13.10
+  #   env_file: .env
+  #   volumes:
+  #     - pg_data:/var/lib/postgresql/data
+  
+  backend:
+    image: zalgan/alfa_people_backend
+    env_file: .env
+    volumes:
+      - static:/backend_static
+    #   - media:/app/media/
+    # depends_on:
+    #   - db
+
+  celery_worker:
+    image: zalgan/alfa_people_backend
+    env_file: .env
+    command: celery -A alfa_people worker -l info --pool=solo
+    depends_on:
+      # - db
+      - redis
+      - backend
+
+  celery_scheduler:
+    image: zalgan/alfa_people_backend
+    env_file: .env
+    command: celery -A alfa_people beat --loglevel=info
+    depends_on:
+      # - db
+      - redis
+      - backend
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  nginx:
+    image: zalgan/alfa_people_nginx
+    env_file: .env
+    ports:
+      - "8000:80"
+    volumes:
+    #   - media:/media/
+      - static:/static
+    depends_on:
+      - backend
