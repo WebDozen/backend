@@ -299,10 +299,9 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['patch'])
     def status(self, request, idp_id, task_id):
         """Изменение статуса задачи."""
-
         new_status_slug = request.data['status_slug']
         new_status_id = get_object_or_404(StatusTask, slug=new_status_slug).id
-        task = get_object_or_404(Task, idp=idp_id, id=task_id)
+        task = get_object_or_404(Task, idp= idp_id, id=task_id)
         serializer = TaskStatusUpdateSerializer(
             task, data={'status': new_status_id}, partial=True
         )
