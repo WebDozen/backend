@@ -99,14 +99,9 @@ class IsEmployeeIDPExecutorMentorOrManager(IsEmployeeIDP):
         idp = get_object_or_404(IDP, id=idp_id)
         employee = idp.employee
         if request.data['status_slug'] in ['open']:
-            try:
-                mentor = MentorEmployee.objects.get(
-                    mentee=employee
-                ).mentor
-                if mentor.user == request.user:
+            if idp.mentor:
+                if idp.mentor.user == request.user:
                     return True
-            except MentorEmployee.DoesNotExist:
-                pass
 
             try:
                 head = Manager.objects.get(user=request.user)
