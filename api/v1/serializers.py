@@ -1,3 +1,5 @@
+from django.shortcuts import get_object_or_404
+from django.db.models import Max
 from django.contrib.auth import get_user_model
 from django.db.models import Max
 from django.utils import timezone
@@ -500,6 +502,24 @@ class TaskStatusUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = '__all__'
+
+    def validate(self, attrs):
+        idp_id = self.instance.idp.id
+        idp = get_object_or_404(IDP, id=idp_id)
+        if idp.status.slug in ['completed', 'expired', 'cancelled']:
+            raise serializers.ValidationError(
+                'Нельзя менять статус задач завершенных, '
+                'отмененных или просроченных ИПР'
+            )
+        employee = idp.employee
+        latest_idp_pub_date = IDP.objects.filter(
+            employee=employee
+        ).aggregate(latest_idp=Max('pub_date'))['latest_idp']
+        if idp.pub_date != latest_idp_pub_date:
+            raise serializers.ValidationError(
+                'Нельзя менять статус задач старого ИПР'
+            )
+        return super().validate(attrs)
 
     def to_representation(self, instance):
         return StatusTaskSerializer(instance.status).data
