@@ -52,6 +52,8 @@ docker-compose up -d
 * Nginx
 * Docker
 * Postgres 13.10
+* Celery 5.3.6
+* Redis 5.0.1
 
 ### Авторы
 
