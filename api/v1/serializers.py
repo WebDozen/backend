@@ -433,7 +433,7 @@ class HeadStatisticSerializer(serializers.ModelSerializer):
             if idp:
                 if idp.status.slug in active_statuses:
                     count_employe_with_idp += 1
-                elif idp.status.slug == 'not_done':
+                elif idp.status.slug == 'expired':
                     count_idp_with_status_not_done += 1
                 elif idp.status.slug == 'cancelled':
                     count_idp_with_status_cancelled += 1

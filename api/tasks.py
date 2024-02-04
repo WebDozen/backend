@@ -53,7 +53,6 @@ def check_idp_statuses_by_deadline():
                 and idp.deadline
                 and idp.deadline < timezone.now()
             ):
-                print(timezone.now())
                 idp.status = new_status
                 idp.save()
     except Exception as e:

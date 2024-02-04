@@ -1,12 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from users.models import Employee, Manager, MentorEmployee, User
-
-
-@admin.register(MentorEmployee)
-class MentorEmployeeAdmin(admin.ModelAdmin):
-    pass
+from users.models import Employee, Manager, User
 
 
 class ManagerInline(admin.StackedInline):

@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.permissions import BasePermission
 
 from plans.models import IDP, Task
-from users.models import Employee, Manager, MentorEmployee
+from users.models import Employee, Manager
 
 
 class IsManagerIDP(BasePermission):
