@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.db.models import Max
 from django.utils import timezone
 from drf_spectacular.utils import extend_schema_field
 from rest_framework import serializers
@@ -298,9 +299,32 @@ class IDPStatusUpdateSerializer(serializers.ModelSerializer):
     )
 
     def validate_status(self, value):
+        current_idp = self.instance
+        employee = current_idp.employee
+        latest_idp_pub_date = IDP.objects.filter(
+            employee=employee
+        ).aggregate(latest_idp=Max('pub_date'))['latest_idp']
         allowed_slugs = ['cancelled', 'completed']
+        if current_idp.pub_date != latest_idp_pub_date:
+            raise serializers.ValidationError(
+                'Нельзя менять статус старых ИПР'
+            )
         if value.slug not in allowed_slugs:
-            raise serializers.ValidationError('Неверный тип статуса')
+            raise serializers.ValidationError('Неверный slug статуса')
+        if (
+            value.slug == 'cancelled' and
+            current_idp.status.slug in ['completed', 'expired']
+        ):
+            raise serializers.ValidationError(
+                'Нельзя отменить завершенный или просроченный ИПР'
+            )
+        if (
+            value.slug == 'completed' and
+            current_idp.status.slug != 'awaiting_review'
+        ):
+            raise serializers.ValidationError(
+                'Нельзя завершить ИПР без ревью'
+            )
         return value
 
     def update(self, instance, validated_data):
