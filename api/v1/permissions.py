@@ -103,7 +103,6 @@ class IsEmployeeIDPExecutorMentorOrManager(IsEmployeeIDP):
             if idp.mentor:
                 if idp.mentor.user == request.user:
                     return True
-
             try:
                 head = Manager.objects.get(user=request.user)
                 if head == employee.head:

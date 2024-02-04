@@ -307,9 +307,9 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
         )
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            '''determine_status_idp_by_task.apply_async(
+            determine_status_idp_by_task.apply_async(
                 args=[idp_id], countdown=1
-            )'''
+            )
         return Response(
             serializer.data,
             status=status.HTTP_200_OK
