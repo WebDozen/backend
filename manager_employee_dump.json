@@ -1,0 +1,109 @@
+[
+{
+  "model": "users.manager",
+  "pk": 1,
+  "fields": {
+    "user": 1
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 1,
+  "fields": {
+    "user": 3,
+    "position": "Product Manager",
+    "grade": "Senior",
+    "head": 1
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 2,
+  "fields": {
+    "user": 4,
+    "position": "Project Manager",
+    "grade": "Senior",
+    "head": 1
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 3,
+  "fields": {
+    "user": 5,
+    "position": "Software Developer",
+    "grade": "Junior",
+    "head": 1
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 4,
+  "fields": {
+    "user": 6,
+    "position": "Software Developer",
+    "grade": "Middle",
+    "head": 1
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 5,
+  "fields": {
+    "user": 7,
+    "position": "Software Developer",
+    "grade": "Junior",
+    "head": 1
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 6,
+  "fields": {
+    "user": 8,
+    "position": "QA Engineer",
+    "grade": "Senior",
+    "head": 1
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 7,
+  "fields": {
+    "user": 9,
+    "position": "QA Engineer",
+    "grade": "Middle",
+    "head": 1
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 8,
+  "fields": {
+    "user": 10,
+    "position": "UI/UX Designer",
+    "grade": "Senior",
+    "head": 1
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 9,
+  "fields": {
+    "user": 11,
+    "position": "UI/UX Designer",
+    "grade": "Junior",
+    "head": 1
+  }
+},
+{
+  "model": "users.employee",
+  "pk": 10,
+  "fields": {
+    "user": 12,
+    "position": "UI/UX Designer",
+    "grade": "Senior",
+    "head": 1
+  }
+}
+]

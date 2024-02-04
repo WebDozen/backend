@@ -150,8 +150,6 @@ class IDPViewSet(viewsets.ModelViewSet):
                 task__isnull=True
             ).prefetch_related('task')
         else:
-            print('else')
-            print(self.request.user.id)
             return IDP.objects.filter(
                 employee=employee,
                 mentor=current_user.employee_profile

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 
 from users.models import Manager, Employee, User, MentorEmployee
 
@@ -33,11 +34,11 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 
 @admin.register(User)
-class CustomUserAdmin(admin.ModelAdmin):
+class CustomUserAdmin(UserAdmin):
     list_display = (
         'id',
-        'first_name',
         'last_name',
+        'first_name',
         'get_role',
         'position',
         'grade'
@@ -46,6 +47,16 @@ class CustomUserAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
+        ('Personal info', {'fields': (
+            'first_name',
+            'middle_name',
+            'last_name'
+        )}),
+        ('Role', {'fields': ('role',)})
+    )
+
+    add_fieldsets = (
+        (None, {'fields': ('username', 'password1', 'password2')}),
         ('Personal info', {'fields': (
             'first_name',
             'middle_name',
@@ -81,8 +92,3 @@ class CustomUserAdmin(admin.ModelAdmin):
             )
 
         return inline_instances
-
-    def save_model(self, request, obj, form, change):
-        obj.set_password(obj.password)
-        obj.save()
-        super().save_model(request, obj, form, change)
