@@ -6,11 +6,15 @@ from django.utils import timezone
 from users.models import Employee, Manager, User
 
 
+MAX_LENGTH_BIG = 200
+MAX_LENGTH_SMALL = 50
+
+
 class StatusIDP(models.Model):
     """Модель для статусов ИПР"""
     name = models.CharField(
         verbose_name='Название',
-        max_length=50,
+        max_length=MAX_LENGTH_SMALL,
     )
     slug = models.SlugField(
         verbose_name='Слаг статуса',
@@ -53,7 +57,7 @@ class IDP(models.Model):
     )
     name = models.CharField(
         verbose_name='Название',
-        max_length=200,
+        max_length=MAX_LENGTH_BIG,
         null=True,
         blank=True,
     )
@@ -99,10 +103,10 @@ class IDP(models.Model):
             )
         if self.mentor == self.employee:
             raise ValidationError('Сотрудник не может быть своим ментором.')
-        # if self.deadline and self.deadline < timezone.now():
-        #     raise ValidationError(
-        #         'Срок выполнения не может быть меньше текущей даты'
-        #     )
+        if self.deadline and self.deadline < timezone.now():
+            raise ValidationError(
+                'Срок выполнения не может быть меньше текущей даты'
+            )
 
     def save(self, *args, **kwargs):
         self.clean()
@@ -118,7 +122,7 @@ class StatusTask(models.Model):
     """Модель для статусов задач"""
     name = models.CharField(
         verbose_name='Название',
-        max_length=50,
+        max_length=MAX_LENGTH_SMALL,
     )
     slug = models.SlugField(
         verbose_name='Слаг статуса',
@@ -139,7 +143,7 @@ class TypeTask(models.Model):
     """Модель для типов задач"""
     name = models.CharField(
         verbose_name='Название',
-        max_length=200,
+        max_length=MAX_LENGTH_SMALL,
     )
     slug = models.SlugField(
         verbose_name='Слаг типа',
@@ -170,14 +174,14 @@ class Task(models.Model):
     )
     name = models.CharField(
         verbose_name='Название',
-        max_length=200,
+        max_length=MAX_LENGTH_BIG,
     )
     description = models.TextField(
         verbose_name='Подробное описание',
     )
     source = models.CharField(
         verbose_name='Источник',
-        max_length=200,
+        max_length=MAX_LENGTH_BIG,
     )
     status = models.ForeignKey(
         StatusTask,
