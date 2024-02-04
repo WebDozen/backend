@@ -12,9 +12,18 @@ class User(AbstractUser):
         MANAGER = 'manager'
         EMPLOYEE = 'employee'
 
-    first_name = models.CharField(max_length=MAX_LENGTH)
-    middle_name = models.CharField(max_length=MAX_LENGTH)
-    last_name = models.CharField(max_length=MAX_LENGTH)
+    first_name = models.CharField(
+        max_length=MAX_LENGTH,
+        verbose_name='Имя'
+    )
+    middle_name = models.CharField(
+        max_length=MAX_LENGTH,
+        verbose_name='Отчество'
+    )
+    last_name = models.CharField(
+        max_length=MAX_LENGTH,
+        verbose_name='Фамилия'
+    )
     role = models.CharField(
         max_length=MAX_LENGTH,
         choices=Role.choices,

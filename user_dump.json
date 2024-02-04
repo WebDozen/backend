@@ -1,0 +1,338 @@
+[
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$kt9LnXMsJQlaxWnFdeAafG$HZgvnld8p38gioz+NpW0vG4YnTOENjTcCiy5uQbMQ2g=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "boss",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-02-04T14:10:34.712Z",
+    "first_name": "Руководитель",
+    "middle_name": "Боссович",
+    "last_name": "Начальников",
+    "role": "manager",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$ZQVBeZlrlcF156E0kflvgA$0i0VjbDgsB++oCqfb/sa8HrCMgDL74ozpkjWpMmPkEI=",
+    "last_login": "2024-02-04T16:38:12.087Z",
+    "is_superuser": true,
+    "username": "admin",
+    "email": "a@a.ru",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-02-04T14:08:05.541Z",
+    "first_name": "",
+    "middle_name": "",
+    "last_name": "",
+    "role": "manager",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$c8V7yB28hzMnL6kMuGeFML$gve7yIhv2SbPMO0Gf/kBhiK8Q69hRxWxar5YQK1FSi8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "ivanov",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-02-04T14:12:02.412Z",
+    "first_name": "Сергей",
+    "middle_name": "Николаевич",
+    "last_name": "Иванов",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$KWSDV0hydi9InPqhtOZm9k$GfmDzTkgiP83vABhVPkCwW0NtCUgX2NQluW3S+DJf6w=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "smirnova",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-02-04T14:12:53.666Z",
+    "first_name": "Ольга",
+    "middle_name": "Николаевна",
+    "last_name": "Смирнова",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$1NhApVpaZNH6ALu0SAD9IW$z3k+XOlIJlk8LgYcfFIAKPDVpwoAs7do3cfwUNknLRs=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "kuznetsov",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-02-04T14:14:20.754Z",
+    "first_name": "Максим",
+    "middle_name": "Максимович",
+    "last_name": "Кузнецов",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$wCtkPY3OACLvYKnbwYdeqj$5aJ2edo4fAvypolQE4AewaoWMSwwiJc0F5ysTBtfulI=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "popov",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-02-04T14:16:01.262Z",
+    "first_name": "Дмитрий",
+    "middle_name": "Алексеевич",
+    "last_name": "Попов",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$DcwrqXvg6gNnsqOHcORhTF$nh2rS9UqSGK0pICLgBXfucL2+x72aDXfw+BhMQLXIls=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "vasilev",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-02-04T14:17:02.043Z",
+    "first_name": "Андрей",
+    "middle_name": "Максимович",
+    "last_name": "Васильев",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$zn50TJef8ns5HP07eSSI4N$m0ucky/sFmOYtnNLGHqcpzJEKMipLhlyGBijj9iYO8g=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "petrov",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-02-04T14:18:25.871Z",
+    "first_name": "Сергей",
+    "middle_name": "Максимович",
+    "last_name": "Петров",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$ZkWSU2PIbwYiXwivKY8Mag$ASVoBSNE3jHew+DZUJJvz0INuxzBjFvhLa2pbHt8/AA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "sokolov",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-02-04T14:18:58.020Z",
+    "first_name": "Максим",
+    "middle_name": "Максимович",
+    "last_name": "Соколов",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$Tep9Um2fhB4EsibL8EXs7Y$rz7zEo6xfUaCFUlwpiP26NQZabAPzETx3t9f38HFVt0=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "mihailov",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-02-04T14:19:42.032Z",
+    "first_name": "Алексей",
+    "middle_name": "Петрович",
+    "last_name": "Михайлов",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$th9CLR1J1iMdkHUj5sguG2$9DqRNmN67at8b0QcXVKYrKSsOeADhtkxIQbzcQhjIqQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "novikov",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-02-04T14:20:18.288Z",
+    "first_name": "Иван",
+    "middle_name": "Дмитриевич",
+    "last_name": "Новиков",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 12,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$jpyIzjb6nPYeKRDu9deThb$jZ5f+d06osa0e7dEk5V7cA590TMky7pjQkvadnxhOn4=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "fedorova",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-02-04T14:20:59.052Z",
+    "first_name": "Ирина",
+    "middle_name": "Николаевна",
+    "last_name": "Федорова",
+    "role": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "07dd378c587d55c3375560e270f17b756000ad34",
+  "fields": {
+    "user": 6,
+    "created": "2024-02-04T16:39:32.658Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "23679d62474620894b2e9a96bf8d50d559383aab",
+  "fields": {
+    "user": 3,
+    "created": "2024-02-04T16:39:17.120Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "4394ebbadbc2067dd9368baba525e48e2cf7ac04",
+  "fields": {
+    "user": 9,
+    "created": "2024-02-04T16:39:51.816Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "572ba6853db950318ff867bfd3814fd2149235b7",
+  "fields": {
+    "user": 10,
+    "created": "2024-02-04T16:39:57.433Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "57f011d69f89cf31569f0fe58dd3ab340853271e",
+  "fields": {
+    "user": 4,
+    "created": "2024-02-04T16:39:22.682Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "64cedf72b2567c000d0679bc30ae3b6d31e433f2",
+  "fields": {
+    "user": 1,
+    "created": "2024-02-04T16:39:10.509Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "7186efa0d05ef08d6a421b7bd6f1836d1ffa0da5",
+  "fields": {
+    "user": 7,
+    "created": "2024-02-04T16:39:38.141Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "7f249b08bbe2f61922657cd53b9a2be7224e0f82",
+  "fields": {
+    "user": 12,
+    "created": "2024-02-04T16:40:07.742Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "c972ae6ea8fcc0841a32398557f128970edf871b",
+  "fields": {
+    "user": 2,
+    "created": "2024-02-04T16:37:28.970Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "caab0dde61b913dfc31f8504a4052d83264d175d",
+  "fields": {
+    "user": 8,
+    "created": "2024-02-04T16:39:43.751Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "e75d8b55fa4bebc48245290ca4a9aab11a99cd69",
+  "fields": {
+    "user": 11,
+    "created": "2024-02-04T16:40:02.552Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "f9012b41b0762c2672ba1cdc08a28e894a978bae",
+  "fields": {
+    "user": 5,
+    "created": "2024-02-04T16:39:27.463Z"
+  }
+}
+]

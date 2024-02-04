@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 
 from users.models import Employee, Manager, MentorEmployee, User
 
@@ -33,12 +34,29 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 
 @admin.register(User)
-class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'first_name', 'last_name', 'get_role')
+class CustomUserAdmin(UserAdmin):
+    list_display = (
+        'id',
+        'last_name',
+        'first_name',
+        'get_role',
+        'position',
+        'grade'
+    )
     ordering = ('last_name',)
 
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
+        ('Personal info', {'fields': (
+            'first_name',
+            'middle_name',
+            'last_name'
+        )}),
+        ('Role', {'fields': ('role',)})
+    )
+
+    add_fieldsets = (
+        (None, {'fields': ('username', 'password1', 'password2')}),
         ('Personal info', {'fields': (
             'first_name',
             'middle_name',
@@ -55,6 +73,16 @@ class CustomUserAdmin(admin.ModelAdmin):
             return "Сотрудник"
         return "Пользователь"
 
+    @admin.display(description='Должность')
+    def position(self, obj):
+        if obj.role == 'employee':
+            return obj.employee_profile.position
+
+    @admin.display(description='Грейд')
+    def grade(self, obj):
+        if obj.role == 'employee':
+            return obj.employee_profile.grade
+
     def get_inline_instances(self, request, obj=None):
         inline_instances = super().get_inline_instances(request, obj)
 
@@ -64,7 +92,3 @@ class CustomUserAdmin(admin.ModelAdmin):
             )
 
         return inline_instances
-
-    def save_model(self, request, obj, form, change):
-        obj.set_password(obj.password)
-        super().save_model(request, obj, form, change)

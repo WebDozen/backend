@@ -99,10 +99,10 @@ class IDP(models.Model):
             )
         if self.mentor == self.employee:
             raise ValidationError('Сотрудник не может быть своим ментором.')
-        if self.deadline and self.deadline < timezone.now():
-            raise ValidationError(
-                'Срок выполнения не может быть меньше текущей даты'
-            )
+        # if self.deadline and self.deadline < timezone.now():
+        #     raise ValidationError(
+        #         'Срок выполнения не может быть меньше текущей даты'
+        #     )
 
     def save(self, *args, **kwargs):
         self.clean()
