@@ -13,7 +13,7 @@ services:
       - pg_data:/var/lib/postgresql/data
   
   backend:
-    build: backend/
+    build: .
     env_file: .env
     volumes:
       - static:/backend_static
@@ -27,7 +27,7 @@ services:
       - "6379:6379"
 
   nginx:
-    image: zalgan/alfa_people_nginx
+    build: nginx/
     env_file: .env
     ports:
       - "8000:80"
