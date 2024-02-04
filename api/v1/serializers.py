@@ -378,7 +378,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
         }
     })
     def get_idp(self, obj):
-        idps = obj.IDP.all()
+        idps = obj.IDP.exclude(task__isnull=True)
         latest_idp = idps.last() if idps.exists() else None
         total_idp_count = idps.count()
         if latest_idp:
