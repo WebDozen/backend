@@ -137,12 +137,13 @@ class IDPViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         employee_id = self.kwargs.get('employee_id')
         employee = get_object_or_404(Employee, id=employee_id)
+        current_user = self.request.user
 
-        if self.request.user.role == 'manager':
+        if current_user.role == 'manager':
             return IDP.objects.filter(
                 employee=employee
             ).prefetch_related('task')
-        elif self.request.user.id == employee.id:
+        elif current_user.employee_profile == employee:
             return IDP.objects.filter(
                 employee=employee
             ).exclude(
@@ -151,7 +152,7 @@ class IDPViewSet(viewsets.ModelViewSet):
         else:
             return IDP.objects.filter(
                 employee=employee,
-                mentor=self.request.user.id
+                mentor=current_user.employee_profile
             ).prefetch_related('task')
 
     def get_serializer_context(self):
