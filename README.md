@@ -1,4 +1,4 @@
-# MVP Alfa People сервис ИПР (backend)
+# MVP Alfa People сервис ИПР (backend) Команда 12
 
 ## Описание проекта
 
