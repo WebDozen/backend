@@ -1,12 +1,12 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
-
+from django.db import models
 
 MAX_LENGTH = 64
 
 
 class User(AbstractUser):
+    """Модель пользователя"""
 
     class Role(models.TextChoices):
         MANAGER = 'manager'
@@ -20,10 +20,6 @@ class User(AbstractUser):
         choices=Role.choices,
         default=Role.EMPLOYEE
     )
-    # username = None
-    # email = models.EmailField(unique=True)
-    # REQUIRED_FIELDS = ['first_name', 'middle_name', 'last_name']
-    # USERNAME_FIELD = 'email'
 
     class Meta:
         verbose_name = 'Пользователь'

@@ -1,13 +1,12 @@
 # from datetime import timedelta
 from celery import shared_task
 from celery.schedules import crontab
-from django.utils import timezone
-from alfa_people.celery import app as celery_app
 from celery.utils.log import get_task_logger
-from django.db.models import Max, F, OuterRef, Subquery
+from django.db.models import F, Max, OuterRef, Subquery
+from django.utils import timezone
 
+from alfa_people.celery import app as celery_app
 from plans.models import IDP, StatusIDP
-
 
 logger = get_task_logger(__name__)
 
