@@ -1,19 +1,11 @@
-from django.utils import timezone
-from rest_framework import serializers
-from drf_spectacular.utils import (
-    extend_schema_field
-)
 from django.contrib.auth import get_user_model
+from django.utils import timezone
+from drf_spectacular.utils import extend_schema_field
+from rest_framework import serializers
 
+from plans.models import (IDP, IdpComment, StatusIDP, StatusTask, Task,
+                          TaskComment)
 from users.models import Employee, Manager
-from plans.models import (
-    IDP,
-    IdpComment,
-    StatusTask,
-    Task,
-    StatusIDP,
-    TaskComment
-)
 
 User = get_user_model()
 
@@ -490,6 +482,7 @@ class TaskStatusUpdateSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """Сериализатор пользователя"""
 
     last_name = serializers.ReadOnlyField(source='user.last_name')
     first_name = serializers.ReadOnlyField(source='user.first_name')
@@ -506,7 +499,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class IDPCommentSerializer(serializers.ModelSerializer):
-
+    """Сериализатор комментариев к ИПР"""
     author = serializers.SerializerMethodField()
 
     class Meta:
@@ -537,7 +530,7 @@ class IDPCommentSerializer(serializers.ModelSerializer):
 
 
 class TaskCommentSerializer(serializers.ModelSerializer):
-
+    """Сериализатор комментариев к задаче"""
     author = serializers.SerializerMethodField()
 
     class Meta:

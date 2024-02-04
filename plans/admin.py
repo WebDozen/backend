@@ -1,14 +1,7 @@
 from django.contrib import admin
 
-from plans.models import (
-    IDP,
-    IdpComment,
-    StatusIDP,
-    Task,
-    TaskComment,
-    TypeTask,
-    StatusTask
-)
+from plans.models import (IDP, IdpComment, StatusIDP, StatusTask, Task,
+                          TaskComment, TypeTask)
 
 
 class TaskInlines(admin.StackedInline):

@@ -1,8 +1,8 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import BasePermission
 
-from users.models import Employee
 from plans.models import IDP, Task
+from users.models import Employee, Manager, MentorEmployee
 
 
 class IsManagerIDP(BasePermission):
@@ -59,6 +59,10 @@ class IsMentorIDP(BasePermission):
 
 
 class IsManagerandEmployee(BasePermission):
+    """
+    Является ли пользователь руководителем
+    или исполнителем ИПР
+    """
     def has_permission(self, request, view):
         if request.user.is_authenticated:
             if hasattr(request.user, 'manager_profile'):
@@ -79,8 +83,11 @@ class IsManagerandEmployee(BasePermission):
         return False
 
 
-class IsEmployeeIDPExecutor(IsEmployeeIDP):
-    """Является ли пользователь исполнителем ИПР"""
+class IsEmployeeIDPExecutorMentorOrManager(IsEmployeeIDP):
+    """
+    Является ли пользователь исполнителем ИПР,
+    ментором или руководителем
+    """
 
     def check_permission(self, user, employee):
         if not hasattr(user, 'employee_profile'):
@@ -91,7 +98,25 @@ class IsEmployeeIDPExecutor(IsEmployeeIDP):
         idp_id = view.kwargs.get('idp_id')
         idp = get_object_or_404(IDP, id=idp_id)
         employee = idp.employee
-        return self.check_permission(request.user, employee)
+        if request.data['status_slug'] in ['open']:
+            try:
+                mentor = MentorEmployee.objects.get(
+                    mentee=employee
+                ).mentor
+                if mentor.user == request.user:
+                    return True
+            except MentorEmployee.DoesNotExist:
+                pass
+
+            try:
+                head = Manager.objects.get(user=request.user)
+                if head == employee.head:
+                    return True
+            except Manager.DoesNotExist:
+                pass
+            return False
+        else:
+            return self.check_permission(request.user, employee)
 
 
 class Comments(BasePermission):

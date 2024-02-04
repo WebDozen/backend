@@ -1,14 +1,9 @@
 from django.test import TestCase
 from django.utils import timezone
-from plans.models import (
-    Execution_status,
-    IDP,
-    Type_task,
-    Task,
-    idp_comment,
-    task_comment
-    )
-from users.models import Manager, Employee, User
+
+from plans.models import (IDP, Execution_status, Task, Type_task, idp_comment,
+                          task_comment)
+from users.models import Employee, Manager, User
 
 
 class BaseTestCase(TestCase):

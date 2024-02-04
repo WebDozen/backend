@@ -1,12 +1,13 @@
-from django.utils import timezone
-from django.db import models
 from colorfield.fields import ColorField
 from django.core.exceptions import ValidationError
+from django.db import models
+from django.utils import timezone
 
 from users.models import Employee, Manager, User
 
 
 class StatusIDP(models.Model):
+    """Модель для статусов ИПР"""
     name = models.CharField(
         verbose_name='Название',
         max_length=50,
@@ -27,6 +28,7 @@ class StatusIDP(models.Model):
 
 
 class IDP(models.Model):
+    """Модель ИПР"""
     author = models.ForeignKey(
         Manager,
         on_delete=models.SET_NULL,
@@ -113,6 +115,7 @@ class IDP(models.Model):
 
 
 class StatusTask(models.Model):
+    """Модель для статусов задач"""
     name = models.CharField(
         verbose_name='Название',
         max_length=50,
@@ -133,6 +136,7 @@ class StatusTask(models.Model):
 
 
 class TypeTask(models.Model):
+    """Модель для типов задач"""
     name = models.CharField(
         verbose_name='Название',
         max_length=200,
@@ -151,6 +155,7 @@ class TypeTask(models.Model):
 
 
 class Task(models.Model):
+    """Модель задач"""
     idp = models.ForeignKey(
         IDP,
         on_delete=models.CASCADE,
@@ -204,6 +209,7 @@ class Task(models.Model):
 
 
 class Comments(models.Model):
+    """Абстрактная модель комментариев"""
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -223,6 +229,7 @@ class Comments(models.Model):
 
 
 class IdpComment(Comments):
+    """Модель комментариев к ИПР"""
     idp = models.ForeignKey(
         IDP,
         on_delete=models.CASCADE,
@@ -239,6 +246,7 @@ class IdpComment(Comments):
 
 
 class TaskComment(Comments):
+    """Модель комментариев к задаче"""
     task = models.ForeignKey(
         Task,
         on_delete=models.CASCADE,

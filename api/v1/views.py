@@ -1,47 +1,25 @@
-from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
-from rest_framework import (
-    viewsets,
-    status,
-    mixins,
-    serializers
-)
-from rest_framework.permissions import IsAuthenticated
+from drf_spectacular.utils import (OpenApiParameter, extend_schema,
+                                   extend_schema_view, inline_serializer)
+from rest_framework import mixins, serializers, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import PermissionDenied
-
-from drf_spectacular.utils import (
-    extend_schema_view,
-    extend_schema,
-    OpenApiParameter,
-    inline_serializer
-)
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 from api.tasks import determine_status_idp_by_task
-from .permissions import (
-    Comments,
-    IsManagerIDP,
-    IsMentorIDP,
-    IsEmployeeIDP,
-    IsManagerandEmployee,
-    IsEmployeeIDPExecutor
-)
+from plans.models import IDP, StatusTask, Task
 from users.models import Employee, Manager
-from plans.models import IDP, Task, StatusTask
-from .serializers import (
-    IDPCommentSerializer,
-    IDPCreateAndUpdateSerializer,
-    IDPSerializer,
-    IDPDetailSerializer,
-    EmployeeSerializer,
-    HeadStatisticSerializer,
-    StatusTaskSerializer,
-    TaskCommentSerializer,
-    TaskStatusUpdateSerializer,
-    IDPStatusUpdateSerializer,
-    StatusIDPSerializer,
-    TaskSerializer
-)
+
+from .permissions import (Comments, IsEmployeeIDP,
+                          IsEmployeeIDPExecutorMentorOrManager,
+                          IsManagerandEmployee, IsManagerIDP, IsMentorIDP)
+from .serializers import (EmployeeSerializer, HeadStatisticSerializer,
+                          IDPCommentSerializer, IDPCreateAndUpdateSerializer,
+                          IDPDetailSerializer, IDPSerializer,
+                          IDPStatusUpdateSerializer, StatusIDPSerializer,
+                          StatusTaskSerializer, TaskCommentSerializer,
+                          TaskSerializer, TaskStatusUpdateSerializer)
 
 
 @extend_schema(tags=['ИПР'])
@@ -116,6 +94,7 @@ from .serializers import (
     ),
 )
 class IDPViewSet(viewsets.ModelViewSet):
+    """Вьюсет для ИПР"""
     http_method_names = ['get', 'post', 'patch']
     permission_classes = [
         IsManagerIDP
@@ -272,6 +251,7 @@ class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
     )
 )
 class HeadStatisticViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+    """Вьюсет для статистики руководителя"""
     serializer_class = HeadStatisticSerializer
     permission_classes = [IsManagerandEmployee]
 
@@ -288,8 +268,9 @@ class HeadStatisticViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
 @extend_schema(tags=['Статус задачи'])
 class TaskStatusChangeViewSet(viewsets.ViewSet):
+    """Вьюсет для изменения статуса задачи"""
     serializer_class = TaskSerializer
-    permission_classes = [IsEmployeeIDPExecutor]
+    permission_classes = [IsEmployeeIDPExecutorMentorOrManager]
     queryset = Task.objects.all()
 
     @extend_schema(
@@ -318,6 +299,7 @@ class TaskStatusChangeViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['patch'])
     def status(self, request, idp_id, task_id):
         """Изменение статуса задачи."""
+
         new_status_slug = request.data['status_slug']
         new_status_id = get_object_or_404(StatusTask, slug=new_status_slug).id
         task = get_object_or_404(Task, idp=idp_id, id=task_id)
