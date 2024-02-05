@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.db.models import Max
 from django.contrib.auth import get_user_model
-from django.db.models import Max
 from django.utils import timezone
 from drf_spectacular.utils import extend_schema_field
 from rest_framework import serializers
@@ -368,6 +367,17 @@ class EmployeeSerializer(serializers.ModelSerializer):
             False)
         super().__init__(*args, **kwargs)
 
+    def filter_idps(self, idps):
+        """Фильтрует ИПР в зависимости от роли пользователя"""
+        user = self.context['request'].user
+
+        if user.role == 'manager' or (
+            idps.exists() and idps.last().mentor == user.employee_profile
+        ):
+            return idps
+        else:
+            return idps.exclude(task__isnull=True)
+
     @extend_schema_field({
         'type': 'object',
         'properties': {
@@ -380,7 +390,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
         }
     })
     def get_idp(self, obj):
-        idps = obj.IDP.exclude(task__isnull=True)
+        idps = self.filter_idps(obj.IDP.all())
         latest_idp = idps.last() if idps.exists() else None
         total_idp_count = idps.count()
         if latest_idp:
@@ -408,12 +418,15 @@ class EmployeeSerializer(serializers.ModelSerializer):
         }
 
     def get_mentor(self, obj) -> bool:
-        latest_idp = obj.IDP.last()
+        """Проверяет, есть ли ментор у последнего ИПР пользователя"""
+        idps = self.filter_idps(obj.IDP.all())
+        latest_idp = idps.last() if idps.exists() else None
         if latest_idp:
             return bool(latest_idp.mentor)
         return False
 
     def get_is_mentor(self, obj) -> bool:
+        """Проверяет, является ли сотрудник ментором"""
         return obj.IDP_mentor.exists()
 
 

@@ -228,13 +228,20 @@ class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
                     'У вас нет прав доступа к этому ресурсу.'
                 )
 
-        serializer = self.serializer_class(queryset, many=True)
+        serializer = self.serializer_class(
+            queryset,
+            many=True,
+            context={'request': request}
+        )
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         self.check_object_permissions(request, instance)
-        serializer = self.serializer_class(instance)
+        serializer = self.serializer_class(
+            instance,
+            context={'request': request}
+        )
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def get_subordinates(self, manager):
