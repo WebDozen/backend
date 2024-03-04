@@ -1,0 +1,5 @@
+[
+    {"id": 1, "name": "Открыта", "slug": "open"},
+    {"id": 2, "name": "В работе", "slug": "in_progress"},
+    {"id": 3, "name": "Выполнена", "slug": "completed"}
+]

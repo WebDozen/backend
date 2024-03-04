@@ -1,33 +1,41 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
-
+from django.db import models
 
 MAX_LENGTH = 64
 
 
 class User(AbstractUser):
+    """Модель пользователя"""
 
     class Role(models.TextChoices):
         MANAGER = 'manager'
         EMPLOYEE = 'employee'
 
-    first_name = models.CharField(max_length=MAX_LENGTH)
-    middle_name = models.CharField(max_length=MAX_LENGTH)
-    last_name = models.CharField(max_length=MAX_LENGTH)
+    first_name = models.CharField(
+        max_length=MAX_LENGTH,
+        verbose_name='Имя'
+    )
+    middle_name = models.CharField(
+        max_length=MAX_LENGTH,
+        verbose_name='Отчество'
+    )
+    last_name = models.CharField(
+        max_length=MAX_LENGTH,
+        verbose_name='Фамилия'
+    )
     role = models.CharField(
         max_length=MAX_LENGTH,
         choices=Role.choices,
         default=Role.EMPLOYEE
     )
-    # username = None
-    # email = models.EmailField(unique=True)
-    # REQUIRED_FIELDS = ['first_name', 'middle_name', 'last_name']
-    # USERNAME_FIELD = 'email'
 
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
+
+    def __str__(self):
+        return f'{self.username}'
 
 
 class Manager(models.Model):
@@ -41,6 +49,9 @@ class Manager(models.Model):
     class Meta:
         verbose_name = 'Руководитель'
         verbose_name_plural = 'Руководители'
+
+    def __str__(self):
+        return f'{self.user.username}'
 
 
 class Employee(models.Model):
@@ -57,6 +68,9 @@ class Employee(models.Model):
     class Meta:
         verbose_name = 'Сотрудник'
         verbose_name_plural = 'Сотрудники'
+
+    def __str__(self):
+        return f'{self.user.username}'
 
 
 class MentorEmployee(models.Model):

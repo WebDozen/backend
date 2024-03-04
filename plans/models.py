@@ -1,13 +1,20 @@
-from django.db import models
 from colorfield.fields import ColorField
+from django.core.exceptions import ValidationError
+from django.db import models
+from django.utils import timezone
 
 from users.models import Employee, Manager, User
 
 
+MAX_LENGTH_BIG = 200
+MAX_LENGTH_SMALL = 50
+
+
 class StatusIDP(models.Model):
+    """Модель для статусов ИПР"""
     name = models.CharField(
         verbose_name='Название',
-        max_length=50,
+        max_length=MAX_LENGTH_SMALL,
     )
     slug = models.SlugField(
         verbose_name='Слаг статуса',
@@ -25,6 +32,7 @@ class StatusIDP(models.Model):
 
 
 class IDP(models.Model):
+    """Модель ИПР"""
     author = models.ForeignKey(
         Manager,
         on_delete=models.SET_NULL,
@@ -39,15 +47,29 @@ class IDP(models.Model):
         related_name='IDP',
         verbose_name='Сотрудник',
     )
+    mentor = models.ForeignKey(
+        Employee,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='IDP_mentor',
+        verbose_name='Ментор',
+    )
     name = models.CharField(
         verbose_name='Название',
-        max_length=200,
+        max_length=MAX_LENGTH_BIG,
+        null=True,
+        blank=True,
     )
     description = models.TextField(
         verbose_name='Подробное описание',
+        null=True,
+        blank=True,
     )
     deadline = models.DateTimeField(
-        verbose_name='Срок выполнения'
+        verbose_name='Срок выполнения',
+        null=True,
+        blank=True,
     )
     status = models.ForeignKey(
         StatusIDP,
@@ -56,10 +78,6 @@ class IDP(models.Model):
         verbose_name='Статус исполнения',
         blank=True,
         null=True,
-    )
-    message = models.TextField(
-        verbose_name='Мотивационное сообщение',
-        blank=True
     )
     pub_date = models.DateTimeField(
         verbose_name='Дата создания',
@@ -72,7 +90,26 @@ class IDP(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+    def clean(self):
+        if self.employee.head != self.author:
+            raise ValidationError(
+                'Руководитель не может назначить ИПР работнику, '
+                'который не является его сотрудником.'
+            )
+        if self.mentor and self.mentor.head != self.author:
+            raise ValidationError(
+                'Руководитель не может назначить ментора, '
+                'который не является его сотрудником.'
+            )
+        if self.mentor == self.employee:
+            raise ValidationError('Сотрудник не может быть своим ментором.')
+        if self.deadline and self.deadline < timezone.now():
+            raise ValidationError(
+                'Срок выполнения не может быть меньше текущей даты'
+            )
+
     def save(self, *args, **kwargs):
+        self.clean()
         if not self.status:
             default_status_slug = 'open'
             self.status, created = StatusIDP.objects.get_or_create(
@@ -82,9 +119,10 @@ class IDP(models.Model):
 
 
 class StatusTask(models.Model):
+    """Модель для статусов задач"""
     name = models.CharField(
         verbose_name='Название',
-        max_length=50,
+        max_length=MAX_LENGTH_SMALL,
     )
     slug = models.SlugField(
         verbose_name='Слаг статуса',
@@ -102,9 +140,10 @@ class StatusTask(models.Model):
 
 
 class TypeTask(models.Model):
+    """Модель для типов задач"""
     name = models.CharField(
         verbose_name='Название',
-        max_length=200,
+        max_length=MAX_LENGTH_SMALL,
     )
     slug = models.SlugField(
         verbose_name='Слаг типа',
@@ -120,6 +159,7 @@ class TypeTask(models.Model):
 
 
 class Task(models.Model):
+    """Модель задач"""
     idp = models.ForeignKey(
         IDP,
         on_delete=models.CASCADE,
@@ -134,10 +174,14 @@ class Task(models.Model):
     )
     name = models.CharField(
         verbose_name='Название',
-        max_length=200,
+        max_length=MAX_LENGTH_BIG,
     )
     description = models.TextField(
         verbose_name='Подробное описание',
+    )
+    source = models.CharField(
+        verbose_name='Источник',
+        max_length=MAX_LENGTH_BIG,
     )
     status = models.ForeignKey(
         StatusTask,
@@ -169,6 +213,7 @@ class Task(models.Model):
 
 
 class Comments(models.Model):
+    """Абстрактная модель комментариев"""
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -188,6 +233,7 @@ class Comments(models.Model):
 
 
 class IdpComment(Comments):
+    """Модель комментариев к ИПР"""
     idp = models.ForeignKey(
         IDP,
         on_delete=models.CASCADE,
@@ -204,6 +250,7 @@ class IdpComment(Comments):
 
 
 class TaskComment(Comments):
+    """Модель комментариев к задаче"""
     task = models.ForeignKey(
         Task,
         on_delete=models.CASCADE,

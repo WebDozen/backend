@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from plans.models import IDP, StatusIDP, Task, TypeTask, StatusTask
+from plans.models import (IDP, IdpComment, StatusIDP, StatusTask, Task,
+                          TaskComment, TypeTask)
 
 
 class TaskInlines(admin.StackedInline):
@@ -11,13 +12,14 @@ class TaskInlines(admin.StackedInline):
 @admin.register(IDP)
 class IDPAdmin(admin.ModelAdmin):
     inlines = [TaskInlines,]
-    list_display = ('id', 'name')
-    pass
+    list_display = ('id', 'name', 'employee', 'mentor', 'deadline', 'status')
+    list_filter = ('employee', 'mentor',)
+    search_fields = ('employee', 'mentor',)
 
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
+    list_display = ('id', 'name', 'idp')
     pass
 
 
@@ -34,3 +36,13 @@ class StatusIDPAdmin(admin.ModelAdmin):
 @admin.register(StatusTask)
 class StatusTaskAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'slug')
+
+
+@admin.register(IdpComment)
+class IdpCommentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'idp')
+
+
+@admin.register(TaskComment)
+class TaskCommentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'task')

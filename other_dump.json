@@ -1,0 +1,2411 @@
+[
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2024-02-04T14:10:34.834Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "2",
+      "object_repr": "boss",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2024-02-04T14:12:02.528Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "3",
+      "object_repr": "ivanov",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2024-02-04T14:12:15.080Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "3",
+      "object_repr": "ivanov",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"ivanov\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+      "action_time": "2024-02-04T14:12:53.784Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "4",
+      "object_repr": "smirnova",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+      "action_time": "2024-02-04T14:13:07.170Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "4",
+      "object_repr": "smirnova",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"smirnova\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+      "action_time": "2024-02-04T14:14:20.873Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "5",
+      "object_repr": "kuznetsov",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+      "action_time": "2024-02-04T14:14:28.212Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "5",
+      "object_repr": "kuznetsov",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"kuznetsov\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+      "action_time": "2024-02-04T14:14:59.370Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "4",
+      "object_repr": "smirnova",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Middle name\", \"Last name\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+      "action_time": "2024-02-04T14:16:01.381Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "6",
+      "object_repr": "popov",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+      "action_time": "2024-02-04T14:16:08.491Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "6",
+      "object_repr": "popov",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"popov\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+      "action_time": "2024-02-04T14:17:02.160Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "7",
+      "object_repr": "vasilev",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+      "action_time": "2024-02-04T14:17:12.772Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "7",
+      "object_repr": "vasilev",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"vasilev\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+      "action_time": "2024-02-04T14:18:25.992Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "8",
+      "object_repr": "petrov",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+      "action_time": "2024-02-04T14:18:38.147Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "8",
+      "object_repr": "petrov",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"petrov\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+      "action_time": "2024-02-04T14:18:58.140Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "9",
+      "object_repr": "sokolov",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+      "action_time": "2024-02-04T14:19:04.890Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "9",
+      "object_repr": "sokolov",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"sokolov\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+      "action_time": "2024-02-04T14:19:42.155Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "10",
+      "object_repr": "mihailov",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+      "action_time": "2024-02-04T14:19:48.737Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "10",
+      "object_repr": "mihailov",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"mihailov\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+      "action_time": "2024-02-04T14:20:18.403Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "11",
+      "object_repr": "novikov",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+      "action_time": "2024-02-04T14:20:26.236Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "11",
+      "object_repr": "novikov",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"novikov\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+      "action_time": "2024-02-04T14:20:59.174Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "12",
+      "object_repr": "fedorova",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+      "action_time": "2024-02-04T14:21:07.624Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "12",
+      "object_repr": "fedorova",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"name\": \"\\u0421\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\", \"object\": \"fedorova\", \"fields\": [\"Position\", \"Grade\", \"Head\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+      "action_time": "2024-02-04T14:22:09.491Z",
+      "user": 1,
+      "content_type": 14,
+      "object_id": "1",
+      "object_repr": "Открыт",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+      "action_time": "2024-02-04T14:22:18.185Z",
+      "user": 1,
+      "content_type": 14,
+      "object_id": "2",
+      "object_repr": "В работе",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+      "action_time": "2024-02-04T14:22:26.776Z",
+      "user": 1,
+      "content_type": 14,
+      "object_id": "3",
+      "object_repr": "Ожидает ревью",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+      "action_time": "2024-02-04T14:22:34.267Z",
+      "user": 1,
+      "content_type": 14,
+      "object_id": "4",
+      "object_repr": "Выполнен",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+      "action_time": "2024-02-04T14:22:43.229Z",
+      "user": 1,
+      "content_type": 14,
+      "object_id": "5",
+      "object_repr": "Просрочен",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+      "action_time": "2024-02-04T14:22:50.377Z",
+      "user": 1,
+      "content_type": 14,
+      "object_id": "6",
+      "object_repr": "Отменен",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+      "action_time": "2024-02-04T14:23:01.255Z",
+      "user": 1,
+      "content_type": 15,
+      "object_id": "1",
+      "object_repr": "Открыта",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+      "action_time": "2024-02-04T14:23:10.143Z",
+      "user": 1,
+      "content_type": 15,
+      "object_id": "2",
+      "object_repr": "В работе",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+      "action_time": "2024-02-04T14:23:16.043Z",
+      "user": 1,
+      "content_type": 15,
+      "object_id": "3",
+      "object_repr": "Выполнена",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+      "action_time": "2024-02-04T14:36:19.478Z",
+      "user": 1,
+      "content_type": 18,
+      "object_id": "1",
+      "object_repr": "Альфа академия",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+      "action_time": "2024-02-04T14:36:31.895Z",
+      "user": 1,
+      "content_type": 18,
+      "object_id": "2",
+      "object_repr": "Курс",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+      "action_time": "2024-02-04T14:36:43.299Z",
+      "user": 1,
+      "content_type": 18,
+      "object_id": "3",
+      "object_repr": "Книга",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+      "action_time": "2024-02-04T14:39:22.593Z",
+      "user": 1,
+      "content_type": 18,
+      "object_id": "4",
+      "object_repr": "Другое",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+      "action_time": "2024-02-04T14:40:07.655Z",
+      "user": 1,
+      "content_type": 18,
+      "object_id": "5",
+      "object_repr": "Рабочая задача",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+      "action_time": "2024-02-04T14:45:15.581Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "1",
+      "object_repr": "Разработка стратегии продукта",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0410\\u043d\\u0430\\u043b\\u0438\\u0437 \\u0440\\u044b\\u043d\\u043a\\u0430\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041e\\u043f\\u0440\\u0435\\u0434\\u0435\\u043b\\u0435\\u043d\\u0438\\u0435 \\u0446\\u0435\\u043b\\u0435\\u0432\\u043e\\u0439 \\u0430\\u0443\\u0434\\u0438\\u0442\\u043e\\u0440\\u0438\\u0438\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u043f\\u043e\\u0437\\u0438\\u0446\\u0438\\u043e\\u043d\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u044f\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+      "action_time": "2024-02-04T14:46:56.202Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "2",
+      "object_repr": "Управление жизненным циклом продукта",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u043b\\u0430\\u043d\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 roadmap \\u043f\\u0440\\u043e\\u0434\\u0443\\u043a\\u0442\\u0430\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041e\\u043f\\u0442\\u0438\\u043c\\u0438\\u0437\\u0430\\u0446\\u0438\\u044f \\u043f\\u0440\\u043e\\u0446\\u0435\\u0441\\u0441\\u043e\\u0432 \\u0440\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0438\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0410\\u043d\\u0430\\u043b\\u0438\\u0437 \\u044d\\u0444\\u0444\\u0435\\u043a\\u0442\\u0438\\u0432\\u043d\\u043e\\u0441\\u0442\\u0438 \\u043f\\u0440\\u043e\\u0434\\u0443\\u043a\\u0442\\u0430\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+      "action_time": "2024-02-04T14:48:30.299Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "3",
+      "object_repr": "Инновации и развитие новых функций",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0418\\u0441\\u0441\\u043b\\u0435\\u0434\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u043d\\u043e\\u0432\\u044b\\u0445 \\u0442\\u0435\\u0445\\u043d\\u043e\\u043b\\u043e\\u0433\\u0438\\u0439\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u043a\\u043e\\u043d\\u0446\\u0435\\u043f\\u0442\\u0430 \\u043d\\u043e\\u0432\\u044b\\u0445 \\u0444\\u0443\\u043d\\u043a\\u0446\\u0438\\u0439\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0422\\u0435\\u0441\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0438 \\u0432\\u0430\\u043b\\u0438\\u0434\\u0430\\u0446\\u0438\\u044f\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+      "action_time": "2024-02-04T14:50:04.071Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "4",
+      "object_repr": "Оптимизация процессов разработки",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0410\\u043d\\u0430\\u043b\\u0438\\u0437 \\u0442\\u0435\\u043a\\u0443\\u0449\\u0438\\u0445 \\u043f\\u0440\\u043e\\u0446\\u0435\\u0441\\u0441\\u043e\\u0432\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u043f\\u043b\\u0430\\u043d\\u0430 \\u043e\\u043f\\u0442\\u0438\\u043c\\u0438\\u0437\\u0430\\u0446\\u0438\\u0438\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0418\\u043c\\u043f\\u043b\\u0435\\u043c\\u0435\\u043d\\u0442\\u0430\\u0446\\u0438\\u044f \\u0438 \\u043c\\u043e\\u043d\\u0438\\u0442\\u043e\\u0440\\u0438\\u043d\\u0433 \\u0438\\u0437\\u043c\\u0435\\u043d\\u0435\\u043d\\u0438\\u0439\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+      "action_time": "2024-02-04T14:53:42.649Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "5",
+      "object_repr": "Управление мультидисциплинарным проектом",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u043b\\u0430\\u043d\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u043f\\u0440\\u043e\\u0435\\u043a\\u0442\\u0430\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041a\\u043e\\u043e\\u0440\\u0434\\u0438\\u043d\\u0430\\u0446\\u0438\\u044f \\u043a\\u043e\\u043c\\u0430\\u043d\\u0434\\u044b\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0423\\u043f\\u0440\\u0430\\u0432\\u043b\\u0435\\u043d\\u0438\\u0435 \\u0440\\u0438\\u0441\\u043a\\u0430\\u043c\\u0438\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+      "action_time": "2024-02-04T14:56:57.218Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "6",
+      "object_repr": "Разработка стратегии цифровой трансформации",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0410\\u043d\\u0430\\u043b\\u0438\\u0437 \\u0442\\u0435\\u043a\\u0443\\u0449\\u0435\\u0433\\u043e \\u0441\\u043e\\u0441\\u0442\\u043e\\u044f\\u043d\\u0438\\u044f\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u0441\\u0442\\u0440\\u0430\\u0442\\u0435\\u0433\\u0438\\u0438\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0412\\u043d\\u0435\\u0434\\u0440\\u0435\\u043d\\u0438\\u0435 \\u0438 \\u0430\\u0434\\u0430\\u043f\\u0442\\u0430\\u0446\\u0438\\u044f\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+      "action_time": "2024-02-04T15:00:12.822Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "7",
+      "object_repr": "Изучение основ программирования на JavaScript",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0447\\u0438\\u0442\\u0430\\u0442\\u044c \\u0440\\u0430\\u0437\\u0434\\u0435\\u043b\\u044b 1-4 \\u0438\\u0437 \\u043a\\u043d\\u0438\\u0433\\u0438 '\\u0412\\u044b\\u0440\\u0430\\u0437\\u0438\\u0442\\u0435\\u043b\\u044c\\u043d\\u044b\\u0439 JavaScript'\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0412\\u044b\\u043f\\u043e\\u043b\\u043d\\u0438\\u0442\\u044c \\u0443\\u043f\\u0440\\u0430\\u0436\\u043d\\u0435\\u043d\\u0438\\u044f \\u043d\\u0430 Codecademy \\u043f\\u043e JavaScript\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u0430\\u0442\\u044c \\u043d\\u0435\\u0431\\u043e\\u043b\\u044c\\u0448\\u043e\\u0439 \\u043f\\u0440\\u043e\\u0435\\u043a\\u0442 \\u043a\\u0430\\u043b\\u044c\\u043a\\u0443\\u043b\\u044f\\u0442\\u043e\\u0440\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+      "action_time": "2024-02-04T15:02:11.611Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "8",
+      "object_repr": "Введение в верстку",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0439\\u0442\\u0438 \\u043a\\u0443\\u0440\\u0441 \\u043f\\u043e HTML \\u043d\\u0430 HTML Academ\\u0443\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0439\\u0442\\u0438 \\u043a\\u0443\\u0440\\u0441 \\u043f\\u043e CSS \\u043d\\u0430 HTML Academy\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0421\\u043e\\u0437\\u0434\\u0430\\u0442\\u044c \\u0432\\u0435\\u0431-\\u0441\\u0442\\u0440\\u0430\\u043d\\u0438\\u0446\\u0443 \\u043f\\u043e\\u0440\\u0442\\u0444\\u043e\\u043b\\u0438\\u043e\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 45,
+    "fields": {
+      "action_time": "2024-02-04T15:04:06.026Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "9",
+      "object_repr": "Основы работы с Git",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0418\\u0437\\u0443\\u0447\\u0438\\u0442\\u044c \\u043e\\u0441\\u043d\\u043e\\u0432\\u044b Git \\u043d\\u0430 Codecademy\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0421\\u043e\\u0437\\u0434\\u0430\\u0442\\u044c \\u0440\\u0435\\u043f\\u043e\\u0437\\u0438\\u0442\\u043e\\u0440\\u0438\\u0439 \\u043d\\u0430 GitHub\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 46,
+    "fields": {
+      "action_time": "2024-02-04T15:04:27.328Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "9",
+      "object_repr": "Основы работы с Git",
+      "action_flag": 2,
+      "change_message": "[{\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0414\\u043e\\u0431\\u0430\\u0432\\u0438\\u0442\\u044c \\u043f\\u0440\\u043e\\u0435\\u043a\\u0442 \\u043a\\u0430\\u043b\\u044c\\u043a\\u0443\\u043b\\u044f\\u0442\\u043e\\u0440\\u0430 \\u043d\\u0430 GitHub\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 47,
+    "fields": {
+      "action_time": "2024-02-04T15:09:26.957Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "10",
+      "object_repr": "Разработка RESTful API",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0418\\u0437\\u0443\\u0447\\u0435\\u043d\\u0438\\u0435 \\u043f\\u0440\\u0438\\u043d\\u0446\\u0438\\u043f\\u043e\\u0432 REST\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0435\\u0430\\u043b\\u0438\\u0437\\u0430\\u0446\\u0438\\u044f API \\u0434\\u043b\\u044f \\u0442\\u0435\\u043a\\u0443\\u0449\\u0435\\u0433\\u043e \\u043f\\u0440\\u043e\\u0435\\u043a\\u0442\\u0430\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0414\\u043e\\u043a\\u0443\\u043c\\u0435\\u043d\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 API\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 48,
+    "fields": {
+      "action_time": "2024-02-04T15:12:18.874Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "11",
+      "object_repr": "Изучение нового фреймворка",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041e\\u0441\\u043d\\u043e\\u0432\\u044b React.js\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u0442\\u0435\\u0441\\u0442\\u043e\\u0432\\u043e\\u0433\\u043e \\u043f\\u0440\\u0438\\u043b\\u043e\\u0436\\u0435\\u043d\\u0438\\u044f\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0418\\u043d\\u0442\\u0435\\u0433\\u0440\\u0430\\u0446\\u0438\\u044f React-\\u043a\\u043e\\u043c\\u043f\\u043e\\u043d\\u0435\\u043d\\u0442\\u043e\\u0432 \\u0432 \\u043f\\u0440\\u043e\\u0435\\u043a\\u0442\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 49,
+    "fields": {
+      "action_time": "2024-02-04T15:14:35.896Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "12",
+      "object_repr": "Улучшение навыков в работе с базами данных",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041a\\u0443\\u0440\\u0441 \\u043f\\u043e \\u043f\\u0440\\u043e\\u0434\\u0432\\u0438\\u043d\\u0443\\u0442\\u044b\\u043c \\u0432\\u043e\\u0437\\u043c\\u043e\\u0436\\u043d\\u043e\\u0441\\u0442\\u044f\\u043c PostgreSQL\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041e\\u0437\\u043d\\u0430\\u043a\\u043e\\u043c\\u043b\\u0435\\u043d\\u0438\\u0435 \\u0441 MongoDB\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u043c\\u0438\\u0433\\u0440\\u0430\\u0446\\u0438\\u0439 \\u0434\\u043b\\u044f \\u0441\\u0445\\u0435\\u043c\\u044b \\u0434\\u0430\\u043d\\u043d\\u044b\\u0445\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 50,
+    "fields": {
+      "action_time": "2024-02-04T15:14:59.731Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "11",
+      "object_repr": "Изучение нового фреймворка",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041e\\u0441\\u043d\\u043e\\u0432\\u044b React.js\", \"fields\": [\"\\u0422\\u0438\\u043f \\u0437\\u0430\\u0434\\u0430\\u0447\\u0438\", \"\\u0418\\u0441\\u0442\\u043e\\u0447\\u043d\\u0438\\u043a\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u0442\\u0435\\u0441\\u0442\\u043e\\u0432\\u043e\\u0433\\u043e \\u043f\\u0440\\u0438\\u043b\\u043e\\u0436\\u0435\\u043d\\u0438\\u044f\", \"fields\": [\"\\u0422\\u0438\\u043f \\u0437\\u0430\\u0434\\u0430\\u0447\\u0438\"]}}, {\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0418\\u043d\\u0442\\u0435\\u0433\\u0440\\u0430\\u0446\\u0438\\u044f React-\\u043a\\u043e\\u043c\\u043f\\u043e\\u043d\\u0435\\u043d\\u0442\\u043e\\u0432 \\u0432 \\u043f\\u0440\\u043e\\u0435\\u043a\\u0442\", \"fields\": [\"\\u0422\\u0438\\u043f \\u0437\\u0430\\u0434\\u0430\\u0447\\u0438\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 51,
+    "fields": {
+      "action_time": "2024-02-04T15:15:19.346Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "10",
+      "object_repr": "Разработка RESTful API",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0418\\u0437\\u0443\\u0447\\u0435\\u043d\\u0438\\u0435 \\u043f\\u0440\\u0438\\u043d\\u0446\\u0438\\u043f\\u043e\\u0432 REST\", \"fields\": [\"\\u0422\\u0438\\u043f \\u0437\\u0430\\u0434\\u0430\\u0447\\u0438\", \"\\u0418\\u0441\\u0442\\u043e\\u0447\\u043d\\u0438\\u043a\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 52,
+    "fields": {
+      "action_time": "2024-02-04T15:16:53.538Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "13",
+      "object_repr": "Освоение языка программирования Python",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0445\\u043e\\u0436\\u0434\\u0435\\u043d\\u0438\\u0435 \\u043a\\u0443\\u0440\\u0441\\u0430 \\u043f\\u043e Python\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u043f\\u0440\\u043e\\u0441\\u0442\\u044b\\u0445 \\u043f\\u0440\\u043e\\u0433\\u0440\\u0430\\u043c\\u043c\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0423\\u0447\\u0430\\u0441\\u0442\\u0438\\u0435 \\u0432 \\u043a\\u043e\\u0434-\\u0440\\u0435\\u0432\\u044c\\u044e\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 53,
+    "fields": {
+      "action_time": "2024-02-04T15:17:03.265Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "12",
+      "object_repr": "Улучшение навыков в работе с базами данных",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u043c\\u0438\\u0433\\u0440\\u0430\\u0446\\u0438\\u0439 \\u0434\\u043b\\u044f \\u0441\\u0445\\u0435\\u043c\\u044b \\u0434\\u0430\\u043d\\u043d\\u044b\\u0445\", \"fields\": [\"\\u041f\\u043e\\u0434\\u0440\\u043e\\u0431\\u043d\\u043e\\u0435 \\u043e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 54,
+    "fields": {
+      "action_time": "2024-02-04T15:18:42.175Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "14",
+      "object_repr": "Изучение системы контроля версий Git",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041e\\u0441\\u043d\\u043e\\u0432\\u044b Git\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0431\\u043e\\u0442\\u0430 \\u0441 GitHub\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0435\\u043a\\u0442\\u043d\\u0430\\u044f \\u0440\\u0430\\u0431\\u043e\\u0442\\u0430 \\u0441 Git\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 55,
+    "fields": {
+      "action_time": "2024-02-04T15:20:33.927Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "15",
+      "object_repr": "Основы веб-разработк",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041a\\u0443\\u0440\\u0441 \\u043f\\u043e HTML \\u0438 CSS\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041e\\u0441\\u043d\\u043e\\u0432\\u044b JavaScript\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u043f\\u0435\\u0440\\u0432\\u043e\\u0433\\u043e \\u0432\\u0435\\u0431-\\u0441\\u0430\\u0439\\u0442\\u0430\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 56,
+    "fields": {
+      "action_time": "2024-02-04T15:25:31.032Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "16",
+      "object_repr": "Автоматизация тестирования с использованием Selenium",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0418\\u0437\\u0443\\u0447\\u0435\\u043d\\u0438\\u0435 \\u043e\\u0441\\u043d\\u043e\\u0432 Selenium\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u0442\\u0435\\u0441\\u0442\\u043e\\u0432\\u044b\\u0445 \\u0441\\u0446\\u0435\\u043d\\u0430\\u0440\\u0438\\u0435\\u0432\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0418\\u043d\\u0442\\u0435\\u0433\\u0440\\u0430\\u0446\\u0438\\u044f \\u0441 Jenkins\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 57,
+    "fields": {
+      "action_time": "2024-02-04T15:26:47.659Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "17",
+      "object_repr": "Глубокое изучение методологий Agile и Scrum",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0445\\u043e\\u0436\\u0434\\u0435\\u043d\\u0438\\u0435 \\u0441\\u043f\\u0435\\u0446\\u0438\\u0430\\u043b\\u0438\\u0437\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u043d\\u043e\\u0433\\u043e \\u043a\\u0443\\u0440\\u0441\\u0430\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u0440\\u0443\\u043a\\u043e\\u0432\\u043e\\u0434\\u0441\\u0442\\u0432\\u0430 \\u043f\\u043e Scrum\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041e\\u0440\\u0433\\u0430\\u043d\\u0438\\u0437\\u0430\\u0446\\u0438\\u044f \\u0432\\u043e\\u0440\\u043a\\u0448\\u043e\\u043f\\u0430 \\u0434\\u043b\\u044f \\u043a\\u043e\\u043c\\u0430\\u043d\\u0434\\u044b\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 58,
+    "fields": {
+      "action_time": "2024-02-04T15:27:53.056Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "18",
+      "object_repr": "Изучение и внедрение CI/CD",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0418\\u0437\\u0443\\u0447\\u0435\\u043d\\u0438\\u0435 \\u043a\\u043e\\u043d\\u0446\\u0435\\u043f\\u0446\\u0438\\u0439 CI/CD\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0421\\u043e\\u0437\\u0434\\u0430\\u043d\\u0438\\u0435 \\u043f\\u0430\\u0439\\u043f\\u043b\\u0430\\u0439\\u043d\\u0430 \\u0434\\u043b\\u044f \\u043f\\u0440\\u043e\\u0435\\u043a\\u0442\\u0430\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041e\\u0431\\u0443\\u0447\\u0435\\u043d\\u0438\\u0435 \\u043a\\u043e\\u043c\\u0430\\u043d\\u0434\\u044b \\u043e\\u0441\\u043d\\u043e\\u0432\\u0430\\u043c CI/CD\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 59,
+    "fields": {
+      "action_time": "2024-02-04T15:29:25.452Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "19",
+      "object_repr": "Освоение инструментов автоматизированного тестирования",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0418\\u0437\\u0443\\u0447\\u0435\\u043d\\u0438\\u0435 \\u043e\\u0441\\u043d\\u043e\\u0432 Postman\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0410\\u0432\\u0442\\u043e\\u043c\\u0430\\u0442\\u0438\\u0437\\u0430\\u0446\\u0438\\u044f \\u0442\\u0435\\u0441\\u0442\\u043e\\u0432\\u044b\\u0445 \\u0441\\u0446\\u0435\\u043d\\u0430\\u0440\\u0438\\u0435\\u0432\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0412\\u0432\\u0435\\u0434\\u0435\\u043d\\u0438\\u0435 \\u0432 \\u043d\\u0430\\u0433\\u0440\\u0443\\u0437\\u043e\\u0447\\u043d\\u043e\\u0435 \\u0442\\u0435\\u0441\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 60,
+    "fields": {
+      "action_time": "2024-02-04T15:30:50.895Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "20",
+      "object_repr": "Улучшение процессов тестирования в команде",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0410\\u043d\\u0430\\u043b\\u0438\\u0437 \\u0442\\u0435\\u043a\\u0443\\u0449\\u0438\\u0445 \\u043f\\u0440\\u043e\\u0446\\u0435\\u0441\\u0441\\u043e\\u0432 \\u0442\\u0435\\u0441\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u044f\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u043f\\u043b\\u0430\\u043d\\u0430 \\u0443\\u043b\\u0443\\u0447\\u0448\\u0435\\u043d\\u0438\\u0439\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0412\\u043d\\u0435\\u0434\\u0440\\u0435\\u043d\\u0438\\u0435 \\u0438 \\u043e\\u0446\\u0435\\u043d\\u043a\\u0430 \\u0438\\u0437\\u043c\\u0435\\u043d\\u0435\\u043d\\u0438\\u0439\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 61,
+    "fields": {
+      "action_time": "2024-02-04T15:34:12.969Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "21",
+      "object_repr": "Изучение новых подходов к тестированию",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041a\\u0443\\u0440\\u0441 \\u043f\\u043e Behavior Driven Development (BDD)\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041e\\u0437\\u043d\\u0430\\u043a\\u043e\\u043c\\u043b\\u0435\\u043d\\u0438\\u0435 \\u0441 \\u043a\\u043e\\u043d\\u0442\\u0440\\u0430\\u043a\\u0442\\u043d\\u044b\\u043c \\u0442\\u0435\\u0441\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435\\u043c\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0412\\u0432\\u0435\\u0434\\u0435\\u043d\\u0438\\u0435 \\u0432 \\u0442\\u0435\\u0441\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0431\\u0435\\u0437\\u043e\\u043f\\u0430\\u0441\\u043d\\u043e\\u0441\\u0442\\u0438\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 62,
+    "fields": {
+      "action_time": "2024-02-04T15:36:54.164Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "22",
+      "object_repr": "Основы дизайна интерфейсов",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0418\\u0437\\u0443\\u0447\\u0435\\u043d\\u0438\\u0435 \\u0442\\u0435\\u043e\\u0440\\u0438\\u0438 \\u0446\\u0432\\u0435\\u0442\\u0430\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041e\\u0441\\u043d\\u043e\\u0432\\u044b \\u0442\\u0438\\u043f\\u043e\\u0433\\u0440\\u0430\\u0444\\u0438\\u043a\\u0438\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0435\\u043a\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u044d\\u043b\\u0435\\u043c\\u0435\\u043d\\u0442\\u043e\\u0432 \\u0438\\u043d\\u0442\\u0435\\u0440\\u0444\\u0435\\u0439\\u0441\\u0430\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 63,
+    "fields": {
+      "action_time": "2024-02-04T15:43:57.694Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "23",
+      "object_repr": "Пользовательские исследования и тестирование",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u043b\\u0430\\u043d\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u043f\\u043e\\u043b\\u044c\\u0437\\u043e\\u0432\\u0430\\u0442\\u0435\\u043b\\u044c\\u0441\\u043a\\u0438\\u0445 \\u0438\\u043d\\u0442\\u0435\\u0440\\u0432\\u044c\\u044e\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0410\\u043d\\u0430\\u043b\\u0438\\u0437 \\u0440\\u0435\\u0437\\u0443\\u043b\\u044c\\u0442\\u0430\\u0442\\u043e\\u0432 \\u0438\\u043d\\u0442\\u0435\\u0440\\u0432\\u044c\\u044e\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0442\\u043e\\u0442\\u0438\\u043f\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u043d\\u0430 \\u043e\\u0441\\u043d\\u043e\\u0432\\u0435 \\u0438\\u0441\\u0441\\u043b\\u0435\\u0434\\u043e\\u0432\\u0430\\u043d\\u0438\\u044f\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 64,
+    "fields": {
+      "action_time": "2024-02-04T15:44:19.698Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "24",
+      "object_repr": "Введение в адаптивный дизайн",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 65,
+    "fields": {
+      "action_time": "2024-02-04T15:45:45.450Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "25",
+      "object_repr": "Редизайн корпоративного сайта",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0410\\u043d\\u0430\\u043b\\u0438\\u0437 \\u0442\\u0435\\u043a\\u0443\\u0449\\u0435\\u0433\\u043e \\u0434\\u0438\\u0437\\u0430\\u0439\\u043d\\u0430\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u043d\\u043e\\u0432\\u043e\\u0439 \\u043a\\u043e\\u043d\\u0446\\u0435\\u043f\\u0446\\u0438\\u0438\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u041f\\u0440\\u043e\\u0442\\u043e\\u0442\\u0438\\u043f\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0438 \\u0442\\u0435\\u0441\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 66,
+    "fields": {
+      "action_time": "2024-02-04T15:47:51.794Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "26",
+      "object_repr": "Создание мобильного приложения",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0418\\u0441\\u0441\\u043b\\u0435\\u0434\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0446\\u0435\\u043b\\u0435\\u0432\\u043e\\u0439 \\u0430\\u0443\\u0434\\u0438\\u0442\\u043e\\u0440\\u0438\\u0438\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u043f\\u043e\\u043b\\u044c\\u0437\\u043e\\u0432\\u0430\\u0442\\u0435\\u043b\\u044c\\u0441\\u043a\\u0438\\u0445 \\u0441\\u0446\\u0435\\u043d\\u0430\\u0440\\u0438\\u0435\\u0432\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0414\\u0438\\u0437\\u0430\\u0439\\u043d \\u0438 \\u043f\\u0440\\u043e\\u0442\\u043e\\u0442\\u0438\\u043f\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 67,
+    "fields": {
+      "action_time": "2024-02-04T15:51:28.295Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "27",
+      "object_repr": "Улучшение доступности продуктов",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0410\\u0443\\u0434\\u0438\\u0442 \\u0434\\u043e\\u0441\\u0442\\u0443\\u043f\\u043d\\u043e\\u0441\\u0442\\u0438\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0430\\u0437\\u0440\\u0430\\u0431\\u043e\\u0442\\u043a\\u0430 \\u0440\\u0435\\u043a\\u043e\\u043c\\u0435\\u043d\\u0434\\u0430\\u0446\\u0438\\u0439\"}}, {\"added\": {\"name\": \"\\u0417\\u0430\\u0434\\u0430\\u0447\\u0430\", \"object\": \"\\u0420\\u0435\\u0430\\u043b\\u0438\\u0437\\u0430\\u0446\\u0438\\u044f \\u0438 \\u043f\\u0440\\u043e\\u0432\\u0435\\u0440\\u043a\\u0430\"}}]"
+    }
+  },
+{
+  "model": "sessions.session",
+  "pk": "f8o8kkgsus5sm2c0kn6f1r60cq3gfpox",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQRO9CHSE-NpiU6X0GtLBLcBKBZOwqyt2DJRdJOfPezJt52Lfs90arX5BdmWSX3y5AfFI5AD6g3CuPtWzrEvih8JM2Plek1-10_w4ytNzXWieDTogpDY5Ag0QRhskSBhqdMhC1MxGAUDlrpLIixU7HHpOQIBT7fAHscTgC:1rWfVU:RwuWv9HWsJ05MFxgKycQQAOZpWFxNG3FoNhsLSQ8gG8",
+    "expire_date": "2024-02-18T16:38:12.303Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "gn9dwhpx33beldfztpeuvgt4yyvekf8p",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQRO9CHSE-NpiU6X0GtLBLcBKBZOwqyt2DJRdJOfPezJt52Lfs90arX5BdmWSX3y5AfFI5AD6g3CuPtWzrEvih8JM2Plek1-10_w4ytNzXWieDTogpDY5Ag0QRhskSBhqdMhC1MxGAUDlrpLIixU7HHpOQIBT7fAHscTgC:1rWdAL:gAHZseWEdbI-GPzGc30wSaOHAnEX-52WCnqEn_45KWs",
+    "expire_date": "2024-02-18T14:08:13.674Z"
+  }
+},
+{
+  "model": "plans.statusidp",
+  "pk": 1,
+  "fields": {
+    "name": "Открыт",
+    "slug": "open",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.statusidp",
+  "pk": 2,
+  "fields": {
+    "name": "В работе",
+    "slug": "in_progress",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.statusidp",
+  "pk": 3,
+  "fields": {
+    "name": "Ожидает ревью",
+    "slug": "awaiting_review",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.statusidp",
+  "pk": 4,
+  "fields": {
+    "name": "Выполнен",
+    "slug": "completed",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.statusidp",
+  "pk": 5,
+  "fields": {
+    "name": "Просрочен",
+    "slug": "expired",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.statusidp",
+  "pk": 6,
+  "fields": {
+    "name": "Отменен",
+    "slug": "cancelled",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 1,
+  "fields": {
+    "author": 1,
+    "employee": 1,
+    "mentor": null,
+    "name": "Разработка стратегии продукта",
+    "description": "Создание и реализация комплексной стратегии развития продукта, включая анализ рынка, целевой аудитории и конкурентов.",
+    "deadline": "2022-12-31T14:44:08Z",
+    "status": 4,
+    "pub_date": "2024-02-04T14:45:15.555Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 2,
+  "fields": {
+    "author": 1,
+    "employee": 1,
+    "mentor": 2,
+    "name": "Управление жизненным циклом продукта",
+    "description": "Оптимизация процессов управления продуктом на всех этапах его жизненного цикла для максимизации его рыночного успеха",
+    "deadline": "2023-12-31T14:45:53Z",
+    "status": 5,
+    "pub_date": "2024-02-04T14:46:56.200Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 3,
+  "fields": {
+    "author": 1,
+    "employee": 1,
+    "mentor": null,
+    "name": "Инновации и развитие новых функций",
+    "description": "Идентификация и реализация инновационных решений и новых функций для удовлетворения и превышения ожиданий пользователей.",
+    "deadline": "2024-12-31T14:47:22Z",
+    "status": 2,
+    "pub_date": "2024-02-04T14:48:30.297Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 4,
+  "fields": {
+    "author": 1,
+    "employee": 2,
+    "mentor": null,
+    "name": "Оптимизация процессов разработки",
+    "description": "Анализ и оптимизация существующих процессов разработки для повышения эффективности команды.",
+    "deadline": "2022-12-31T14:49:06Z",
+    "status": 4,
+    "pub_date": "2024-02-04T14:50:04.068Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 5,
+  "fields": {
+    "author": 1,
+    "employee": 2,
+    "mentor": null,
+    "name": "Управление мультидисциплинарным проектом",
+    "description": "Координация работы мультидисциплинарной команды для успешной реализации сложного проекта",
+    "deadline": "2023-12-31T14:50:27Z",
+    "status": 4,
+    "pub_date": "2024-02-04T14:53:42.647Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 6,
+  "fields": {
+    "author": 1,
+    "employee": 2,
+    "mentor": null,
+    "name": "Разработка стратегии цифровой трансформации",
+    "description": "Создание и реализация стратегии цифровой трансформации для улучшения бизнес-процессов компании.",
+    "deadline": "2024-12-31T14:54:30Z",
+    "status": 3,
+    "pub_date": "2024-02-04T14:56:57.217Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 7,
+  "fields": {
+    "author": 1,
+    "employee": 3,
+    "mentor": null,
+    "name": "Изучение основ программирования на JavaScript",
+    "description": "Освоение основных концепций и синтаксиса языка программирования JavaScript.",
+    "deadline": "2022-12-31T14:58:14Z",
+    "status": 4,
+    "pub_date": "2024-02-04T15:00:12.821Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 8,
+  "fields": {
+    "author": 1,
+    "employee": 3,
+    "mentor": null,
+    "name": "Введение в верстку",
+    "description": "Изучение основ HTML и CSS для создания статических веб-страниц",
+    "deadline": "2023-12-31T15:00:36Z",
+    "status": 4,
+    "pub_date": "2024-02-04T15:02:11.609Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 9,
+  "fields": {
+    "author": 1,
+    "employee": 3,
+    "mentor": 4,
+    "name": "Основы работы с Git",
+    "description": "Получение навыков работы с системой контроля версий Git и сервисом GitHub",
+    "deadline": "2024-01-31T15:02:36Z",
+    "status": 5,
+    "pub_date": "2024-02-04T15:04:06.025Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 10,
+  "fields": {
+    "author": 1,
+    "employee": 4,
+    "mentor": null,
+    "name": "Разработка RESTful API",
+    "description": "Повышение навыков в разработке и документировании RESTful API для веб-приложений",
+    "deadline": "2022-12-31T15:08:32Z",
+    "status": 4,
+    "pub_date": "2024-02-04T15:09:26.956Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 11,
+  "fields": {
+    "author": 1,
+    "employee": 4,
+    "mentor": null,
+    "name": "Изучение нового фреймворка",
+    "description": "Освоение фреймворка React.js для повышения гибкости и эффективности разработки фронтенда",
+    "deadline": "2023-12-31T15:09:56Z",
+    "status": 4,
+    "pub_date": "2024-02-04T15:12:18.872Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 12,
+  "fields": {
+    "author": 1,
+    "employee": 4,
+    "mentor": null,
+    "name": "Улучшение навыков в работе с базами данных",
+    "description": "Углубление знаний и практических навыков работы с реляционными и NoSQL базами данных",
+    "deadline": "2024-12-31T15:12:48Z",
+    "status": 1,
+    "pub_date": "2024-02-04T15:14:35.894Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 13,
+  "fields": {
+    "author": 1,
+    "employee": 5,
+    "mentor": null,
+    "name": "Освоение языка программирования Python",
+    "description": "Изучение основ программирования на Python для использования в будущих проектах",
+    "deadline": "2022-12-31T15:15:47Z",
+    "status": 5,
+    "pub_date": "2024-02-04T15:16:53.536Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 14,
+  "fields": {
+    "author": 1,
+    "employee": 5,
+    "mentor": 4,
+    "name": "Изучение системы контроля версий Git",
+    "description": "Получение практических навыков работы с Git для улучшения процесса разработки и коллаборации в команде",
+    "deadline": "2023-12-31T15:17:23Z",
+    "status": 5,
+    "pub_date": "2024-02-04T15:18:42.174Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 15,
+  "fields": {
+    "author": 1,
+    "employee": 5,
+    "mentor": null,
+    "name": "Основы веб-разработк",
+    "description": "Изучение HTML, CSS и JavaScript для создания базовых веб-страниц и интерактивных элементов",
+    "deadline": "2024-12-31T15:19:29Z",
+    "status": 6,
+    "pub_date": "2024-02-04T15:20:33.926Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 16,
+  "fields": {
+    "author": 1,
+    "employee": 6,
+    "mentor": null,
+    "name": "Автоматизация тестирования с использованием Selenium",
+    "description": "Овладение навыками автоматизации тестирования веб-приложений с помощью Selenium",
+    "deadline": "2022-12-31T15:24:33Z",
+    "status": 4,
+    "pub_date": "2024-02-04T15:25:31.030Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 17,
+  "fields": {
+    "author": 1,
+    "employee": 6,
+    "mentor": null,
+    "name": "Глубокое изучение методологий Agile и Scrum",
+    "description": "Повышение квалификации в области Agile и Scrum для улучшения процессов в команде",
+    "deadline": "2023-12-31T15:25:57Z",
+    "status": 4,
+    "pub_date": "2024-02-04T15:26:47.656Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 18,
+  "fields": {
+    "author": 1,
+    "employee": 6,
+    "mentor": null,
+    "name": "Изучение и внедрение CI/CD",
+    "description": "Освоение принципов и практик Continuous Integration и Continuous Delivery",
+    "deadline": "2024-12-31T15:27:03Z",
+    "status": 4,
+    "pub_date": "2024-02-04T15:27:53.054Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 19,
+  "fields": {
+    "author": 1,
+    "employee": 7,
+    "mentor": 6,
+    "name": "Освоение инструментов автоматизированного тестирования",
+    "description": "Изучение и практическое применение инструментов для автоматизации тестирования",
+    "deadline": "2022-12-31T15:28:36Z",
+    "status": 6,
+    "pub_date": "2024-02-04T15:29:25.450Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 20,
+  "fields": {
+    "author": 1,
+    "employee": 7,
+    "mentor": null,
+    "name": "Улучшение процессов тестирования в команде",
+    "description": "Разработка и внедрение улучшений в процессы тестирования для повышения их эффективности",
+    "deadline": "2023-12-31T15:29:42Z",
+    "status": 4,
+    "pub_date": "2024-02-04T15:30:50.893Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 21,
+  "fields": {
+    "author": 1,
+    "employee": 7,
+    "mentor": null,
+    "name": "Изучение новых подходов к тестированию",
+    "description": "Повышение квалификации путем освоения современных методик и подходов к тестированию",
+    "deadline": "2024-12-31T15:31:42Z",
+    "status": 2,
+    "pub_date": "2024-02-04T15:34:12.967Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 22,
+  "fields": {
+    "author": 1,
+    "employee": 9,
+    "mentor": null,
+    "name": "Основы дизайна интерфейсов",
+    "description": "Изучение фундаментальных принципов UI/UX дизайна для создания эффективных пользовательских интерфейсов",
+    "deadline": "2022-12-31T15:35:50Z",
+    "status": 4,
+    "pub_date": "2024-02-04T15:36:54.162Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 23,
+  "fields": {
+    "author": 1,
+    "employee": 9,
+    "mentor": 8,
+    "name": "Пользовательские исследования и тестирование",
+    "description": "Освоение методик проведения пользовательских исследований и тестирования дизайна для определения UX проблем",
+    "deadline": "2023-12-31T15:38:18Z",
+    "status": 4,
+    "pub_date": "2024-02-04T15:43:57.692Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 24,
+  "fields": {
+    "author": 1,
+    "employee": 9,
+    "mentor": 8,
+    "name": "Введение в адаптивный дизайн",
+    "description": "",
+    "deadline": null,
+    "status": 1,
+    "pub_date": "2024-02-04T15:44:19.697Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 25,
+  "fields": {
+    "author": 1,
+    "employee": 10,
+    "mentor": null,
+    "name": "Редизайн корпоративного сайта",
+    "description": "Полный редизайн корпоративного сайта компании для улучшения пользовательского опыта и повышения конверсии",
+    "deadline": "2022-12-31T15:44:52Z",
+    "status": 4,
+    "pub_date": "2024-02-04T15:45:45.448Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 26,
+  "fields": {
+    "author": 1,
+    "employee": 10,
+    "mentor": 8,
+    "name": "Создание мобильного приложения",
+    "description": "Дизайн мобильного приложения для нового продукта компании, с особым вниманием к удобству использования и интуитивности интерфейса",
+    "deadline": "2023-12-31T15:46:56Z",
+    "status": 4,
+    "pub_date": "2024-02-04T15:47:51.792Z"
+  }
+},
+{
+  "model": "plans.idp",
+  "pk": 27,
+  "fields": {
+    "author": 1,
+    "employee": 10,
+    "mentor": null,
+    "name": "Улучшение доступности продуктов",
+    "description": "Проект по улучшению доступности веб-сайтов и приложений компании для людей с ограниченными возможностями",
+    "deadline": "2024-12-31T15:50:38Z",
+    "status": 4,
+    "pub_date": "2024-02-04T15:51:28.293Z"
+  }
+},
+{
+  "model": "plans.statustask",
+  "pk": 1,
+  "fields": {
+    "name": "Открыта",
+    "slug": "open",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.statustask",
+  "pk": 2,
+  "fields": {
+    "name": "В работе",
+    "slug": "in_progress",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.statustask",
+  "pk": 3,
+  "fields": {
+    "name": "Выполнена",
+    "slug": "completed",
+    "color_fon": "#FFFFFF",
+    "color_text": "#FFFFFF"
+  }
+},
+{
+  "model": "plans.typetask",
+  "pk": 1,
+  "fields": {
+    "name": "Альфа академия",
+    "slug": "alfa_academy"
+  }
+},
+{
+  "model": "plans.typetask",
+  "pk": 2,
+  "fields": {
+    "name": "Курс",
+    "slug": "course"
+  }
+},
+{
+  "model": "plans.typetask",
+  "pk": 3,
+  "fields": {
+    "name": "Книга",
+    "slug": "book"
+  }
+},
+{
+  "model": "plans.typetask",
+  "pk": 4,
+  "fields": {
+    "name": "Другое",
+    "slug": "other"
+  }
+},
+{
+  "model": "plans.typetask",
+  "pk": 5,
+  "fields": {
+    "name": "Рабочая задача",
+    "slug": "work_task"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 1,
+  "fields": {
+    "idp": 1,
+    "type": 4,
+    "name": "Анализ рынка",
+    "description": "Провести глубокий анализ рынка для идентификации потребностей и трендов.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T14:45:15.580Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 2,
+  "fields": {
+    "idp": 1,
+    "type": 4,
+    "name": "Определение целевой аудитории",
+    "description": "Сегментировать рынок и определить основную целевую аудиторию продукта.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T14:45:15.581Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 3,
+  "fields": {
+    "idp": 1,
+    "type": 4,
+    "name": "Разработка позиционирования",
+    "description": "Создать уникальное торговое предложение (УТП) и стратегию позиционирования продукта.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T14:45:15.581Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 4,
+  "fields": {
+    "idp": 2,
+    "type": 4,
+    "name": "Планирование roadmap продукта",
+    "description": "Разработать и обновить дорожную карту продукта, учитывая стратегические цели.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T14:46:56.201Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 5,
+  "fields": {
+    "idp": 2,
+    "type": 4,
+    "name": "Оптимизация процессов разработки",
+    "description": "Улучшить процессы разработки и внедрения функционала продукта.",
+    "source": "-",
+    "status": 2,
+    "pub_date": "2024-02-04T14:46:56.201Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 6,
+  "fields": {
+    "idp": 2,
+    "type": 4,
+    "name": "Анализ эффективности продукта",
+    "description": "Регулярно анализировать показатели эффективности и удовлетворенности пользователей.",
+    "source": "-",
+    "status": 1,
+    "pub_date": "2024-02-04T14:46:56.201Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 7,
+  "fields": {
+    "idp": 3,
+    "type": 4,
+    "name": "Исследование новых технологий",
+    "description": "Изучить последние технологические тренды, которые можно интегрировать в продукт.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T14:48:30.298Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 8,
+  "fields": {
+    "idp": 3,
+    "type": 4,
+    "name": "Разработка концепта новых функций",
+    "description": "Создать концептуальные прототипы новых функций на основе исследований.",
+    "source": "-",
+    "status": 2,
+    "pub_date": "2024-02-04T14:48:30.298Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 9,
+  "fields": {
+    "idp": 3,
+    "type": 4,
+    "name": "Тестирование и валидация",
+    "description": "Провести тестирование прототипов с реальными пользователями для валидации концептов.",
+    "source": "-",
+    "status": 1,
+    "pub_date": "2024-02-04T14:48:30.298Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 10,
+  "fields": {
+    "idp": 4,
+    "type": 4,
+    "name": "Анализ текущих процессов",
+    "description": "Провести детальный аудит текущих процессов разработки",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T14:50:04.070Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 11,
+  "fields": {
+    "idp": 4,
+    "type": 5,
+    "name": "Разработка плана оптимизации",
+    "description": "Создать план улучшений, включая внедрение agile методологий.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T14:50:04.071Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 12,
+  "fields": {
+    "idp": 4,
+    "type": 5,
+    "name": "Имплементация и мониторинг изменений",
+    "description": "Внедрить выбранные улучшения и настроить систему мониторинга эффективности.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T14:50:04.071Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 13,
+  "fields": {
+    "idp": 5,
+    "type": 5,
+    "name": "Планирование проекта",
+    "description": "Разработать подробный план проекта, включая распределение задач и ресурсов.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T14:53:42.648Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 14,
+  "fields": {
+    "idp": 5,
+    "type": 5,
+    "name": "Координация команды",
+    "description": "Организовать эффективную коммуникацию и сотрудничество внутри команды.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T14:53:42.648Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 15,
+  "fields": {
+    "idp": 5,
+    "type": 4,
+    "name": "Управление рисками",
+    "description": "Идентифицировать потенциальные риски проекта и разработать стратегии их минимизации.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T14:53:42.649Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 16,
+  "fields": {
+    "idp": 6,
+    "type": 5,
+    "name": "Анализ текущего состояния",
+    "description": "Оценить уровень цифровизации бизнес-процессов компании.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T14:56:57.218Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 17,
+  "fields": {
+    "idp": 6,
+    "type": 4,
+    "name": "Разработка стратегии",
+    "description": "Сформулировать стратегические направления цифровой трансформации.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T14:56:57.218Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 18,
+  "fields": {
+    "idp": 6,
+    "type": 5,
+    "name": "Внедрение и адаптация",
+    "description": "Руководить процессом внедрения новых технологий и адаптации бизнес-процессов.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T14:56:57.218Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 19,
+  "fields": {
+    "idp": 7,
+    "type": 3,
+    "name": "Прочитать разделы 1-4 из книги 'Выразительный JavaScript'",
+    "description": "Изучить основы языка, включая переменные, типы данных, функции.",
+    "source": "Выразительный JavaScript",
+    "status": 3,
+    "pub_date": "2024-02-04T15:00:12.822Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 20,
+  "fields": {
+    "idp": 7,
+    "type": 4,
+    "name": "Выполнить упражнения на Codecademy по JavaScript",
+    "description": "Практическое применение изученных концепций на платформе Codecademy.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:00:12.822Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 21,
+  "fields": {
+    "idp": 7,
+    "type": 5,
+    "name": "Разработать небольшой проект калькулятор",
+    "description": "Используя изученные знания, разработать простой калькулятор на JavaScript.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:00:12.822Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 22,
+  "fields": {
+    "idp": 8,
+    "type": 1,
+    "name": "Пройти курс по HTML на HTML Academу",
+    "description": "Освоить структуру и основные теги HTML.",
+    "source": "alfa academy",
+    "status": 3,
+    "pub_date": "2024-02-04T15:02:11.610Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 23,
+  "fields": {
+    "idp": 8,
+    "type": 1,
+    "name": "Пройти курс по CSS на HTML Academy",
+    "description": "Изучить основы стилизации веб-страниц с помощью CSS.",
+    "source": "Alfa academy",
+    "status": 3,
+    "pub_date": "2024-02-04T15:02:11.611Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 24,
+  "fields": {
+    "idp": 8,
+    "type": 5,
+    "name": "Создать веб-страницу портфолио",
+    "description": "Применить знания, создав простую веб-страницу с информацией о себе.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:02:11.611Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 25,
+  "fields": {
+    "idp": 9,
+    "type": 1,
+    "name": "Изучить основы Git на Codecademy",
+    "description": "Пройти обучающий модуль по Git, изучив основные команды.",
+    "source": "Alfa academy",
+    "status": 3,
+    "pub_date": "2024-02-04T15:04:06.026Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 26,
+  "fields": {
+    "idp": 9,
+    "type": 5,
+    "name": "Создать репозиторий на GitHub",
+    "description": "На практике применить знания, создав свой первый репозиторий.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:04:06.026Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 27,
+  "fields": {
+    "idp": 9,
+    "type": 5,
+    "name": "Добавить проект калькулятора на GitHub",
+    "description": "Использовать систему контроля версий для управления версиями проекта калькулятора.",
+    "source": "-",
+    "status": 2,
+    "pub_date": "2024-02-04T15:04:27.328Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 28,
+  "fields": {
+    "idp": 10,
+    "type": 1,
+    "name": "Изучение принципов REST",
+    "description": "Прочитать материалы о архитектуре REST и её принципах",
+    "source": "Alfa academy",
+    "status": 3,
+    "pub_date": "2024-02-04T15:09:26.957Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 29,
+  "fields": {
+    "idp": 10,
+    "type": 5,
+    "name": "Реализация API для текущего проекта",
+    "description": "Разработать RESTful API для компонента текущего проекта.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:09:26.957Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 30,
+  "fields": {
+    "idp": 10,
+    "type": 5,
+    "name": "Документирование API",
+    "description": "Создать документацию для разработанного API с использованием Swagger.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:09:26.957Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 31,
+  "fields": {
+    "idp": 11,
+    "type": 1,
+    "name": "Основы React.js",
+    "description": "Пройти онлайн-курс по основам React.js",
+    "source": "Alfa academy",
+    "status": 3,
+    "pub_date": "2024-02-04T15:12:18.873Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 32,
+  "fields": {
+    "idp": 11,
+    "type": 4,
+    "name": "Разработка тестового приложения",
+    "description": "Создать небольшое приложение с использованием React.js, чтобы закрепить знания.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:12:18.873Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 33,
+  "fields": {
+    "idp": 11,
+    "type": 4,
+    "name": "Интеграция React-компонентов в проект",
+    "description": "Интегрировать разработанные React-компоненты в существующий проект.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:12:18.874Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 34,
+  "fields": {
+    "idp": 12,
+    "type": 1,
+    "name": "Курс по продвинутым возможностям PostgreSQL",
+    "description": "Изучить продвинутые функции и возможности PostgreSQL.",
+    "source": "Alfa academy",
+    "status": 1,
+    "pub_date": "2024-02-04T15:14:35.895Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 35,
+  "fields": {
+    "idp": 12,
+    "type": 2,
+    "name": "Ознакомление с MongoDB",
+    "description": "Пройти обучающий курс по работе с NoSQL базой данных MongoDB.",
+    "source": "Курс",
+    "status": 1,
+    "pub_date": "2024-02-04T15:14:35.896Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 36,
+  "fields": {
+    "idp": 12,
+    "type": 5,
+    "name": "Разработка миграций для схемы данных",
+    "description": "Создать миграции для обновления схемы данных текущего проекта.",
+    "source": "-",
+    "status": 1,
+    "pub_date": "2024-02-04T15:14:35.896Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 37,
+  "fields": {
+    "idp": 13,
+    "type": 1,
+    "name": "Прохождение курса по Python",
+    "description": "Завершить онлайн-курс 'Python для начинающих'",
+    "source": "Alfa academy",
+    "status": 3,
+    "pub_date": "2024-02-04T15:16:53.537Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 38,
+  "fields": {
+    "idp": 13,
+    "type": 4,
+    "name": "Разработка простых программ",
+    "description": "Написать программы для решения базовых задач, таких как калькулятор.",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:16:53.538Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 39,
+  "fields": {
+    "idp": 13,
+    "type": 4,
+    "name": "Участие в код-ревью",
+    "description": "Принять участие в сессиях код-ревью с более опытными разработчиками для обратной связи",
+    "source": "-",
+    "status": 1,
+    "pub_date": "2024-02-04T15:16:53.538Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 40,
+  "fields": {
+    "idp": 14,
+    "type": 1,
+    "name": "Основы Git",
+    "description": "Изучить базовые команды Git и принципы работы с версиями",
+    "source": "Alfa academy",
+    "status": 3,
+    "pub_date": "2024-02-04T15:18:42.175Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 41,
+  "fields": {
+    "idp": 14,
+    "type": 4,
+    "name": "Работа с GitHub",
+    "description": "Создать собственный репозиторий на GitHub и освоить работу с ветками.",
+    "source": "-",
+    "status": 1,
+    "pub_date": "2024-02-04T15:18:42.175Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 42,
+  "fields": {
+    "idp": 14,
+    "type": 4,
+    "name": "Проектная работа с Git",
+    "description": "Применить знания на практике, работая над небольшим проектом в команде",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:18:42.175Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 43,
+  "fields": {
+    "idp": 15,
+    "type": 2,
+    "name": "Курс по HTML и CSS",
+    "description": "Пройти обучение по основам создания структуры веб-страниц и их стилизации",
+    "source": "курс",
+    "status": 2,
+    "pub_date": "2024-02-04T15:20:33.927Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 44,
+  "fields": {
+    "idp": 15,
+    "type": 1,
+    "name": "Основы JavaScript",
+    "description": "Изучить основы программирования на JavaScript для добавления интерактивности на веб-страницы",
+    "source": "Alfa academy",
+    "status": 1,
+    "pub_date": "2024-02-04T15:20:33.927Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 45,
+  "fields": {
+    "idp": 15,
+    "type": 4,
+    "name": "Разработка первого веб-сайта",
+    "description": "Создать простой веб-сайт, объединяя знания HTML, CSS и JavaScript",
+    "source": "-",
+    "status": 1,
+    "pub_date": "2024-02-04T15:20:33.927Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 46,
+  "fields": {
+    "idp": 16,
+    "type": 2,
+    "name": "Изучение основ Selenium",
+    "description": "Пройти онлайн-курс по Selenium для начинающих.",
+    "source": "курс",
+    "status": 3,
+    "pub_date": "2024-02-04T15:25:31.031Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 47,
+  "fields": {
+    "idp": 16,
+    "type": 5,
+    "name": "Разработка тестовых сценариев",
+    "description": "Создать набор тестовых сценариев для текущего проекта",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:25:31.032Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 48,
+  "fields": {
+    "idp": 16,
+    "type": 5,
+    "name": "Интеграция с Jenkins",
+    "description": "Настроить запуск автоматизированных тестов через Jenkins",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:25:31.032Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 49,
+  "fields": {
+    "idp": 17,
+    "type": 2,
+    "name": "Прохождение специализированного курса",
+    "description": "Завершить курс по Agile и Scrum на Coursera",
+    "source": "Coursera",
+    "status": 3,
+    "pub_date": "2024-02-04T15:26:47.657Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 50,
+  "fields": {
+    "idp": 17,
+    "type": 5,
+    "name": "Разработка руководства по Scrum",
+    "description": "Создать руководство по использованию Scrum в командных проектах",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:26:47.658Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 51,
+  "fields": {
+    "idp": 17,
+    "type": 5,
+    "name": "Организация воркшопа для команды",
+    "description": "Провести воркшоп по методологии Scrum для команды разработчиков",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:26:47.658Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 52,
+  "fields": {
+    "idp": 18,
+    "type": 2,
+    "name": "Изучение концепций CI/CD",
+    "description": "Изучить лучшие практики CI/CD и инструменты, такие как GitLab CI и Jenkins",
+    "source": "курс",
+    "status": 3,
+    "pub_date": "2024-02-04T15:27:53.055Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 53,
+  "fields": {
+    "idp": 18,
+    "type": 5,
+    "name": "Создание пайплайна для проекта",
+    "description": "Разработать и настроить CI/CD пайплайн для автоматизации процессов разработки",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:27:53.055Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 54,
+  "fields": {
+    "idp": 18,
+    "type": 4,
+    "name": "Обучение команды основам CI/CD",
+    "description": "Провести серию обучающих сессий для команды разработчиков по работе с CI/CD",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:27:53.055Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 55,
+  "fields": {
+    "idp": 19,
+    "type": 2,
+    "name": "Изучение основ Postman",
+    "description": "Пройти курс по работе с Postman для автоматизации тестирования API",
+    "source": "курс",
+    "status": 3,
+    "pub_date": "2024-02-04T15:29:25.451Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 56,
+  "fields": {
+    "idp": 19,
+    "type": 5,
+    "name": "Автоматизация тестовых сценариев",
+    "description": "Создать автоматизированные тесты для ключевых функций текущего проекта.",
+    "source": "-",
+    "status": 2,
+    "pub_date": "2024-02-04T15:29:25.451Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 57,
+  "fields": {
+    "idp": 19,
+    "type": 4,
+    "name": "Введение в нагрузочное тестирование",
+    "description": "Изучить основы нагрузочного тестирования с использованием JMeter",
+    "source": "-",
+    "status": 1,
+    "pub_date": "2024-02-04T15:29:25.452Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 58,
+  "fields": {
+    "idp": 20,
+    "type": 5,
+    "name": "Анализ текущих процессов тестирования",
+    "description": "Провести аудит существующих процедур и методик тестирования",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:30:50.894Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 59,
+  "fields": {
+    "idp": 20,
+    "type": 5,
+    "name": "Разработка плана улучшений",
+    "description": "Создать детальный план улучшений процессов тестирования на основе анализа",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:30:50.894Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 60,
+  "fields": {
+    "idp": 20,
+    "type": 5,
+    "name": "Внедрение и оценка изменений",
+    "description": "Реализовать выбранные улучшения и провести оценку их влияния на качество продукта",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:30:50.895Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 61,
+  "fields": {
+    "idp": 21,
+    "type": 2,
+    "name": "Курс по Behavior Driven Development (BDD)",
+    "description": "Пройти обучение по методологии BDD и практически применить ее в проекте",
+    "source": "курс",
+    "status": 2,
+    "pub_date": "2024-02-04T15:34:12.968Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 62,
+  "fields": {
+    "idp": 21,
+    "type": 2,
+    "name": "Ознакомление с контрактным тестированием",
+    "description": "Изучить принципы контрактного тестирования и попробовать их на практике",
+    "source": "Курс",
+    "status": 1,
+    "pub_date": "2024-02-04T15:34:12.968Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 63,
+  "fields": {
+    "idp": 21,
+    "type": 2,
+    "name": "Введение в тестирование безопасности",
+    "description": "Пройти базовый курс по тестированию безопасности приложений",
+    "source": "курс",
+    "status": 1,
+    "pub_date": "2024-02-04T15:34:12.969Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 64,
+  "fields": {
+    "idp": 22,
+    "type": 2,
+    "name": "Изучение теории цвета",
+    "description": "Прочитать материалы и пройти тесты по теории цвета и их применению в дизайне",
+    "source": "курс",
+    "status": 3,
+    "pub_date": "2024-02-04T15:36:54.163Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 65,
+  "fields": {
+    "idp": 22,
+    "type": 2,
+    "name": "Основы типографики",
+    "description": "Изучить правила и принципы выбора шрифтов для веб и мобильных интерфейсов",
+    "source": "Курс",
+    "status": 3,
+    "pub_date": "2024-02-04T15:36:54.163Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 66,
+  "fields": {
+    "idp": 22,
+    "type": 5,
+    "name": "Проектирование элементов интерфейса",
+    "description": "Создать набор базовых компонентов интерфейса с использованием Figma",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:36:54.163Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 67,
+  "fields": {
+    "idp": 23,
+    "type": 5,
+    "name": "Планирование пользовательских интервью",
+    "description": "Разработать план и сценарий для проведения интервью с пользователями",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:43:57.693Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 68,
+  "fields": {
+    "idp": 23,
+    "type": 4,
+    "name": "Анализ результатов интервью",
+    "description": "Обработать полученные данные и выявить ключевые точки улучшения UX",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:43:57.693Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 69,
+  "fields": {
+    "idp": 23,
+    "type": 5,
+    "name": "Прототипирование на основе исследования",
+    "description": "Создать прототип интерфейса, учитывая результаты пользовательских исследований",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:43:57.693Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 70,
+  "fields": {
+    "idp": 25,
+    "type": 5,
+    "name": "Анализ текущего дизайна",
+    "description": "Оценить сильные и слабые стороны текущего дизайна сайта",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:45:45.449Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 71,
+  "fields": {
+    "idp": 25,
+    "type": 5,
+    "name": "Разработка новой концепции",
+    "description": "Создать концепцию нового дизайна, ориентируясь на лучшие практики UX",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:45:45.449Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 72,
+  "fields": {
+    "idp": 25,
+    "type": 5,
+    "name": "Прототипирование и тестирование",
+    "description": "Разработать прототипы ключевых страниц и провести тестирование с пользователями",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:45:45.450Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 73,
+  "fields": {
+    "idp": 26,
+    "type": 5,
+    "name": "Исследование целевой аудитории",
+    "description": "Определить потребности и предпочтения целевой аудитории мобильного приложения",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:47:51.793Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 74,
+  "fields": {
+    "idp": 26,
+    "type": 5,
+    "name": "Разработка пользовательских сценариев",
+    "description": "Создать детальные пользовательские сценарии и карты путешествий пользователя",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:47:51.794Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 75,
+  "fields": {
+    "idp": 26,
+    "type": 5,
+    "name": "Дизайн и прототипирование",
+    "description": "Спроектировать и разработать прототипы экранов приложения, провести юзабилити-тестирование",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:47:51.794Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 76,
+  "fields": {
+    "idp": 27,
+    "type": 5,
+    "name": "Аудит доступности",
+    "description": "Провести аудит текущих продуктов на соответствие стандартам доступности WCAG",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:51:28.294Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 77,
+  "fields": {
+    "idp": 27,
+    "type": 5,
+    "name": "Разработка рекомендаций",
+    "description": "Сформулировать и документировать рекомендации по улучшению доступности",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:51:28.295Z"
+  }
+},
+{
+  "model": "plans.task",
+  "pk": 78,
+  "fields": {
+    "idp": 27,
+    "type": 5,
+    "name": "Реализация и проверка",
+    "description": "Внедрить рекомендации и провести повторный аудит для оценки улучшений",
+    "source": "-",
+    "status": 3,
+    "pub_date": "2024-02-04T15:51:28.295Z"
+  }
+}
+]

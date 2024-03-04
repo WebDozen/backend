@@ -1,0 +1,8 @@
+[
+    {"id": 1, "name": "Открыт", "slug": "open"},
+    {"id": 2, "name": "В работе", "slug": "in_progress"},
+    {"id": 3, "name": "Ожидает ревью", "slug": "awaiting_review"},
+    {"id": 4, "name": "Выполнен", "slug": "completed"},
+    {"id": 5, "name": "Просрочен", "slug": "expired"},
+    {"id": 6, "name": "Отменен", "slug": "cancelled"}
+]

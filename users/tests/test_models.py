@@ -1,7 +1,8 @@
-from django.test import TestCase
-from users.models import User, Manager, Employee, MentorEmployee
 from django.core.exceptions import ValidationError
 from django.db.utils import IntegrityError
+from django.test import TestCase
+
+from users.models import Employee, Manager, MentorEmployee, User
 
 
 class BaseUserModelTest(TestCase):

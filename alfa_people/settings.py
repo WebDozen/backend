@@ -1,9 +1,8 @@
 # flake8: noqa
 import os
-
 from pathlib import Path
-from dotenv import load_dotenv
 
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -16,7 +15,7 @@ DEBUG = os.getenv('DEBUG', 'true').lower() == 'true'
 
 USE_SQLITE = os.getenv('USE_SQLITE', 'true').lower() == 'true'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '84.201.162.233', 'webdozen.ddns.net']
 
 
 INSTALLED_APPS = [
@@ -31,6 +30,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'colorfield',
+    'celery',
+    'corsheaders',
     
     'users.apps.UsersConfig',
     'plans.apps.PlansConfig',
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -73,7 +75,7 @@ if USE_SQLITE:
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
-        }
+        },
     }
 else:
     DATABASES = {
@@ -121,7 +123,7 @@ STATIC_ROOT = BASE_DIR / 'collected_static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = "users.User"
+AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -134,12 +136,22 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
+CELERY_BROKER_URL = "redis://redis:6379/0"
+CELERY_RESULT_BACKEND = "redis://redis:6379/0"
+
 SPECTACULAR_SETTINGS = {
-    "TITLE": "API V1 Сервис ИПР",
-    "VERSION": "V1",
-    "SERVE_INCLUDE_SCHEMA": False,
-    "SWAGGER_UI_SETTINGS": {
-        "filter": True,
+    'TITLE': 'API V1 Сервис ИПР',
+    'VERSION': 'V1',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SWAGGER_UI_SETTINGS': {
+        'filter': True,
     },
-    "COMPONENT_SPLIT_REQUEST": True
+    'COMPONENT_SPLIT_REQUEST': True
 }
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    'http://localhost:4173',
+    'http://84.201.162.233',
+    'https://webdozen.ddns.net'
+]
